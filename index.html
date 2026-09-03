@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGSNHS Enrollment System</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .navbar-brand img {
+            height: 40px;
+        }
+        .navbar-brand span {
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: #333;
+            line-height: 1.1;
+            display: flex;
+            flex-direction: column;
+        }
+        .navbar-brand span small {
+            font-size: 0.7rem;
+            color: #666;
+            font-weight: normal;
+        }
+        
+        /* Nav Buttons (Log In & Enroll) */
+        .btn-nav-group {
+            display: flex;
+            gap: 10px;
+        }
+        .btn-login-nav {
+            border: 1px solid #198754; 
+            color: #198754;
+            background: transparent;
+            border-radius: 5px;
+            padding: 5px 15px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .btn-login-nav:hover {
+            background-color: #198754;
+            color: white;
+        }
+        .btn-enroll-nav {
+            background-color: #198754; 
+            color: white;
+            border-radius: 5px;
+            padding: 5px 15px;
+            border: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .btn-enroll-nav:hover {
+            background-color: #157347;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 80vh;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+        
+        /* BACKGROUND IMAGE FOR HERO - UPDATED FILE NAME */
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('your_bg_image.jpg'); 
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.6); 
+            z-index: -1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .btn-enroll-hero {
+            background-color: #198754;
+            color: white;
+            font-size: 1.2rem;
+            padding: 12px 30px;
+            border-radius: 5px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-enroll-hero:hover {
+            background-color: #157347;
+        }
+
+        /* About Section */
+        .about-section {
+            background: linear-gradient(to bottom, rgba(0, 40, 20, 0.8), rgba(0, 40, 20, 0.9));
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* BACKGROUND IMAGE FOR ABOUT SECTION - UPDATED FILE NAME */
+        .about-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('your_bg_image.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px) brightness(0.4);
+            z-index: -1;
+        }
+
+        .about-section h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .about-section p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        /* Bottom Cards */
+        .info-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .info-card {
+            background-color: #1a3c34; 
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .info-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+            letter-spacing: 1px;
+        }
+
+        .info-card p, .info-card ul {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #d1d1d1;
+            margin: 0;
+            text-align: left;
+        }
+
+        .info-card ul {
+            padding-left: 20px;
+        }
+        
+        .info-card ul li {
+            margin-bottom: 5px;
+        }
+
+        /* LOGIN PAGE UI STYLES */
+        .login-section {
+            display: none; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-image: url('your_bg_image.jpg'); /* UPDATED FILE NAME */
+            background-size: cover;
+            background-position: center;
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-card {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        /* LOGO IMAGE TAG - UPDATED FILE NAME */
+        .login-logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #198754;
+        }
+
+        .login-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #222;
+            margin-bottom: 5px;
+        }
+
+        .login-subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #444;
+            text-align: left;
+            display: block;
+        }
+
+        .form-control {
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .form-control:focus {
+            border-color: #198754;
+            box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+        }
+
+        .btn-login-main {
+            background-color: #198754;
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        .btn-login-main:hover {
+            background-color: #157347;
+        }
+
+        .btn-enroll-main {
+            background-color: white;
+            color: #198754;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #198754;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .btn-enroll-main:hover {
+            background-color: #f0fdf4;
+        }
+
+        .forgot-password {
+            font-size: 0.85rem;
+            color: #666;
+            text-decoration: none;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            background: rgba(0,0,0,0.5);
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+        .back-btn:hover {
+            color: white;
+            background: rgba(0,0,0,0.8);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .about-section p {
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <!-- NAVBAR LOGO IMAGE TAG - UPDATED FILE NAME -->
+                <img src="your_logo.png" alt="Logo">
+                <span>
+                    Alexis G. Santos National High School
+                    <small>Liciada, Bustos, Bulacan</small>
+                </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <div class="btn-nav-group mt-3 mt-lg-0">
+                    <button class="btn btn-login-nav" onclick="showLogin()">Log In</button>
+                    <button class="btn btn-enroll-nav">Enroll</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="container hero-content">
+            <h1>Your Journey to Excellence<br>Continues Here</h1>
+            <button class="btn btn-enroll-hero" onclick="showLogin()">Enroll Now</button>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="about-section">
+        <div class="about-bg"></div>
+        <div class="container">
+            <h2>ABOUT US</h2>
+            <p>Alexis G. Santos National High School is a premier public educational institution in Bustos, Bulacan, committed to fostering academic excellence, moral integrity, and holistic student development. Guided by the standards of the Department of Education, our school provides a dynamic and inclusive learning environment that empowers young learners to maximize their potential. Through the collaborative efforts of our dedicated faculty and supportive community, we cultivate future-ready citizens equipped to lead and contribute meaningfully to society.</p>
+
+            <div class="info-cards">
+                <!-- Vision -->
+                <div class="info-card">
+                    <h3>VISION</h3>
+                    <p>To dream of Filipinos who passionately love their country and whose values and competencies enable them to realize their full potential and contribute meaningfully to building the nation.</p>
+                </div>
+
+                <!-- Mission -->
+                <div class="info-card">
+                    <h3>MISSION</h3>
+                    <p>To protect and promote the right of every Filipino to quality, equitable, culture-based, and complete basic education where students learn in a child-friendly, gender-sensitive, safe, and motivating environment.</p>
+                </div>
+
+                <!-- Core Values -->
+                <div class="info-card">
+                    <h3>CORE VALUES</h3>
+                    <ul>
+                        <li>Maka-Diyos</li>
+                        <li>Maka-tao</li>
+                        <li>Makakalikasan</li>
+                        <li>Makabansa</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIN PAGE OVERLAY -->
+    <div class="login-section" id="loginPage">
+        <a href="#" class="back-btn" onclick="closeLogin()">&larr; Back to Home</a>
+        <div class="login-card">
+            <!-- LOGIN LOGO IMAGE TAG - UPDATED FILE NAME -->
+            <img src="your_logo.png" alt="AGSNHS Logo" class="login-logo">
+            
+            <h2 class="login-title">AGSNHS Enrollment System</h2>
+            <p class="login-subtitle">Alexis G. Santos National High School</p>
+
+            <form>
+                <div class="mb-1">
+                    <label for="username" class="form-label">Username or Email</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter your username or email">
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="••••••••">
+                </div>
+
+                <button type="button" class="btn btn-login-main">Login</button>
+                <button type="button" class="btn btn-enroll-main">Enroll</button>
+                
+                <a href="#" class="forgot-password">Forgot password?</a>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JavaScript to toggle the login page -->
+    <script>
+        function showLogin() {
+            document.getElementById('loginPage').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Hide scrollbar
+        }
+
+        function closeLogin() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Show scrollbar
+        }
+    </script>
+</body>
+</html>
