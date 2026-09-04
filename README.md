@@ -4,6 +4,13 @@ The AGSNHS Enrollment Scheduling System is a web-based application designed to m
 
 Developed with the goal of creating a stress-free, organized, and efficient enrollment experience, this system empowers administrators with better data management tools while providing convenience to the school community.
 
+### Key Features
+- User Log-in and Access control
+- Inventory Management
+- Real-time sales tracker.
+- Automated sales report.
+- Monitor best-seller and no sales products.
+
 ### Project Members
 | De Leon, Kurt Christian T. | Project Manager
 | Santiago, Neil Ryann T. | UI/UX Designer
