@@ -1,4 +1,5 @@
-#Web-Based Student Enrollment and Scheduling System for Alexis G. Santos National High School
+# Web-Based Student Enrollment and Scheduling System for Alexis G. Santos National High School
+
 A web-based enrollment scheduling system for Alexis G. Santos National High School (AGSNHS) in Liciada, Bustos, Bulacan. The system replaces the traditional manual, queue-based enrollment process with a digital platform that lets students schedule their document submission, upload requirements, and track their application status.
 
 Built to deliver a stress-free, organized, and efficient enrollment experience for students, parents, teachers, and admission staff.
