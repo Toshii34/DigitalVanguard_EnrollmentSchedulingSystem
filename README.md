@@ -1,39 +1,61 @@
-# Web-Based Student Enrollment and Scheduling System for Alexis G. Santos National High School
+A web-based enrollment scheduling system for Alexis G. Santos National High School (AGSNHS) in Liciada, Bustos, Bulacan. The system replaces the traditional manual, queue-based enrollment process with a digital platform that lets students schedule their document submission, upload requirements, and track their application status.
 
-The AGSNHS Enrollment Scheduling System is a web-based application designed to modernize and streamline the enrollment process for Alexis G. Santos National High School. This system replaces the traditional manual, queue-based enrollment method with a digital platform that allows students and parents to schedule enrollment appointments online, manage requirements, and track their application status in real-time.
+Built to deliver a stress-free, organized, and efficient enrollment experience for students, parents, teachers, and admission staff.
 
-Developed with the goal of creating a stress-free, organized, and efficient enrollment experience, this system empowers administrators with better data management tools while providing convenience to the school community.
+---
 
-### Key Features
-- User Log-in and Access control
-- Inventory Management
-- Real-time sales tracker.
-- Automated sales report.
-- Monitor best-seller and no sales products.
+## Key Features
 
-### Project Members
-| De Leon, Kurt Christian T. | Project Manager
-| Santiago, Neil Ryann T. | UI/UX Designer
-| Tadeo, Brent Garreth G. | UI/UX Designer
-| Sumagaysay, John Michael O. | Frontend Developer
-| Dy, Jay Brian M. | Frontend Developer
-| Sanitago, Carl Emmanuel M. | Documentation/Tester
+### Role-Based Login
+- Single login form that auto-detects the user's role (Admin, Teacher, or Student)
 
-### Technologies Used
-- HTML
-- CSS
-- JavaScript
+### Student Enrollment Form
+- Personal information, contact details, and academic profile
+- Document uploads (PSA Birth Certificate, Report Card, Good Moral Certificate)
+- In-browser preview of uploaded files
 
-## Setup Steps
+### Schedule Appointment
+- Interactive calendar to book a document submission date
+- Automatically blocks weekends, holidays, past dates, and full slots
 
-### 1. Clone or Download the Project
+### Admin (Admission Staff) Dashboard
+- Enrollment overview (total enrolled, pending applications)
+- Student Directory with search and filtering
+- View full student profile and submitted documents
+- Assign students to sections and teachers
+- Register walk-in students
+- Create teacher accounts
+- Approve / reject reschedule requests
 
-Download the project or clone the repository to your computer.
+### Student Dashboard
+- Progress tracker (Application Submitted, Documents Review, Schedule Interview, Enrolled)
+- Personal information summary
+- Upcoming appointment details
+- Request a reschedule (with mini-calendar date picker)
 
-### 2. Open the Project
+### Teacher Dashboard
+- List of assigned sections
+- Class roster per section (Name, LRN, Grade, Section, Status)
+- Subject indicator (e.g., Science)
 
-Open the project folder using Visual Studio Code.
+---
 
-### 3. Open and run the index.html files
+## Project Members
 
-Find the index.html and run it using local host.
+| Name | Role |
+|---|---|
+| De Leon, Kurt Christian T. | Project Manager |
+| Santiago, Neil Ryann T. | UI/UX Designer |
+| Tadeo, Brent Garreth G. | UI/UX Designer |
+| Sumagaysay, John Michael O. | Frontend Developer |
+| Dy, Jay Brian M. | Frontend Developer |
+| Santiago, Carl Emmanuel M. | Documentation / Tester |
+
+---
+
+## Technologies Used
+
+- HTML5 - page structure
+- CSS3 - styling and layout
+- JavaScript - interactivity and logic
+- Bootstrap 5 - responsive UI framework
