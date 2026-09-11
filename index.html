@@ -4,354 +4,456 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AGSNHS Enrollment System</title>
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
     <style>
-        /* Custom Styles */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #2b2b2b; }
 
         /* Navbar */
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .navbar-brand img {
-            height: 40px;
-        }
-        .navbar-brand span {
-            font-weight: bold;
-            font-size: 0.9rem;
-            color: #333;
-            line-height: 1.1;
-            display: flex;
-            flex-direction: column;
-        }
-        .navbar-brand span small {
-            font-size: 0.7rem;
-            color: #666;
-            font-weight: normal;
-        }
-        
-        /* Nav Buttons (Log In & Enroll) */
-        .btn-nav-group {
-            display: flex;
-            gap: 10px;
-        }
-        .btn-login-nav {
-            border: 1px solid #198754; 
-            color: #198754;
-            background: transparent;
-            border-radius: 5px;
-            padding: 5px 15px;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-        .btn-login-nav:hover {
-            background-color: #198754;
-            color: white;
-        }
-        .btn-enroll-nav {
-            background-color: #198754; 
-            color: white;
-            border-radius: 5px;
-            padding: 5px 15px;
-            border: none;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-        .btn-enroll-nav:hover {
-            background-color: #157347;
-        }
+        .navbar { background-color: rgba(255,255,255,0.95); box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 10000; }
+        .navbar-brand { display: flex; align-items: center; gap: 10px; }
+        .navbar-brand img { height: 40px; }
+        .navbar-brand span { font-weight: bold; font-size: 0.9rem; color: #333; line-height: 1.1; display: flex; flex-direction: column; }
+        .navbar-brand span small { font-size: 0.7rem; color: #666; font-weight: normal; }
 
-        /* Hero Section */
-        .hero-section {
-            position: relative;
-            height: 80vh;
-            min-height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            overflow: hidden;
-        }
-        
-        /* BACKGROUND IMAGE FOR HERO - UPDATED FILE NAME */
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('your_bg_image.jpg'); 
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.6); 
-            z-index: -1;
-        }
+        .btn-nav-group { display: flex; gap: 10px; }
+        .btn-login-nav { border: 1px solid #198754; color: #198754; background: transparent; border-radius: 5px; padding: 5px 15px; font-weight: 500; transition: 0.3s; }
+        .btn-login-nav:hover { background-color: #198754; color: white; }
+        .btn-enroll-nav { background-color: #198754; color: white; border-radius: 5px; padding: 5px 15px; border: none; font-weight: 500; transition: 0.3s; }
+        .btn-enroll-nav:hover { background-color: #157347; }
 
-        .hero-content h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        .btn-enroll-hero {
-            background-color: #198754;
-            color: white;
-            font-size: 1.2rem;
-            padding: 12px 30px;
-            border-radius: 5px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .btn-enroll-hero:hover {
-            background-color: #157347;
-        }
+        /* Hero */
+        .hero-section { position: relative; height: 80vh; min-height: 500px; display: flex; align-items: center; justify-content: center; text-align: center; color: white; overflow: hidden; }
+        .hero-bg { position: absolute; top:0; left:0; width: 100%; height: 100%; background-image: url('background.jpg'); background-size: cover; background-position: center; filter: brightness(0.6); z-index: -1; }
+        .hero-content h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .btn-enroll-hero { background-color: #198754; color: white; font-size: 1.2rem; padding: 12px 30px; border-radius: 5px; border: none; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        .btn-enroll-hero:hover { background-color: #157347; }
 
-        /* About Section */
-        .about-section {
-            background: linear-gradient(to bottom, rgba(0, 40, 20, 0.8), rgba(0, 40, 20, 0.9));
-            color: white;
-            padding: 80px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* BACKGROUND IMAGE FOR ABOUT SECTION - UPDATED FILE NAME */
-        .about-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('your_bg_image.jpg');
-            background-size: cover;
-            background-position: center;
-            filter: blur(8px) brightness(0.4);
-            z-index: -1;
-        }
+        /* About */
+        .about-section { background: linear-gradient(to bottom, rgba(0,40,20,0.8), rgba(0,40,20,0.9)); color: white; padding: 80px 0; position: relative; overflow: hidden; }
+        .about-bg { position: absolute; top:0; left:0; width: 100%; height: 100%; background-image: url('background.jpg'); background-size: cover; background-position: center; filter: blur(8px) brightness(0.4); z-index: -1; }
+        .about-section h2 { font-size: 3rem; font-weight: 800; margin-bottom: 30px; text-align: center; }
+        .about-section p { font-size: 1.1rem; line-height: 1.7; max-width: 900px; margin: 0 auto; text-align: center; margin-bottom: 60px; }
+        .info-cards { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .info-card { background-color: #1a3c34; padding: 30px; border-radius: 10px; width: 100%; max-width: 350px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .info-card h3 { font-size: 1.2rem; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; color: #e0e0e0; letter-spacing: 1px; }
+        .info-card p, .info-card ul { font-size: 0.9rem; line-height: 1.6; color: #d1d1d1; margin: 0; text-align: left; }
+        .info-card ul { padding-left: 20px; }
+        .info-card ul li { margin-bottom: 5px; }
 
-        .about-section h2 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 30px;
-            text-align: center;
-        }
+        /* Login */
+        .login-section { display: none; position: fixed; top:0; left:0; width: 100%; height: 100vh; background-image: url('background.jpg'); background-size: cover; background-position: center; z-index: 9999; justify-content: center; align-items: center; padding-top: 70px; }
+        .login-section::before { content: ""; position: absolute; top:0; left:0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: -1; }
+        .login-card { background-color: white; padding: 40px; border-radius: 15px; width: 100%; max-width: 450px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); text-align: center; }
+        .login-logo { width: 80px; height: 80px; margin-bottom: 15px; border-radius: 50%; object-fit: cover; border: 3px solid #198754; }
+        .login-title { font-size: 1.5rem; font-weight: 800; color: #222; margin-bottom: 5px; }
+        .login-subtitle { font-size: 0.9rem; color: #666; margin-bottom: 30px; }
+        .form-label { font-weight: 600; font-size: 0.9rem; color: #444; text-align: left; display: block; }
+        .form-control { border: 1px solid #ced4da; border-radius: 8px; padding: 12px; margin-bottom: 15px; font-size: 0.95rem; }
+        .form-control:focus { border-color: #198754; box-shadow: 0 0 0 0.2rem rgba(25,135,84,0.25); }
+        .btn-login-main { background-color: #198754; color: white; width: 100%; padding: 12px; border-radius: 8px; border: none; font-weight: 700; font-size: 1rem; margin-bottom: 15px; transition: 0.3s; }
+        .btn-login-main:hover { background-color: #157347; }
+        .btn-enroll-main { background-color: white; color: #198754; width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #198754; font-weight: 700; font-size: 1rem; margin-bottom: 20px; transition: 0.3s; }
+        .btn-enroll-main:hover { background-color: #f0fdf4; }
+        .forgot-password { font-size: 0.85rem; color: #666; text-decoration: none; }
+        .forgot-password:hover { text-decoration: underline; }
+        .login-hint { font-size: 0.7rem; color: #999; margin-top: 15px; line-height: 1.5; }
+        .back-btn { position: absolute; top: 80px; left: 20px; color: white; font-weight: 600; text-decoration: none; background: rgba(0,0,0,0.5); padding: 8px 15px; border-radius: 5px; z-index: 10000; }
+        .back-btn:hover { color: white; background: rgba(0,0,0,0.8); }
 
-        .about-section p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-            margin-bottom: 60px;
-        }
+        /* Enrollment */
+        .enrollment-section { display: none; position: fixed; top:0; left:0; width: 100%; height: 100vh; background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('background.jpg'); background-size: cover; background-position: center; z-index: 9999; overflow-y: auto; padding: 100px 0 40px 0; }
+        .enrollment-container { background-color: white; width: 90%; max-width: 900px; margin: 0 auto; border-radius: 10px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .enrollment-header { border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
+        .enrollment-header h2 { font-size: 1.2rem; font-weight: 700; color: #198754; margin: 0; }
+        .section-title { font-size: 1rem; font-weight: 700; color: #333; margin-top: 20px; margin-bottom: 15px; border-bottom: 2px solid #198754; padding-bottom: 5px; display: inline-block; }
+        .form-label-sm { font-size: 0.8rem; font-weight: 600; color: #555; margin-bottom: 3px; }
+        .form-label-sm .req { color: #dc3545; }
+        .form-control-sm { font-size: 0.85rem; padding: 6px 10px; border-radius: 5px; border: 1px solid #ced4da; margin-bottom: 3px; }
+        .form-control-sm.error { border-color: #dc3545; background-color: #fff5f5; }
+        .field-hint { font-size: 0.7rem; color: #888; font-style: italic; margin-bottom: 10px; display: block; line-height: 1.3; }
+        .account-section { background-color: #f0fdf4; border: 1px solid #198754; border-radius: 10px; padding: 20px; margin-bottom: 20px; }
+        .account-section .section-title { margin-top: 0; color: #198754; }
+        .schedule-reminder { background-color: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 12px 15px; margin-bottom: 15px; font-size: 0.85rem; color: #856404; display: flex; align-items: center; gap: 10px; }
+        .schedule-reminder.booked { background-color: #d1e7dd; border-color: #198754; color: #0f5132; }
+        .schedule-reminder.error { background-color: #f8d7da; border-color: #dc3545; color: #842029; }
+        .upload-item { background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin-bottom: 12px; transition: 0.2s; }
+        .upload-item:hover { border-color: #198754; background-color: #f0fdf4; }
+        .upload-item.error { border-color: #dc3545; background-color: #fff5f5; }
+        .upload-label { font-size: 0.85rem; font-weight: 600; color: #333; margin-bottom: 8px; display: block; }
+        .upload-label .req { color: #dc3545; }
+        .upload-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .file-status { font-size: 0.8rem; color: #666; flex-grow: 1; }
+        .file-status.has-file { color: #198754; font-weight: 600; }
+        .btn-upload-sm { font-size: 0.75rem; padding: 4px 12px; border-radius: 4px; font-weight: 600; }
+        .btn-upload { background-color: #198754; color: white; border: none; }
+        .btn-upload:hover { background-color: #157347; color: white; }
+        .btn-view { background-color: white; color: #0d6efd; border: 1px solid #0d6efd; }
+        .btn-view:hover { background-color: #0d6efd; color: white; }
+        .btn-replace { background-color: white; color: #fd7e14; border: 1px solid #fd7e14; }
+        .btn-replace:hover { background-color: #fd7e14; color: white; }
+        .btn-remove { background-color: white; color: #dc3545; border: 1px solid #dc3545; }
+        .btn-remove:hover { background-color: #dc3545; color: white; }
+        .enrollment-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
+        .enrollment-footer .btn { font-size: 0.9rem; padding: 10px 20px; border-radius: 5px; font-weight: 600; }
+        .btn-save-draft { background-color: white; color: #333; border: 1px solid #ccc; }
+        .btn-save-draft:hover { background-color: #f8f9fa; }
+        .btn-schedule { background-color: white; color: #198754; border: 1px solid #198754; }
+        .btn-schedule:hover { background-color: #f0fdf4; }
+        .btn-submit-enrollment { background-color: #198754; color: white; border: none; }
+        .btn-submit-enrollment:hover { background-color: #157347; }
+        .error-msg { display: none; background-color: #f8d7da; border: 1px solid #f5c2c7; color: #842029; padding: 12px 15px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; margin-bottom: 20px; }
+        .error-msg.show { display: block; }
 
-        /* Bottom Cards */
-        .info-cards {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
+        /* File Preview Popup */
+        .preview-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); z-index: 25000; justify-content: center; align-items: center; padding: 20px; }
+        .preview-overlay.active { display: flex; }
+        .preview-box { background-color: white; border-radius: 10px; max-width: 90%; max-height: 90vh; width: 900px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+        .preview-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-bottom: 1px solid #eee; background-color: #f8f9fa; }
+        .preview-header h5 { font-size: 1rem; font-weight: 700; color: #333; margin: 0; }
+        .preview-close { background-color: #dc3545; color: white; border: none; width: 35px; height: 35px; border-radius: 50%; font-size: 1.2rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; line-height: 1; }
+        .preview-close:hover { background-color: #b02a37; transform: scale(1.1); }
+        .preview-body { padding: 20px; overflow: auto; flex-grow: 1; display: flex; justify-content: center; align-items: center; background-color: #f4f4f4; min-height: 300px; }
+        .preview-body img { max-width: 100%; max-height: 70vh; object-fit: contain; border-radius: 5px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .preview-body iframe { width: 100%; height: 70vh; border: none; border-radius: 5px; }
+        .preview-body .no-preview { text-align: center; color: #666; font-size: 0.9rem; }
 
-        .info-card {
-            background-color: #1a3c34; 
-            padding: 30px;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 350px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
+        /* Calendar Page */
+        .schedule-section { display: none; position: fixed; top:0; left:0; width: 100%; height: 100vh; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('background.jpg'); background-size: cover; background-position: center; z-index: 9999; overflow-y: auto; padding: 100px 0 40px 0; }
+        .schedule-container { width: 90%; max-width: 1100px; margin: 0 auto; }
+        .schedule-header { color: white; margin-bottom: 20px; }
+        .schedule-header h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 5px; }
+        .schedule-header p { font-size: 0.9rem; color: #e0e0e0; margin: 0; }
+        .calendar-wrapper { background-color: white; border-radius: 12px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; position: relative; }
+        .calendar-header h3 { font-size: 1.2rem; font-weight: 700; color: #222; margin: 0; cursor: pointer; padding: 5px 10px; border-radius: 5px; transition: 0.2s; user-select: none; }
+        .calendar-header h3:hover { background-color: #f0fdf4; color: #198754; }
+        .calendar-header h3::after { content: " ▾"; font-size: 0.8rem; color: #666; }
+        .calendar-nav { display: flex; gap: 5px; }
+        .calendar-nav button { background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 5px; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; font-size: 1rem; color: #333; }
+        .calendar-nav button:hover { background-color: #198754; color: white; border-color: #198754; }
+        .month-picker { display: none; position: absolute; top: 45px; left: 0; background-color: white; border: 1px solid #e9ecef; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); padding: 15px; z-index: 100; width: 320px; }
+        .month-picker.active { display: block; }
+        .month-picker-year { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .month-picker-year span { font-size: 0.95rem; font-weight: 700; color: #222; }
+        .month-picker-year button { background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 5px; width: 28px; height: 28px; cursor: pointer; font-size: 0.9rem; color: #333; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        .month-picker-year button:hover { background-color: #198754; color: white; border-color: #198754; }
+        .month-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+        .month-item { padding: 10px 5px; text-align: center; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.2s; border: 1px solid #e9ecef; background-color: white; color: #333; }
+        .month-item:hover:not(.disabled):not(.current) { background-color: #f0fdf4; border-color: #198754; color: #198754; }
+        .month-item.current { background-color: #198754; color: white; border-color: #198754; }
+        .month-item.disabled { background-color: #f8f9fa; color: #adb5bd; cursor: not-allowed; border-color: #e9ecef; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+        .calendar-day-header { text-align: center; font-weight: 600; font-size: 0.8rem; color: #666; padding: 10px 0; text-transform: uppercase; }
+        .calendar-day { aspect-ratio: 1; border: 1px solid #e9ecef; border-radius: 8px; padding: 8px; display: flex; flex-direction: column; cursor: pointer; transition: 0.2s; font-size: 0.85rem; position: relative; background-color: white; }
+        .calendar-day:hover:not(.disabled):not(.empty) { border-color: #198754; background-color: #f0fdf4; }
+        .calendar-day.empty { border: none; cursor: default; background-color: transparent; }
+        .calendar-day.disabled { background-color: #f8f9fa; color: #adb5bd; cursor: not-allowed; }
+        .calendar-day.disabled:hover { background-color: #f8f9fa; border-color: #e9ecef; }
+        .calendar-day .day-number { font-weight: 700; color: #333; font-size: 0.9rem; }
+        .calendar-day.disabled .day-number { color: #adb5bd; }
+        .calendar-day .day-status { font-size: 0.65rem; font-weight: 600; padding: 2px 6px; border-radius: 3px; margin-top: auto; align-self: flex-start; }
+        .calendar-day .slots-open { background-color: #d1e7dd; color: #0f5132; }
+        .calendar-day .slots-full { background-color: #f8d7da; color: #842029; }
+        .calendar-day.selected-day { border: 2px solid #198754; background-color: #f0fdf4; }
+        .calendar-day.selected-day .day-status { background-color: #198754; color: white; }
+        .calendar-day.today { border: 2px solid #0d6efd; }
+        .slots-panel { background-color: white; border-radius: 12px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .slots-panel h4 { font-size: 1rem; font-weight: 700; color: #222; margin-bottom: 5px; }
+        .slots-panel .date-label { font-size: 0.9rem; color: #198754; font-weight: 700; margin-bottom: 15px; }
+        .school-hours-display { background-color: #f0fdf4; border: 1px dashed #198754; border-radius: 8px; padding: 20px; margin-bottom: 20px; text-align: center; }
+        .school-hours-display .hours-title { font-size: 0.75rem; font-weight: 700; color: #198754; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .school-hours-display .hours-value { font-size: 1.3rem; font-weight: 800; color: #1a4d3e; margin-bottom: 5px; }
+        .school-hours-display .hours-note { font-size: 0.75rem; color: #666; }
+        .btn-book-slot { background-color: #1a4d3e; color: white; width: 100%; padding: 12px; border-radius: 8px; border: none; font-weight: 700; font-size: 0.95rem; transition: 0.3s; margin-bottom: 10px; }
+        .btn-book-slot:hover { background-color: #0f3027; }
+        .btn-book-slot:disabled { background-color: #adb5bd; cursor: not-allowed; }
+        .btn-back-enrollment { background-color: white; color: #666; width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-weight: 600; font-size: 0.85rem; transition: 0.3s; }
+        .btn-back-enrollment:hover { background-color: #f8f9fa; color: #333; border-color: #999; }
+        .legend { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: #555; }
+        .legend-box { width: 16px; height: 16px; border-radius: 4px; }
+        .legend-box.available { background-color: #d1e7dd; border: 1px solid #0f5132; }
+        .legend-box.full { background-color: #f8d7da; border: 1px solid #842029; }
+        .legend-box.closed { background-color: #f8f9fa; border: 1px solid #e9ecef; }
+        .legend-box.selected { background-color: #198754; }
 
-        .info-card h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            color: #e0e0e0;
-            letter-spacing: 1px;
-        }
+        /* Popup */
+        .popup-overlay { display: none; position: fixed; top:0; left:0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 20000; justify-content: center; align-items: center; }
+        .popup-box { background-color: white; border-radius: 12px; padding: 30px; max-width: 400px; width: 90%; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        .popup-icon { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 1.8rem; font-weight: 700; }
+        .popup-icon.warning { background-color: #fff3cd; color: #856404; }
+        .popup-icon.danger { background-color: #f8d7da; color: #842029; }
+        .popup-icon.success { background-color: #d1e7dd; color: #0f5132; font-size: 1.2rem; }
+        .popup-box h5 { font-size: 1.1rem; font-weight: 700; color: #222; margin-bottom: 10px; }
+        .popup-box p { font-size: 0.9rem; color: #666; margin-bottom: 20px; }
+        .popup-box .btn { padding: 8px 25px; border-radius: 6px; font-weight: 600; }
 
-        .info-card p, .info-card ul {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            color: #d1d1d1;
-            margin: 0;
-            text-align: left;
-        }
+        /* Admin Dashboard */
+        .admin-section { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background-color: #2b2b2b; z-index: 9999; overflow-y: auto; }
+        .admin-topbar { background-color: #1a1a1a; padding: 8px 20px; color: #888; font-size: 0.75rem; }
+        .admin-navbar { background-color: white; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .admin-navbar .brand { display: flex; align-items: center; gap: 12px; }
+        .admin-navbar .brand img { height: 45px; }
+        .admin-navbar .brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+        .admin-navbar .brand-text strong { font-size: 1rem; color: #222; }
+        .admin-navbar .brand-text span { font-size: 0.7rem; color: #666; }
+        .admin-navbar .admin-actions { display: flex; gap: 8px; align-items: center; }
+        .admin-navbar .admin-user { font-size: 0.85rem; color: #333; font-weight: 600; margin-right: 8px; }
+        .admin-navbar .admin-actions button { font-size: 0.8rem; padding: 6px 14px; border-radius: 6px; font-weight: 600; border: 1px solid #ddd; background-color: white; color: #333; transition: 0.2s; }
+        .admin-navbar .admin-actions button:hover { background-color: #f8f9fa; }
+        .admin-navbar .admin-actions .btn-signout { background-color: #495057; color: white; border-color: #495057; }
+        .admin-navbar .admin-actions .btn-signout:hover { background-color: #343a40; }
+        .admin-hero { background-image: linear-gradient(rgba(0,40,20,0.6), rgba(0,40,20,0.7)), url('background.jpg'); background-size: cover; background-position: center; padding: 30px 40px; color: white; }
+        .admin-hero h1 { font-size: 1.8rem; font-weight: 700; margin: 0; }
+        .admin-hero .academic-year { font-size: 0.8rem; color: #ccc; }
+        .admin-content { padding: 25px 40px 40px 40px; }
+        .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px; }
+        .stat-card { background-color: white; border-radius: 8px; padding: 20px 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .stat-card .stat-label { font-size: 0.7rem; font-weight: 700; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .stat-card .stat-value { font-size: 2rem; font-weight: 800; color: #222; line-height: 1; margin-bottom: 6px; }
+        .stat-card .stat-sub { font-size: 0.75rem; color: #666; display: flex; align-items: center; gap: 5px; }
+        .stat-card .stat-sub .dot { width: 8px; height: 8px; border-radius: 50%; background-color: #198754; display: inline-block; }
+        .stat-card .stat-sub .dot.red { background-color: #dc3545; }
+        .admin-middle { display: grid; grid-template-columns: 300px 1fr; gap: 20px; margin-bottom: 25px; }
+        .quick-actions { background-color: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .quick-actions h3 { font-size: 0.95rem; font-weight: 700; color: #222; margin-bottom: 15px; }
+        .quick-actions button { display: block; width: 100%; padding: 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; margin-bottom: 10px; cursor: pointer; transition: 0.2s; }
+        .quick-actions .qa-primary { background-color: #1a4d3e; color: white; border: none; }
+        .quick-actions .qa-primary:hover { background-color: #0f3027; }
+        .quick-actions .qa-outline { background-color: white; color: #1a4d3e; border: 1px solid #1a4d3e; }
+        .quick-actions .qa-outline:hover { background-color: #f0fdf4; }
+        .recent-activity { background-color: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .recent-activity h3 { font-size: 0.95rem; font-weight: 700; color: #222; margin-bottom: 15px; }
+        .recent-activity table { width: 100%; font-size: 0.8rem; }
+        .recent-activity table thead th { color: #666; font-weight: 600; padding: 8px 10px; border-bottom: 1px solid #eee; text-align: left; font-size: 0.75rem; }
+        .recent-activity table tbody td { padding: 10px; border-bottom: 1px solid #f5f5f5; color: #333; }
+        .recent-activity table tbody tr.reschedule-row { background-color: #f8d7da; }
+        .recent-activity table tbody tr.reschedule-row td { color: #842029; font-weight: 600; }
+        .tag { font-size: 0.7rem; padding: 3px 8px; border-radius: 4px; font-weight: 600; }
+        .tag-review { background-color: #fff3cd; color: #856404; }
+        .tag-interview { background-color: #cfe2ff; color: #084298; }
+        .tag-finalize { background-color: #d1e7dd; color: #0f5132; }
+        .tag-reschedule { background-color: #dc3545; color: white; }
+        .teachers-section { background-color: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .teachers-section h3 { font-size: 0.95rem; font-weight: 700; color: #222; margin-bottom: 15px; }
+        .teachers-section table { width: 100%; font-size: 0.8rem; }
+        .teachers-section table thead th { color: #666; font-weight: 600; padding: 10px; border-bottom: 1px solid #eee; text-align: left; font-size: 0.75rem; }
+        .teachers-section table tbody td { padding: 12px 10px; border-bottom: 1px solid #f5f5f5; color: #333; }
 
-        .info-card ul {
-            padding-left: 20px;
-        }
-        
-        .info-card ul li {
-            margin-bottom: 5px;
-        }
+        .admin-modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); z-index: 30000; justify-content: center; align-items: flex-start; padding: 40px 20px; overflow-y: auto; }
+        .admin-modal-overlay.active { display: flex; }
+        .admin-modal { background-color: white; border-radius: 10px; width: 100%; max-width: 1000px; box-shadow: 0 20px 60px rgba(0,0,0,0.4); overflow: hidden; }
+        .admin-modal-header { background-color: #1a4d3e; color: white; padding: 18px 25px; display: flex; justify-content: space-between; align-items: center; }
+        .admin-modal-header h3 { font-size: 1.1rem; font-weight: 700; margin: 0; }
+        .admin-modal-close { background-color: rgba(255,255,255,0.15); color: white; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 1.1rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; line-height: 1; }
+        .admin-modal-close:hover { background-color: rgba(255,255,255,0.3); }
+        .admin-modal-body { padding: 25px; max-height: 75vh; overflow-y: auto; }
+        .directory-search { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .directory-search input, .directory-search select { padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.85rem; flex: 1; min-width: 150px; }
+        .directory-table { width: 100%; font-size: 0.8rem; border-collapse: collapse; }
+        .directory-table thead th { background-color: #f8f9fa; color: #555; font-weight: 700; padding: 10px; border-bottom: 2px solid #eee; text-align: left; font-size: 0.75rem; text-transform: uppercase; }
+        .directory-table tbody td { padding: 10px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
+        .directory-table tbody tr:hover { background-color: #f0fdf4; }
+        .directory-table tbody tr.reschedule-row { background-color: #f8d7da; }
+        .directory-table tbody tr.reschedule-row:hover { background-color: #f5c2c7; }
+        .directory-table tbody tr.reschedule-row td { color: #842029; }
+        .status-badge { font-size: 0.7rem; padding: 3px 10px; border-radius: 12px; font-weight: 700; text-transform: uppercase; }
+        .status-pending { background-color: #fff3cd; color: #856404; }
+        .status-enrolled { background-color: #d1e7dd; color: #0f5132; }
+        .status-incomplete { background-color: #f8d7da; color: #842029; }
+        .status-reschedule { background-color: #dc3545; color: white; }
+        .btn-action { font-size: 0.7rem; padding: 4px 10px; border-radius: 4px; font-weight: 600; margin-right: 4px; cursor: pointer; border: 1px solid; transition: 0.2s; }
+        .btn-view-student { background-color: white; color: #0d6efd; border-color: #0d6efd; }
+        .btn-view-student:hover { background-color: #0d6efd; color: white; }
+        .btn-assign { background-color: white; color: #198754; border-color: #198754; }
+        .btn-assign:hover { background-color: #198754; color: white; }
+        .student-profile-header { display: flex; gap: 20px; background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px; align-items: center; }
+        .student-avatar { width: 70px; height: 70px; border-radius: 50%; background-color: #1a4d3e; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; flex-shrink: 0; }
+        .student-profile-header .info h4 { font-size: 1.1rem; font-weight: 700; margin: 0 0 3px 0; color: #222; }
+        .student-profile-header .info p { font-size: 0.8rem; color: #666; margin: 0; }
+        .student-profile-header .info .status-badge { margin-top: 5px; display: inline-block; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px 30px; margin-bottom: 20px; }
+        .info-item { font-size: 0.85rem; }
+        .info-item .label { font-size: 0.7rem; color: #888; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 2px; }
+        .info-item .value { color: #222; font-weight: 600; }
+        .profile-section-title { font-size: 0.85rem; font-weight: 700; color: #1a4d3e; border-bottom: 2px solid #1a4d3e; padding-bottom: 5px; margin: 20px 0 15px 0; text-transform: uppercase; letter-spacing: 0.5px; }
+        .doc-list { display: flex; flex-direction: column; gap: 8px; }
+        .doc-item { display: flex; justify-content: space-between; align-items: center; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 6px; padding: 10px 15px; font-size: 0.8rem; }
+        .doc-item .doc-name { font-weight: 600; color: #333; }
+        .doc-item .doc-status { font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; background-color: #d1e7dd; color: #0f5132; font-weight: 700; margin-right: 8px; }
+        .assign-section { background-color: #f0fdf4; border: 1px solid #198754; border-radius: 8px; padding: 20px; margin-top: 20px; }
+        .assign-section h5 { font-size: 0.9rem; font-weight: 700; color: #1a4d3e; margin-bottom: 15px; }
+        .assign-section label { font-size: 0.75rem; font-weight: 600; color: #555; display: block; margin-bottom: 5px; }
+        .assign-section select { width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 6px; font-size: 0.85rem; margin-bottom: 15px; }
+        .btn-assign-confirm { background-color: #1a4d3e; color: white; padding: 10px 20px; border-radius: 6px; border: none; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
+        .btn-assign-confirm:hover { background-color: #0f3027; }
+        .reschedule-banner { background-color: #f8d7da; border: 1px solid #dc3545; border-radius: 8px; padding: 15px 20px; margin-bottom: 15px; }
+        .reschedule-banner h6 { font-size: 0.85rem; font-weight: 700; color: #842029; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.5px; }
+        .reschedule-banner .banner-row { font-size: 0.8rem; color: #842029; margin-bottom: 4px; }
+        .reschedule-banner .banner-row strong { font-weight: 700; }
+        .btn-approve-reschedule { background-color: #198754; color: white; padding: 8px 16px; border-radius: 6px; border: none; font-weight: 700; font-size: 0.8rem; cursor: pointer; margin-top: 10px; margin-right: 6px; }
+        .btn-approve-reschedule:hover { background-color: #157347; }
+        .btn-reject-reschedule { background-color: white; color: #dc3545; padding: 8px 16px; border-radius: 6px; border: 1px solid #dc3545; font-weight: 700; font-size: 0.8rem; cursor: pointer; margin-top: 10px; }
+        .btn-reject-reschedule:hover { background-color: #dc3545; color: white; }
 
-        /* LOGIN PAGE UI STYLES */
-        .login-section {
-            display: none; 
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-image: url('your_bg_image.jpg'); /* UPDATED FILE NAME */
-            background-size: cover;
-            background-position: center;
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-        }
+        /* Student Dashboard */
+        .student-section { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background-color: #2b2b2b; z-index: 9999; overflow-y: auto; }
+        .student-topbar { background-color: #1a1a1a; padding: 8px 20px; color: #888; font-size: 0.75rem; }
+        .student-navbar { background-color: white; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .student-navbar .brand { display: flex; align-items: center; gap: 12px; }
+        .student-navbar .brand img { height: 45px; }
+        .student-navbar .brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+        .student-navbar .brand-text strong { font-size: 1rem; color: #222; }
+        .student-navbar .brand-text span { font-size: 0.7rem; color: #666; }
+        .student-navbar .student-actions { display: flex; gap: 8px; align-items: center; }
+        .student-navbar .student-user { font-size: 0.85rem; color: #333; font-weight: 600; margin-right: 8px; }
+        .student-navbar .student-actions button { font-size: 0.8rem; padding: 6px 14px; border-radius: 6px; font-weight: 600; border: 1px solid #ddd; background-color: white; color: #333; transition: 0.2s; }
+        .student-navbar .student-actions button:hover { background-color: #f8f9fa; }
+        .student-navbar .student-actions .btn-signout { background-color: #495057; color: white; border-color: #495057; }
+        .student-navbar .student-actions .btn-signout:hover { background-color: #343a40; }
+        .student-hero { background-image: linear-gradient(rgba(0,40,20,0.6), rgba(0,40,20,0.7)), url('background.jpg'); background-size: cover; background-position: center; padding: 30px 40px; color: white; }
+        .student-hero h1 { font-size: 1.8rem; font-weight: 700; margin: 0; }
+        .student-content { padding: 25px 40px 40px 40px; }
+        .progress-card { background-color: white; border-radius: 8px; padding: 25px 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 25px; }
+        .progress-card h3 { font-size: 0.9rem; font-weight: 700; color: #222; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .progress-tracker { display: flex; justify-content: space-between; align-items: flex-start; position: relative; }
+        .progress-tracker::before { content: ""; position: absolute; top: 18px; left: 5%; right: 5%; height: 2px; background-color: #e9ecef; z-index: 0; }
+        .progress-step { display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; z-index: 1; flex: 1; }
+        .progress-circle { width: 38px; height: 38px; border-radius: 50%; background-color: #e9ecef; color: #999; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; margin-bottom: 8px; transition: 0.2s; }
+        .progress-step.active .progress-circle { background-color: #198754; color: white; }
+        .progress-step.completed .progress-circle { background-color: #198754; color: white; }
+        .progress-step.current .progress-circle { background-color: #198754; color: white; box-shadow: 0 0 0 4px rgba(25,135,84,0.25); }
+        .progress-step .step-label { font-size: 0.75rem; color: #666; font-weight: 600; line-height: 1.3; }
+        .progress-step.active .step-label, .progress-step.current .step-label { color: #198754; font-weight: 700; }
+        .student-info-row { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; }
+        .info-summary-card { background-color: white; border-radius: 8px; padding: 25px 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .info-summary-card h4 { font-size: 0.95rem; font-weight: 700; color: #222; margin-bottom: 20px; }
+        .info-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f5f5f5; font-size: 0.85rem; }
+        .info-row:last-child { border-bottom: none; }
+        .info-row .info-label { color: #666; font-weight: 500; }
+        .info-row .info-value { color: #222; font-weight: 700; text-align: right; }
+        .appointment-card { background-color: white; border-radius: 8px; padding: 25px 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .appointment-card h4 { font-size: 0.95rem; font-weight: 700; color: #222; margin-bottom: 20px; }
+        .appointment-box { background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 18px; margin-bottom: 15px; }
+        .appointment-box .appt-type { display: inline-block; font-size: 0.7rem; background-color: #e9ecef; color: #495057; padding: 3px 10px; border-radius: 12px; font-weight: 700; margin-bottom: 10px; }
+        .appointment-box .appt-date { font-size: 1rem; font-weight: 800; color: #222; margin-bottom: 5px; }
+        .appointment-box .appt-time { font-size: 0.8rem; color: #555; margin-bottom: 10px; }
+        .appointment-box .appt-location { font-size: 0.75rem; color: #888; line-height: 1.5; }
+        .btn-reschedule { background-color: white; color: #1a4d3e; width: 100%; padding: 10px; border-radius: 8px; border: 1.5px solid #1a4d3e; font-weight: 700; font-size: 0.85rem; transition: 0.2s; }
+        .btn-reschedule:hover { background-color: #f0fdf4; }
+        .no-appointment { text-align: center; padding: 20px 0; color: #888; font-size: 0.85rem; }
 
-        .login-card {
-            background-color: white;
-            padding: 40px;
-            border-radius: 15px;
-            width: 100%;
-            max-width: 450px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            text-align: center;
-        }
+        /* Reschedule Modal */
+        .reschedule-modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); z-index: 30000; justify-content: center; align-items: center; padding: 20px; overflow-y: auto; }
+        .reschedule-modal-overlay.active { display: flex; }
+        .reschedule-modal { background-color: white; border-radius: 12px; width: 100%; max-width: 560px; box-shadow: 0 20px 60px rgba(0,0,0,0.4); overflow: hidden; }
+        .reschedule-modal-header { background-color: #1a4d3e; color: white; padding: 18px 25px; display: flex; justify-content: space-between; align-items: center; }
+        .reschedule-modal-header h3 { font-size: 1.1rem; font-weight: 700; margin: 0; }
+        .reschedule-modal-close { background-color: rgba(255,255,255,0.15); color: white; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 1.1rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; line-height: 1; }
+        .reschedule-modal-close:hover { background-color: rgba(255,255,255,0.3); }
+        .reschedule-modal-body { padding: 25px; max-height: 70vh; overflow-y: auto; }
+        .reschedule-modal-body label { font-size: 0.8rem; font-weight: 600; color: #555; display: block; margin-bottom: 5px; }
+        .reschedule-modal-body textarea { width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 6px; font-size: 0.85rem; margin-bottom: 15px; font-family: inherit; resize: vertical; min-height: 80px; }
+        .reschedule-modal-body textarea:focus { outline: none; border-color: #1a4d3e; box-shadow: 0 0 0 0.2rem rgba(26,77,62,0.15); }
+        .mini-calendar { background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 12px; margin-bottom: 15px; }
+        .mini-cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .mini-cal-header h6 { font-size: 0.85rem; font-weight: 700; color: #222; margin: 0; }
+        .mini-cal-nav { display: flex; gap: 4px; }
+        .mini-cal-nav button { background-color: white; border: 1px solid #ddd; border-radius: 4px; width: 24px; height: 24px; font-size: 0.75rem; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #333; transition: 0.2s; }
+        .mini-cal-nav button:hover { background-color: #1a4d3e; color: white; border-color: #1a4d3e; }
+        .mini-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+        .mini-cal-day-header { text-align: center; font-size: 0.65rem; font-weight: 700; color: #888; padding: 4px 0; text-transform: uppercase; }
+        .mini-cal-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; border-radius: 5px; cursor: pointer; transition: 0.2s; background-color: white; color: #333; border: 1px solid transparent; }
+        .mini-cal-day:hover:not(.disabled):not(.empty) { background-color: #f0fdf4; border-color: #1a4d3e; color: #1a4d3e; }
+        .mini-cal-day.disabled { background-color: #e9ecef; color: #adb5bd; cursor: not-allowed; }
+        .mini-cal-day.empty { background-color: transparent; cursor: default; }
+        .mini-cal-day.selected { background-color: #1a4d3e; color: white; border-color: #1a4d3e; }
+        .mini-cal-day.today { border: 2px solid #0d6efd; }
+        .mini-cal-day.past { background-color: #f1f3f5; color: #ced4da; cursor: not-allowed; }
+        .selected-date-display { background-color: #d1e7dd; border: 1px solid #198754; color: #0f5132; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; margin-bottom: 15px; display: none; text-align: center; }
+        .selected-date-display.show { display: block; }
+        .reschedule-modal-footer { display: flex; justify-content: flex-end; gap: 10px; padding: 0 25px 25px 25px; }
+        .btn-reschedule-cancel { background-color: white; color: #666; padding: 10px 20px; border-radius: 6px; border: 1px solid #ccc; font-weight: 600; font-size: 0.85rem; cursor: pointer; }
+        .btn-reschedule-cancel:hover { background-color: #f8f9fa; }
+        .btn-reschedule-submit { background-color: #1a4d3e; color: white; padding: 10px 20px; border-radius: 6px; border: none; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
+        .btn-reschedule-submit:hover { background-color: #0f3027; }
 
-        /* LOGO IMAGE TAG - UPDATED FILE NAME */
-        .login-logo {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 15px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #198754;
-        }
+        /* Teacher Dashboard */
+        .teacher-section { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background-color: #2b2b2b; z-index: 9999; overflow-y: auto; }
+        .teacher-topbar { background-color: #1a1a1a; padding: 8px 20px; color: #888; font-size: 0.75rem; display: flex; justify-content: space-between; align-items: center; }
+        .teacher-topbar .topbar-title { font-weight: 600; }
+        .teacher-topbar .topbar-icon { color: #198754; font-size: 1rem; }
 
-        .login-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #222;
-            margin-bottom: 5px;
-        }
+        .teacher-navbar { background-color: white; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .teacher-navbar .brand { display: flex; align-items: center; gap: 12px; }
+        .teacher-navbar .brand img { height: 45px; }
+        .teacher-navbar .brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+        .teacher-navbar .brand-text strong { font-size: 1rem; color: #222; }
+        .teacher-navbar .brand-text span { font-size: 0.7rem; color: #666; }
+        .teacher-navbar .teacher-actions { display: flex; gap: 8px; align-items: center; }
+        .teacher-navbar .teacher-actions .teacher-badge { font-size: 0.8rem; padding: 5px 14px; border-radius: 20px; background-color: #f1f3f5; color: #333; font-weight: 600; border: 1px solid #ddd; }
+        .teacher-navbar .teacher-actions .btn-signout { background-color: #495057; color: white; border: none; font-size: 0.8rem; padding: 6px 14px; border-radius: 6px; font-weight: 600; cursor: pointer; }
+        .teacher-navbar .teacher-actions .btn-signout:hover { background-color: #343a40; }
 
-        .login-subtitle {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 30px;
-        }
+        .teacher-hero { background-image: linear-gradient(rgba(0,40,20,0.65), rgba(0,40,20,0.75)), url('background.jpg'); background-size: cover; background-position: center; padding: 25px 40px; color: white; }
+        .teacher-hero h1 { font-size: 1.5rem; font-weight: 700; margin: 0; }
 
-        .form-label {
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: #444;
-            text-align: left;
-            display: block;
-        }
+        .teacher-body { display: grid; grid-template-columns: 260px 1fr; gap: 0; min-height: calc(100vh - 140px); }
 
-        .form-control {
-            border: 1px solid #ced4da;
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-        }
+        .teacher-sidebar { background-color: white; border-right: 1px solid #e9ecef; padding: 25px 20px; }
+        .teacher-sidebar h4 { font-size: 0.7rem; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 15px; }
+        .section-list { display: flex; flex-direction: column; gap: 6px; }
+        .section-item { padding: 10px 15px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: #555; cursor: pointer; transition: 0.2s; border: 1px solid transparent; }
+        .section-item:hover { background-color: #f0fdf4; color: #198754; }
+        .section-item.active { background-color: #f0fdf4; color: #1a4d3e; border-color: #198754; font-weight: 700; }
 
-        .form-control:focus {
-            border-color: #198754;
-            box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
-        }
+        .teacher-main { background-color: #f4f6f9; padding: 25px 30px; }
+        .teacher-main-header { margin-bottom: 20px; }
+        .teacher-main-header .advisor-label { font-size: 0.75rem; color: #888; margin-bottom: 3px; }
+        .teacher-main-header h2 { font-size: 1.3rem; font-weight: 700; color: #222; margin: 0; }
+        .teacher-main-header .subject-badge { display: inline-block; background-color: #d1e7dd; color: #0f5132; font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 12px; margin-left: 10px; vertical-align: middle; }
 
-        .btn-login-main {
-            background-color: #198754;
-            color: white;
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: none;
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 15px;
-            transition: 0.3s;
-        }
+        .class-table-card { background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .class-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .class-table thead th { text-align: left; font-size: 0.72rem; color: #555; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; padding: 12px 10px; border-bottom: 2px solid #eee; }
+        .class-table tbody td { padding: 14px 10px; border-bottom: 1px solid #f0f0f0; color: #222; }
+        .class-table tbody tr:hover { background-color: #f9fdfb; }
+        .class-table .student-name { font-weight: 700; color: #222; }
+        .class-table .lrn { color: #666; font-family: monospace; font-size: 0.8rem; }
 
-        .btn-login-main:hover {
-            background-color: #157347;
-        }
+        .enroll-status { display: inline-block; font-size: 0.7rem; padding: 4px 12px; border-radius: 12px; font-weight: 700; }
+        .enroll-status.enrolled { background-color: #d1e7dd; color: #0f5132; }
+        .enroll-status.pending { background-color: #fff3cd; color: #856404; }
+        .enroll-status.incomplete { background-color: #f8d7da; color: #842029; }
 
-        .btn-enroll-main {
-            background-color: white;
-            color: #198754;
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #198754;
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 20px;
-            transition: 0.3s;
-        }
-
-        .btn-enroll-main:hover {
-            background-color: #f0fdf4;
-        }
-
-        .forgot-password {
-            font-size: 0.85rem;
-            color: #666;
-            text-decoration: none;
-        }
-
-        .forgot-password:hover {
-            text-decoration: underline;
-        }
-
-        .back-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            color: white;
-            font-weight: 600;
-            text-decoration: none;
-            background: rgba(0,0,0,0.5);
-            padding: 8px 15px;
-            border-radius: 5px;
-        }
-        .back-btn:hover {
-            color: white;
-            background: rgba(0,0,0,0.8);
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            .about-section p {
-                padding: 0 20px;
-            }
+            .hero-content h1 { font-size: 2.5rem; }
+            .about-section p { padding: 0 20px; }
+            .enrollment-footer { flex-direction: column; }
+            .enrollment-footer .btn { width: 100%; }
+            .calendar-grid { gap: 4px; }
+            .month-picker { width: 260px; }
+            .preview-box { width: 95%; }
+            .stats-row { grid-template-columns: 1fr; }
+            .admin-middle { grid-template-columns: 1fr; }
+            .info-grid { grid-template-columns: 1fr; }
+            .admin-content { padding: 15px; }
+            .student-info-row { grid-template-columns: 1fr; }
+            .student-content { padding: 15px; }
+            .progress-tracker { flex-wrap: wrap; gap: 15px; }
+            .progress-tracker::before { display: none; }
+            .teacher-body { grid-template-columns: 1fr; }
+            .teacher-sidebar { border-right: none; border-bottom: 1px solid #e9ecef; }
         }
     </style>
 </head>
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <!-- NAVBAR LOGO IMAGE TAG - UPDATED FILE NAME -->
-                <img src="your_logo.png" alt="Logo">
+            <a class="navbar-brand" href="#" onclick="closeAllOverlays()">
+                <img src="logo.png" alt="Logo">
                 <span>
                     Alexis G. Santos National High School
                     <small>Liciada, Bustos, Bulacan</small>
@@ -361,100 +463,1550 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <div class="btn-nav-group mt-3 mt-lg-0">
-                    <button class="btn btn-login-nav" onclick="showLogin()">Log In</button>
-                    <button class="btn btn-enroll-nav">Enroll</button>
+                <div class="btn-nav-group mt-3 mt-lg-0" id="navButtons">
+                    <button class="btn btn-login-nav" id="btnLoginNav" onclick="showLogin()">Log In</button>
+                    <button class="btn btn-enroll-nav" id="btnEnrollNav" onclick="showEnrollment()">Enroll</button>
+                    <button class="btn btn-enroll-nav" id="btnEnrollmentFormNav" style="display:none;" onclick="showEnrollment()">Enrollment Form</button>
+                    <button class="btn btn-login-nav" id="btnCancelNav" style="display:none;" onclick="closeEnrollment()">Cancel</button>
+                    <button class="btn btn-login-nav" id="btnStudentApplicantNav" style="display:none;" onclick="closeSchedule()">Student / Applicant</button>
+                    <button class="btn btn-login-nav" id="btnCancelScheduleNav" style="display:none;" onclick="closeSchedule()">Cancel</button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <div class="hero-section">
         <div class="hero-bg"></div>
         <div class="container hero-content">
             <h1>Your Journey to Excellence<br>Continues Here</h1>
-            <button class="btn btn-enroll-hero" onclick="showLogin()">Enroll Now</button>
+            <button class="btn btn-enroll-hero" onclick="showEnrollment()">Enroll Now</button>
         </div>
     </div>
 
-    <!-- About Section -->
+    <!-- About -->
     <div class="about-section">
         <div class="about-bg"></div>
         <div class="container">
             <h2>ABOUT US</h2>
             <p>Alexis G. Santos National High School is a premier public educational institution in Bustos, Bulacan, committed to fostering academic excellence, moral integrity, and holistic student development. Guided by the standards of the Department of Education, our school provides a dynamic and inclusive learning environment that empowers young learners to maximize their potential. Through the collaborative efforts of our dedicated faculty and supportive community, we cultivate future-ready citizens equipped to lead and contribute meaningfully to society.</p>
-
             <div class="info-cards">
-                <!-- Vision -->
-                <div class="info-card">
-                    <h3>VISION</h3>
-                    <p>To dream of Filipinos who passionately love their country and whose values and competencies enable them to realize their full potential and contribute meaningfully to building the nation.</p>
+                <div class="info-card"><h3>VISION</h3><p>To dream of Filipinos who passionately love their country and whose values and competencies enable them to realize their full potential and contribute meaningfully to building the nation.</p></div>
+                <div class="info-card"><h3>MISSION</h3><p>To protect and promote the right of every Filipino to quality, equitable, culture-based, and complete basic education where students learn in a child-friendly, gender-sensitive, safe, and motivating environment.</p></div>
+                <div class="info-card"><h3>CORE VALUES</h3><ul><li>Maka-Diyos</li><li>Maka-tao</li><li>Makakalikasan</li><li>Makabansa</li></ul></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login -->
+    <div class="login-section" id="loginPage">
+        <a href="#" class="back-btn" onclick="closeLogin()">&larr; Back to Home</a>
+        <div class="login-card">
+            <img src="logo.png" alt="AGSNHS Logo" class="login-logo">
+            <h2 class="login-title">AGSNHS Enrollment System</h2>
+            <p class="login-subtitle">Alexis G. Santos National High School</p>
+
+            <div class="mb-1">
+                <label for="loginUsername" class="form-label">Username or Email</label>
+                <input type="text" class="form-control" id="loginUsername" placeholder="Enter your username or email">
+            </div>
+            <div class="mb-3">
+                <label for="loginPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="loginPassword" placeholder="••••••••" onkeydown="if(event.key==='Enter'){handleLogin();}">
+            </div>
+            <button type="button" class="btn btn-login-main" onclick="handleLogin()">Login</button>
+            <button type="button" class="btn btn-enroll-main" onclick="showEnrollment()">Enroll</button>
+            <a href="#" class="forgot-password">Forgot password?</a>
+
+            <div class="login-hint">
+                Demo accounts:<br>
+                Student: <strong>student</strong> / <strong>student123</strong><br>
+                Teacher: <strong>teacher</strong> / <strong>teacher123</strong><br>
+                Admission: <strong>admin</strong> / <strong>admin123</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enrollment Form -->
+    <div class="enrollment-section" id="enrollmentPage">
+        <div class="container">
+            <div class="enrollment-container">
+                <div class="enrollment-header">
+                    <h2>AGSNHS Student Enrollment Form</h2>
+                </div>
+                <p class="text-muted small mb-4">Please fill-in all fields with precise and accurate information. All fields marked <span class="text-danger">*</span> are required.</p>
+
+                <div class="error-msg" id="errorMsg"></div>
+
+                <form id="enrollmentForm" novalidate>
+                    <div class="account-section">
+                        <div class="section-title">Create Your Account</div>
+                        <p class="text-muted small mb-3" style="font-size: 0.8rem;">Set up your username and password to access your enrollment status later.</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="form-label-sm">Username <span class="req">*</span></label>
+                                <input type="text" class="form-control form-control-sm" id="accountUsername" placeholder="e.g., marlon_dc2024" inputmode="text" maxlength="20">
+                                <span class="field-hint">4-20 characters. Letters, numbers, and underscores only.</span>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label-sm">Email Address <span class="req">*</span></label>
+                                <input type="email" class="form-control form-control-sm" id="accountEmail" placeholder="e.g., marlon.delacruz@gmail.com">
+                                <span class="field-hint">A valid email address (e.g., name@example.com).</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="form-label-sm">Password <span class="req">*</span></label>
+                                <input type="password" class="form-control form-control-sm" id="accountPassword" placeholder="Create a strong password">
+                                <span class="field-hint">At least 8 characters. Use letters and numbers for security.</span>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label-sm">Confirm Password <span class="req">*</span></label>
+                                <input type="password" class="form-control form-control-sm" id="accountConfirmPassword" placeholder="Re-enter your password">
+                                <span class="field-hint">Must exactly match the password above.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-title">1. Student Personal Information</div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label-sm">First Name <span class="req">*</span></label>
+                            <input type="text" class="form-control form-control-sm" id="firstName" placeholder="e.g., Marlon">
+                            <span class="field-hint">Your given name.</span>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label-sm">Middle Name <span class="req">*</span></label>
+                            <input type="text" class="form-control form-control-sm" id="middleName" placeholder="e.g., Santos">
+                            <span class="field-hint">Your mother's maiden surname.</span>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label-sm">Last Name <span class="req">*</span></label>
+                            <input type="text" class="form-control form-control-sm" id="lastName" placeholder="e.g., Dela Cruz">
+                            <span class="field-hint">Your family surname.</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label-sm">Date of Birth <span class="req">*</span></label>
+                            <input type="date" class="form-control form-control-sm" id="dob">
+                            <span class="field-hint">As shown on your PSA Birth Certificate.</span>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label-sm">Gender <span class="req">*</span></label>
+                            <select class="form-select form-select-sm" id="gender"><option value="">-- Select --</option><option>Male</option><option>Female</option></select>
+                            <span class="field-hint">Select your gender.</span>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label-sm">Learner Reference Number (LRN) <span class="req">*</span></label>
+                            <input type="text" class="form-control form-control-sm" id="lrn" placeholder="e.g., 102876543210" inputmode="numeric" maxlength="14">
+                            <span class="field-hint">10-12 digits only. Dashes/spaces are okay.</span>
+                        </div>
+                    </div>
+
+                    <div class="section-title mt-4">2. Contact & Family Details</div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label class="form-label-sm">Home Address <span class="req">*</span></label>
+                            <input type="text" class="form-control form-control-sm" id="address" placeholder="e.g., Liciada, Bustos, Bulacan">
+                            <span class="field-hint">Complete address: Street, Barangay, City/Municipality, Province.</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label-sm">Primary Phone Number <span class="req">*</span></label>
+                            <input type="text" class="form-control form-control-sm" id="phone" placeholder="e.g., +63 912 345 6789" inputmode="tel">
+                            <span class="field-hint">Active mobile number (e.g., 0912 345 6789).</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-sm">Email Address <span class="req">*</span></label>
+                            <input type="email" class="form-control form-control-sm" id="contactEmail" placeholder="e.g., marlon.delacruz@gmail.com">
+                            <span class="field-hint">Where we'll send enrollment updates.</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label-sm">Parent / Guardian Full Name <span class="req">*</span></label>
+                            <input type="text" class="form-control form-control-sm" id="guardianName" placeholder="e.g., Ramon Dela Cruz">
+                            <span class="field-hint">Full name of your parent or guardian.</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-sm">Parent / Guardian Emergency Contact <span class="req">*</span></label>
+                            <input type="text" class="form-control form-control-sm" id="guardianContact" placeholder="e.g., +63 912 987 6543" inputmode="tel">
+                            <span class="field-hint">Reachable number in case of emergency.</span>
+                        </div>
+                    </div>
+
+                    <div class="section-title mt-4">3. Academic Profile</div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label-sm">Target Grade Level <span class="req">*</span></label>
+                            <select class="form-select form-select-sm" id="gradeLevel"><option value="">-- Select --</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option></select>
+                            <span class="field-hint">Grade you are enrolling for.</span>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label-sm">Previous School Attended <span class="req">*</span></label>
+                            <input type="text" class="form-control form-control-sm" id="prevSchool" placeholder="e.g., Bustos Elementary School">
+                            <span class="field-hint">Name of the school you last attended.</span>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label-sm">School Year <span class="req">*</span></label>
+                            <select class="form-select form-select-sm" id="schoolYear"><option value="">-- Select --</option><option>2024 - 2025</option><option>2025 - 2026</option></select>
+                            <span class="field-hint">Academic year you're enrolling for.</span>
+                        </div>
+                    </div>
+
+                    <div class="section-title mt-4">4. Document Requirements</div>
+                    <p class="text-muted small mb-3">Upload clear photos or scanned copies of the following documents. Accepted formats: JPG, PNG, PDF (Max 5MB each). <strong>All documents are required.</strong></p>
+
+                    <div class="upload-item" id="upload-psa">
+                        <label class="upload-label">PSA Birth Certificate (Original & Photocopy) <span class="req">*</span></label>
+                        <div class="upload-controls">
+                            <input type="file" id="file-psa" accept=".jpg,.jpeg,.png,.pdf" style="display:none;" onchange="handleFileUpload(this, 'psa')">
+                            <span class="file-status" id="status-psa">No file uploaded</span>
+                            <button type="button" class="btn btn-upload-sm btn-upload" id="uploadBtn-psa" onclick="document.getElementById('file-psa').click()">Upload</button>
+                            <button type="button" class="btn btn-upload-sm btn-view" id="viewBtn-psa" style="display:none;" onclick="openPreview('psa')">View</button>
+                            <button type="button" class="btn btn-upload-sm btn-replace" id="replaceBtn-psa" style="display:none;" onclick="document.getElementById('file-psa').click()">Replace</button>
+                            <button type="button" class="btn btn-upload-sm btn-remove" id="removeBtn-psa" style="display:none;" onclick="removeFile('psa')">Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="upload-item" id="upload-report">
+                        <label class="upload-label">Your Previous Report Card <span class="req">*</span></label>
+                        <div class="upload-controls">
+                            <input type="file" id="file-report" accept=".jpg,.jpeg,.png,.pdf" style="display:none;" onchange="handleFileUpload(this, 'report')">
+                            <span class="file-status" id="status-report">No file uploaded</span>
+                            <button type="button" class="btn btn-upload-sm btn-upload" id="uploadBtn-report" onclick="document.getElementById('file-report').click()">Upload</button>
+                            <button type="button" class="btn btn-upload-sm btn-view" id="viewBtn-report" style="display:none;" onclick="openPreview('report')">View</button>
+                            <button type="button" class="btn btn-upload-sm btn-replace" id="replaceBtn-report" style="display:none;" onclick="document.getElementById('file-report').click()">Replace</button>
+                            <button type="button" class="btn btn-upload-sm btn-remove" id="removeBtn-report" style="display:none;" onclick="removeFile('report')">Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="upload-item" id="upload-moral">
+                        <label class="upload-label">Certificate of Good Moral Character <span class="req">*</span></label>
+                        <div class="upload-controls">
+                            <input type="file" id="file-moral" accept=".jpg,.jpeg,.png,.pdf" style="display:none;" onchange="handleFileUpload(this, 'moral')">
+                            <span class="file-status" id="status-moral">No file uploaded</span>
+                            <button type="button" class="btn btn-upload-sm btn-upload" id="uploadBtn-moral" onclick="document.getElementById('file-moral').click()">Upload</button>
+                            <button type="button" class="btn btn-upload-sm btn-view" id="viewBtn-moral" style="display:none;" onclick="openPreview('moral')">View</button>
+                            <button type="button" class="btn btn-upload-sm btn-replace" id="replaceBtn-moral" style="display:none;" onclick="document.getElementById('file-moral').click()">Replace</button>
+                            <button type="button" class="btn btn-upload-sm btn-remove" id="removeBtn-moral" style="display:none;" onclick="removeFile('moral')">Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="section-title mt-4">5. Appointment Schedule</div>
+                    <div class="schedule-reminder" id="scheduleReminder">
+                        <span id="scheduleReminderText"><strong>Required:</strong> Please book a schedule for passing your documents before submitting.</span>
+                    </div>
+
+                    <div class="enrollment-footer">
+                        <button type="button" class="btn btn-save-draft" onclick="alert('Draft saved successfully!')">Save Progress Draft</button>
+                        <button type="button" class="btn btn-schedule" onclick="showSchedule()">Schedule</button>
+                        <button type="button" class="btn btn-submit-enrollment" onclick="submitEnrollment()">Submit Enrollment Application</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schedule Calendar Page -->
+    <div class="schedule-section" id="schedulePage">
+        <div class="schedule-container">
+            <div class="schedule-header">
+                <h2>Schedule Passing of Documents</h2>
+                <p>Please select a date to schedule your document submission. You may come anytime during the school's available hours.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="calendar-wrapper">
+                        <div class="calendar-header">
+                            <h3 id="calendarMonthYear" onclick="toggleMonthPicker()">October 2026</h3>
+                            <div class="calendar-nav">
+                                <button onclick="changeMonth(-1)">&#8249;</button>
+                                <button onclick="changeMonth(1)">&#8250;</button>
+                            </div>
+                            <div class="month-picker" id="monthPicker">
+                                <div class="month-picker-year">
+                                    <button onclick="changePickerYear(-1)">&#8249;</button>
+                                    <span id="pickerYear">2026</span>
+                                    <button onclick="changePickerYear(1)">&#8250;</button>
+                                </div>
+                                <div class="month-grid" id="monthGrid"></div>
+                            </div>
+                        </div>
+                        <div class="calendar-grid" id="calendarGrid"></div>
+                    </div>
                 </div>
 
-                <!-- Mission -->
-                <div class="info-card">
-                    <h3>MISSION</h3>
-                    <p>To protect and promote the right of every Filipino to quality, equitable, culture-based, and complete basic education where students learn in a child-friendly, gender-sensitive, safe, and motivating environment.</p>
-                </div>
-
-                <!-- Core Values -->
-                <div class="info-card">
-                    <h3>CORE VALUES</h3>
-                    <ul>
-                        <li>Maka-Diyos</li>
-                        <li>Maka-tao</li>
-                        <li>Makakalikasan</li>
-                        <li>Makabansa</li>
-                    </ul>
+                <div class="col-lg-4">
+                    <div class="slots-panel">
+                        <h4>Appointment Details</h4>
+                        <p class="date-label" id="selectedDateLabel">No date selected</p>
+                        <div class="school-hours-display">
+                            <div class="hours-title">Available School Hours</div>
+                            <div class="hours-value">8:00 AM – 3:00 PM</div>
+                            <div class="hours-note">Monday to Friday only - Come anytime within these hours</div>
+                        </div>
+                        <button class="btn btn-book-slot" id="btnBookSlot" disabled onclick="bookSlot()">Book Appointment Slot</button>
+                        <button class="btn btn-back-enrollment" onclick="backToEnrollment()">Back to Enrollment Form</button>
+                        <div class="legend">
+                            <div class="legend-item"><div class="legend-box available"></div><span>Slots Open</span></div>
+                            <div class="legend-item"><div class="legend-box full"></div><span>Slots Full</span></div>
+                            <div class="legend-item"><div class="legend-box closed"></div><span>School Closed / Past Date</span></div>
+                            <div class="legend-item"><div class="legend-box selected"></div><span>Selected Date</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- LOGIN PAGE OVERLAY -->
-    <div class="login-section" id="loginPage">
-        <a href="#" class="back-btn" onclick="closeLogin()">&larr; Back to Home</a>
-        <div class="login-card">
-            <!-- LOGIN LOGO IMAGE TAG - UPDATED FILE NAME -->
-            <img src="your_logo.png" alt="AGSNHS Logo" class="login-logo">
-            
-            <h2 class="login-title">AGSNHS Enrollment System</h2>
-            <p class="login-subtitle">Alexis G. Santos National High School</p>
-
-            <form>
-                <div class="mb-1">
-                    <label for="username" class="form-label">Username or Email</label>
-                    <input type="text" class="form-control" id="username" placeholder="Enter your username or email">
+    <!-- Admin Dashboard -->
+    <div class="admin-section" id="adminPage">
+        <div class="admin-topbar">Admin Staff Dashboard</div>
+        <div class="admin-navbar">
+            <div class="brand">
+                <img src="logo.png" alt="Logo">
+                <div class="brand-text">
+                    <strong>Alexis G. Santos National High School</strong>
+                    <span>Online Enrollment Management System (AGSNHS)</span>
                 </div>
-
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="••••••••">
+            </div>
+            <div class="admin-actions">
+                <span class="admin-user" id="adminUserName">Admission Staff</span>
+                <button class="btn-signout" onclick="closeAdmin()">Sign Out</button>
+            </div>
+        </div>
+        <div class="admin-hero">
+            <div class="d-flex justify-content-between align-items-end">
+                <h1>Staff Dashboard Overview</h1>
+                <span class="academic-year">Academic Year: 2024 - 2025</span>
+            </div>
+        </div>
+        <div class="admin-content">
+            <div class="stats-row">
+                <div class="stat-card"><div class="stat-label">Total Enrolled</div><div class="stat-value">1,247</div><div class="stat-sub"><span class="dot"></span> Across all grade levels</div></div>
+                <div class="stat-card"><div class="stat-label">Pending Applications</div><div class="stat-value">83</div><div class="stat-sub"><span class="dot red"></span> Requires review</div></div>
+            </div>
+            <div class="admin-middle">
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <button class="qa-primary" onclick="openNewEnrollment()">New Enrollment Registration</button>
+                    <button class="qa-outline" onclick="openTeacherAccountReg()">Teacher Account Registration</button>
+                    <button class="qa-outline" onclick="openDirectory()">Student Directory</button>
                 </div>
-
-                <button type="button" class="btn btn-login-main">Login</button>
-                <button type="button" class="btn btn-enroll-main">Enroll</button>
-                
-                <a href="#" class="forgot-password">Forgot password?</a>
-            </form>
+                <div class="recent-activity">
+                    <h3>Recent Applications Activity</h3>
+                    <table><thead><tr><th>Student Name</th><th>Grade Level</th><th>Time Received</th><th>Action Required</th></tr></thead><tbody id="recentActivityBody"></tbody></table>
+                </div>
+            </div>
+            <div class="teachers-section">
+                <h3>Teachers Advisory</h3>
+                <table><thead><tr><th>Teacher Name</th><th>Section</th><th>Students Assigned</th><th>Assigned Students</th></tr></thead><tbody id="teachersTableBody"></tbody></table>
+            </div>
         </div>
     </div>
 
-    <!-- Bootstrap 5 JS Bundle -->
+    <!-- Student Dashboard -->
+    <div class="student-section" id="studentPage">
+        <div class="student-topbar">Student Enrollment Dashboard</div>
+        <div class="student-navbar">
+            <div class="brand">
+                <img src="logo.png" alt="Logo">
+                <div class="brand-text">
+                    <strong>Alexis G. Santos National High School</strong>
+                    <span>Online Enrollment Management System (AGSNHS)</span>
+                </div>
+            </div>
+            <div class="student-actions">
+                <span class="student-user" id="studentUserName">Student</span>
+                <button class="btn-signout" onclick="closeStudent()">Sign Out</button>
+            </div>
+        </div>
+        <div class="student-hero"><h1>My Enrollment Dashboard</h1></div>
+        <div class="student-content">
+            <div class="progress-card">
+                <h3>Enrollment Progress Tracker</h3>
+                <div class="progress-tracker">
+                    <div class="progress-step completed"><div class="progress-circle">1</div><div class="step-label">1. Application Submitted</div></div>
+                    <div class="progress-step completed"><div class="progress-circle">2</div><div class="step-label">2. Documents Review</div></div>
+                    <div class="progress-step current"><div class="progress-circle">3</div><div class="step-label">3. Schedule Interview</div></div>
+                    <div class="progress-step"><div class="progress-circle">4</div><div class="step-label">4. Enrolled</div></div>
+                </div>
+            </div>
+            <div class="student-info-row">
+                <div class="info-summary-card"><h4>Personal Information Summary</h4><div id="studentInfoRows"></div></div>
+                <div class="appointment-card"><h4>Upcoming Appointments</h4><div id="appointmentContent"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Teacher Dashboard -->
+    <div class="teacher-section" id="teacherPage">
+        <div class="teacher-topbar">
+            <span class="topbar-title">Teacher Dashboard</span>
+            <span class="topbar-icon">&#9998;</span>
+        </div>
+        <div class="teacher-navbar">
+            <div class="brand">
+                <img src="logo.png" alt="Logo">
+                <div class="brand-text">
+                    <strong>Alexis G. Santos National High School</strong>
+                    <span>Online Enrollment Management System (AGSNHS)</span>
+                </div>
+            </div>
+            <div class="teacher-actions">
+                <span class="teacher-badge" id="teacherBadgeName">Teacher</span>
+                <button class="btn-signout" onclick="closeTeacher()">Sign Out</button>
+            </div>
+        </div>
+
+        <div class="teacher-hero">
+            <h1 id="teacherHeroTitle">Adviser: Mrs. Clarissa Santos</h1>
+        </div>
+
+        <div class="teacher-body">
+            <div class="teacher-sidebar">
+                <h4>My Assigned Sections</h4>
+                <div class="section-list" id="sectionList"></div>
+            </div>
+            <div class="teacher-main">
+                <div class="teacher-main-header">
+                    <div class="advisor-label">Science Teacher</div>
+                    <h2 id="teacherSectionTitle">Grade 7 - Section A <span class="subject-badge">Science</span></h2>
+                </div>
+                <div class="class-table-card">
+                    <table class="class-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>LRN</th>
+                                <th>Grade</th>
+                                <th>Section</th>
+                                <th>Enrollment Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="classListBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reschedule Request Popup -->
+    <div class="reschedule-modal-overlay" id="rescheduleModal">
+        <div class="reschedule-modal">
+            <div class="reschedule-modal-header">
+                <h3>Request a Reschedule</h3>
+                <button class="reschedule-modal-close" onclick="closeRescheduleModal()">&times;</button>
+            </div>
+            <div class="reschedule-modal-body">
+                <p class="text-muted small mb-3" style="font-size: 0.8rem;">Select a new date for your document submission appointment and provide a reason for the reschedule.</p>
+
+                <label>Preferred New Date</label>
+                <div class="mini-calendar">
+                    <div class="mini-cal-header">
+                        <h6 id="miniCalMonthYear">October 2026</h6>
+                        <div class="mini-cal-nav">
+                            <button onclick="miniCalChangeMonth(-1)">&#8249;</button>
+                            <button onclick="miniCalChangeMonth(1)">&#8250;</button>
+                        </div>
+                    </div>
+                    <div class="mini-cal-grid" id="miniCalGrid"></div>
+                </div>
+
+                <div class="selected-date-display" id="selectedDateDisplay"></div>
+
+                <label>Reason for Reschedule</label>
+                <textarea id="rescheduleReason" placeholder="e.g., Conflict with another appointment, feeling unwell, etc."></textarea>
+            </div>
+            <div class="reschedule-modal-footer">
+                <button class="btn-reschedule-cancel" onclick="closeRescheduleModal()">Cancel</button>
+                <button class="btn-reschedule-submit" onclick="submitReschedule()">Submit Request</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Modal -->
+    <div class="admin-modal-overlay" id="adminModal">
+        <div class="admin-modal">
+            <div class="admin-modal-header">
+                <h3 id="adminModalTitle">Student Directory</h3>
+                <button class="admin-modal-close" onclick="closeAdminModal()">&times;</button>
+            </div>
+            <div class="admin-modal-body" id="adminModalBody"></div>
+        </div>
+    </div>
+
+    <!-- File Preview Popup -->
+    <div class="preview-overlay" id="previewOverlay">
+        <div class="preview-box">
+            <div class="preview-header">
+                <h5 id="previewTitle">Document Preview</h5>
+                <button class="preview-close" onclick="closePreview()" title="Close">&times;</button>
+            </div>
+            <div class="preview-body" id="previewBody"></div>
+        </div>
+    </div>
+
+    <!-- Popup -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-box">
+            <div class="popup-icon warning" id="popupIcon">!</div>
+            <h5 id="popupTitle">Notice</h5>
+            <p id="popupMessage">Message here</p>
+            <button class="btn btn-success" onclick="closePopup()">OK</button>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- JavaScript to toggle the login page -->
     <script>
-        function showLogin() {
-            document.getElementById('loginPage').style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Hide scrollbar
+        // ============ NAVBAR VISIBILITY ============
+        const mainNavbar = document.getElementById('mainNavbar');
+        function hideMainNavbar() { if (mainNavbar) mainNavbar.style.display = 'none'; }
+        function showMainNavbar() { if (mainNavbar) mainNavbar.style.display = ''; }
+
+        // ============ USER DATABASE ============
+        const userDatabase = [
+            {
+                username: 'student', password: 'student123', role: 'student',
+                fullName: 'Marlon Santos Dela Cruz',
+                studentData: {
+                    firstName: 'Marlon', middleName: 'Santos', lastName: 'Dela Cruz',
+                    fullName: 'Marlon Santos Dela Cruz',
+                    lrn: '10287654321',
+                    gradeLevel: 'Grade 7',
+                    section: 'Pending Final Enrollment',
+                    phone: '+63 912 345 6789',
+                    guardian: 'Ramon Dela Cruz'
+                },
+                appointment: {
+                    type: 'Passing of Enrollment Form',
+                    date: 'Monday, July 15, 2024',
+                    time: '10:00 AM - 11:00 AM',
+                    location: 'Admission Office, Main Building. Please bring original physical copies of your Enrollment Form.'
+                },
+                rescheduleRequest: null
+            },
+            {
+                username: 'teacher', password: 'teacher123', role: 'teacher',
+                fullName: 'Mrs. Clarissa Santos',
+                subject: 'Science',
+                assignedSections: ['Grade 7 - Section A', 'Grade 8 - Section A', 'Grade 9 - Section C', 'Grade 10 - Section B']
+            },
+            { username: 'admin', password: 'admin123', role: 'admin', fullName: 'Admission Staff' },
+            { username: 'maria', password: 'maria123', role: 'student', fullName: 'Maria Clara Santos',
+              studentData: { firstName: 'Maria', middleName: 'Clara', lastName: 'Santos', fullName: 'Maria Clara Santos', lrn: '102876543211', gradeLevel: 'Grade 10', section: 'Grade 10 - Section B', phone: '+63 917 234 5678', guardian: 'Ana Santos' },
+              appointment: null, rescheduleRequest: null },
+            { username: 'roberto', password: 'roberto123', role: 'teacher', fullName: 'Mr. Roberto Villanueva',
+              subject: 'Science', assignedSections: ['Grade 7 - Section B', 'Grade 8 - Section B'] }
+        ];
+
+        const teacherAccounts = [];
+        let currentStudentUser = null;
+        let currentTeacherUser = null;
+        let activeTeacherSection = null;
+
+        let miniCalDate = new Date(2026, 6, 1);
+        let miniCalSelectedDate = null;
+
+        // ============ LOGIN HANDLER ============
+        function handleLogin() {
+            const usernameEl = document.getElementById('loginUsername');
+            const passwordEl = document.getElementById('loginPassword');
+            const username = usernameEl.value.trim().toLowerCase();
+            const password = passwordEl.value;
+            if (!username || !password) { alert('Please enter both username and password.'); return; }
+            let user = userDatabase.find(u => u.username === username && u.password === password);
+            if (!user) user = teacherAccounts.find(u => u.username === username && u.password === password);
+            if (!user) { alert('Invalid username or password. Please try again.'); return; }
+            usernameEl.value = '';
+            passwordEl.value = '';
+            if (user.role === 'admin') {
+                document.getElementById('adminUserName').textContent = user.fullName || 'Admission Staff';
+                showAdmin();
+            } else if (user.role === 'teacher') {
+                currentTeacherUser = user;
+                showTeacher(user);
+            } else if (user.role === 'student') {
+                currentStudentUser = user;
+                showStudent(user);
+            }
         }
 
-        function closeLogin() {
+        // ============ TEACHER DASHBOARD ============
+        function showTeacher(user) {
+            hideMainNavbar();
+            document.getElementById('teacherPage').style.display = 'block';
             document.getElementById('loginPage').style.display = 'none';
-            document.body.style.overflow = 'auto'; // Show scrollbar
+            document.getElementById('enrollmentPage').style.display = 'none';
+            document.getElementById('schedulePage').style.display = 'none';
+            document.getElementById('adminPage').style.display = 'none';
+            document.getElementById('studentPage').style.display = 'none';
+            document.body.style.overflow = 'hidden';
+            document.getElementById('teacherBadgeName').textContent = user.fullName || 'Teacher';
+            document.getElementById('teacherHeroTitle').textContent = 'Adviser: ' + (user.fullName || 'Teacher');
+            renderTeacherSections(user);
+            if (user.assignedSections && user.assignedSections.length > 0) {
+                selectTeacherSection(user.assignedSections[0]);
+            }
         }
+
+        function closeTeacher() {
+            showMainNavbar();
+            document.getElementById('teacherPage').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            setNavMode('home');
+        }
+
+        function renderTeacherSections(user) {
+            const list = document.getElementById('sectionList');
+            list.innerHTML = '';
+            (user.assignedSections || []).forEach((section) => {
+                const item = document.createElement('div');
+                item.className = 'section-item';
+                item.textContent = section;
+                item.dataset.section = section;
+                item.onclick = function() { selectTeacherSection(section); };
+                list.appendChild(item);
+            });
+        }
+
+        function selectTeacherSection(section) {
+            activeTeacherSection = section;
+            document.querySelectorAll('.section-item').forEach(el => {
+                el.classList.toggle('active', el.dataset.section === section);
+            });
+            document.getElementById('teacherSectionTitle').innerHTML = section + ' <span class="subject-badge">Science</span>';
+            renderClassList(section);
+        }
+
+        function renderClassList(section) {
+            const tbody = document.getElementById('classListBody');
+            tbody.innerHTML = '';
+            const sampleRoster = {
+                'Grade 7 - Section A': [
+                    { name: 'Alvarez, Christian Paul', lrn: '1023456789012', grade: 'Grade 7', status: 'Enrolled' },
+                    { name: 'Bernardo, Kathryn Joyce', lrn: '1023456789013', grade: 'Grade 7', status: 'Pending' },
+                    { name: 'Dela Cruz, Juan Carlos', lrn: '1023456789014', grade: 'Grade 7', status: 'Enrolled' },
+                    { name: 'Estacio, Maria Teresa', lrn: '1023456789015', grade: 'Grade 7', status: 'Incomplete' },
+                    { name: 'Gomez, Francisco Lorenzo', lrn: '1023456789016', grade: 'Grade 7', status: 'Enrolled' },
+                    { name: 'Hernandez, Sofia Nicole', lrn: '1023456789017', grade: 'Grade 7', status: 'Pending' },
+                    { name: 'Mendoza, Alden James', lrn: '1023456789018', grade: 'Grade 7', status: 'Enrolled' },
+                    { name: 'Santos, Beatriz Louise', lrn: '1023456789019', grade: 'Grade 7', status: 'Incomplete' }
+                ],
+                'Grade 8 - Section A': [
+                    { name: 'Aquino, Rafael Miguel', lrn: '1034567890123', grade: 'Grade 8', status: 'Enrolled' },
+                    { name: 'Bautista, Camille Anne', lrn: '1034567890124', grade: 'Grade 8', status: 'Enrolled' },
+                    { name: 'Castro, Luis Antonio', lrn: '1034567890125', grade: 'Grade 8', status: 'Pending' },
+                    { name: 'Diaz, Isabella Rose', lrn: '1034567890126', grade: 'Grade 8', status: 'Incomplete' },
+                    { name: 'Espiritu, Gabriel Luis', lrn: '1034567890127', grade: 'Grade 8', status: 'Enrolled' },
+                    { name: 'Fernandez, Patricia Mae', lrn: '1034567890128', grade: 'Grade 8', status: 'Enrolled' }
+                ],
+                'Grade 9 - Section C': [
+                    { name: 'Garcia, Miguel Angelo', lrn: '1045678901234', grade: 'Grade 9', status: 'Enrolled' },
+                    { name: 'Herrera, Juliana Marie', lrn: '1045678901235', grade: 'Grade 9', status: 'Pending' },
+                    { name: 'Isidro, Carlos Miguel', lrn: '1045678901236', grade: 'Grade 9', status: 'Enrolled' },
+                    { name: 'Jimenez, Sophia Grace', lrn: '1045678901237', grade: 'Grade 9', status: 'Incomplete' },
+                    { name: 'Lopez, Andres Felipe', lrn: '1045678901238', grade: 'Grade 9', status: 'Enrolled' }
+                ],
+                'Grade 10 - Section B': [
+                    { name: 'Martinez, Diego Rafael', lrn: '1056789012345', grade: 'Grade 10', status: 'Enrolled' },
+                    { name: 'Navarro, Angela Beatriz', lrn: '1056789012346', grade: 'Grade 10', status: 'Enrolled' },
+                    { name: 'Ocampo, Ricardo Jose', lrn: '1056789012347', grade: 'Grade 10', status: 'Pending' },
+                    { name: 'Perez, Valentina Sofia', lrn: '1056789012348', grade: 'Grade 10', status: 'Incomplete' },
+                    { name: 'Quinto, Eduardo Miguel', lrn: '1056789012349', grade: 'Grade 10', status: 'Enrolled' },
+                    { name: 'Reyes, Mariana Isabel', lrn: '1056789012350', grade: 'Grade 10', status: 'Enrolled' },
+                    { name: 'Santos, Fernando Luis', lrn: '1056789012351', grade: 'Grade 10', status: 'Pending' }
+                ]
+            };
+            const students = sampleRoster[section] || [];
+            if (students.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:30px;color:#888;">No students assigned to this section yet.</td></tr>';
+                return;
+            }
+            students.forEach(s => {
+                const statusClass = s.status === 'Enrolled' ? 'enrolled' : s.status === 'Pending' ? 'pending' : 'incomplete';
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="student-name">${s.name}</td>
+                    <td class="lrn">${s.lrn}</td>
+                    <td>${s.grade}</td>
+                    <td>${section}</td>
+                    <td><span class="enroll-status ${statusClass}">${s.status}</span></td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // ============ STUDENT DASHBOARD ============
+        function showStudent(user) {
+            hideMainNavbar();
+            document.getElementById('studentPage').style.display = 'block';
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('enrollmentPage').style.display = 'none';
+            document.getElementById('schedulePage').style.display = 'none';
+            document.getElementById('adminPage').style.display = 'none';
+            document.getElementById('teacherPage').style.display = 'none';
+            document.body.style.overflow = 'hidden';
+            document.getElementById('studentUserName').textContent = user.fullName || 'Student';
+            renderStudentDashboard(user);
+        }
+
+        function closeStudent() {
+            showMainNavbar();
+            document.getElementById('studentPage').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            setNavMode('home');
+        }
+
+        function renderStudentDashboard(user) {
+            const s = user.studentData || {};
+            document.getElementById('studentInfoRows').innerHTML = `
+                <div class="info-row"><span class="info-label">Full Name</span><span class="info-value">${s.fullName || user.fullName || '-'}</span></div>
+                <div class="info-row"><span class="info-label">Learner Reference Number (LRN)</span><span class="info-value">${s.lrn || '-'}</span></div>
+                <div class="info-row"><span class="info-label">Target Grade Level</span><span class="info-value">${s.gradeLevel || '-'}</span></div>
+                <div class="info-row"><span class="info-label">Assigned Section</span><span class="info-value">${s.section || '-'}</span></div>
+                <div class="info-row"><span class="info-label">Contact Number</span><span class="info-value">${s.phone || '-'}</span></div>
+                <div class="info-row"><span class="info-label">Parent / Guardian Name</span><span class="info-value">${s.guardian || '-'}</span></div>
+            `;
+            const apptContent = document.getElementById('appointmentContent');
+            if (user.appointment) {
+                const a = user.appointment;
+                apptContent.innerHTML = `
+                    <div class="appointment-box">
+                        <div class="appt-type">${a.type}</div>
+                        <div class="appt-date">${a.date}</div>
+                        <div class="appt-time">Time Slot: ${a.time}</div>
+                        <div class="appt-location">Location: ${a.location}</div>
+                    </div>
+                    <button class="btn-reschedule" onclick="openRescheduleModal()">Request a Reschedule</button>
+                `;
+            } else {
+                apptContent.innerHTML = `<div class="no-appointment"><p>You have no scheduled appointments yet.</p><button class="btn-reschedule" onclick="closeStudent(); showEnrollment();">Book an Appointment</button></div>`;
+            }
+        }
+
+        // ============ RESCHEDULE ============
+        function openRescheduleModal() {
+            miniCalSelectedDate = null;
+            miniCalDate = new Date(2026, 6, 1);
+            document.getElementById('rescheduleReason').value = '';
+            document.getElementById('selectedDateDisplay').classList.remove('show');
+            document.getElementById('selectedDateDisplay').textContent = '';
+            document.getElementById('rescheduleModal').classList.add('active');
+            renderMiniCalendar();
+        }
+        function closeRescheduleModal() { document.getElementById('rescheduleModal').classList.remove('active'); }
+        document.getElementById('rescheduleModal').addEventListener('click', function(e) { if (e.target === this) closeRescheduleModal(); });
+
+        function renderMiniCalendar() {
+            const year = miniCalDate.getFullYear();
+            const month = miniCalDate.getMonth();
+            document.getElementById('miniCalMonthYear').textContent = monthNames[month] + ' ' + year;
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const grid = document.getElementById('miniCalGrid');
+            grid.innerHTML = '';
+            ['S','M','T','W','T','F','S'].forEach(d => {
+                const h = document.createElement('div');
+                h.className = 'mini-cal-day-header';
+                h.textContent = d;
+                grid.appendChild(h);
+            });
+            for (let i = 0; i < firstDay; i++) {
+                const e = document.createElement('div');
+                e.className = 'mini-cal-day empty';
+                grid.appendChild(e);
+            }
+            const today = new Date();
+            today.setHours(0,0,0,0);
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateObj = new Date(year, month, day);
+                const dateStr = formatDate(dateObj);
+                const dayOfWeek = dateObj.getDay();
+                const cell = document.createElement('div');
+                cell.className = 'mini-cal-day';
+                cell.textContent = day;
+                const isPast = dateObj < today;
+                const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
+                const isClosed = closedDates.includes(dateStr);
+                const isBooked = bookedDates.includes(dateStr);
+                const isToday = dateObj.getTime() === today.getTime();
+                if (isToday) cell.classList.add('today');
+                if (isPast || isWeekend || isClosed || isBooked) {
+                    cell.classList.add('disabled');
+                    if (isPast) cell.classList.add('past');
+                    cell.onclick = function() {
+                        if (isWeekend) showPopup('School Closed', 'The school is closed on Saturdays and Sundays. Please select a weekday.', 'warning');
+                        else if (isClosed) showPopup('School Closed', 'The school is closed on this date (holiday). Please select another date.', 'warning');
+                        else if (isPast) showPopup('Invalid Date', 'This date has already passed. Please select a future date.', 'warning');
+                        else showPopup('Date Full', 'This date is already fully booked. Please select another date.', 'danger');
+                    };
+                } else {
+                    if (miniCalSelectedDate === dateStr) cell.classList.add('selected');
+                    cell.onclick = function() {
+                        miniCalSelectedDate = dateStr;
+                        const display = document.getElementById('selectedDateDisplay');
+                        display.textContent = 'Selected Date: ' + formatDateLong(dateStr);
+                        display.classList.add('show');
+                        renderMiniCalendar();
+                    };
+                }
+                grid.appendChild(cell);
+            }
+        }
+
+        function miniCalChangeMonth(delta) { miniCalDate.setMonth(miniCalDate.getMonth() + delta); renderMiniCalendar(); }
+
+        function submitReschedule() {
+            if (!miniCalSelectedDate) { alert('Please select your preferred new date from the calendar.'); return; }
+            const reason = document.getElementById('rescheduleReason').value.trim();
+            if (!reason) { alert('Please provide a reason for the reschedule.'); return; }
+            if (currentStudentUser) {
+                currentStudentUser.rescheduleRequest = {
+                    preferredDate: formatDateLong(miniCalSelectedDate),
+                    preferredDateRaw: miniCalSelectedDate,
+                    reason: reason,
+                    requestedAt: new Date().toLocaleString()
+                };
+            }
+            closeRescheduleModal();
+            showPopup('Reschedule Request Submitted', 'Your reschedule request for ' + formatDateLong(miniCalSelectedDate) + ' has been submitted. The Admission Office will review your request and confirm shortly. Reason: ' + reason, 'success');
+        }
+
+        // ============ FILE UPLOAD ============
+        const uploadedFiles = { psa: null, report: null, moral: null };
+        let scheduledDate = null;
+
+        function handleFileUpload(input, docType) {
+            const file = input.files[0];
+            if (!file) return;
+            if (file.size > 5 * 1024 * 1024) { alert('File is too large. Maximum size is 5MB.'); input.value = ''; return; }
+            uploadedFiles[docType] = file;
+            const statusEl = document.getElementById('status-' + docType);
+            const uploadBtn = document.getElementById('uploadBtn-' + docType);
+            const viewBtn = document.getElementById('viewBtn-' + docType);
+            const replaceBtn = document.getElementById('replaceBtn-' + docType);
+            const removeBtn = document.getElementById('removeBtn-' + docType);
+            statusEl.textContent = file.name;
+            statusEl.classList.add('has-file');
+            uploadBtn.style.display = 'none';
+            viewBtn.style.display = 'inline-block';
+            replaceBtn.style.display = 'inline-block';
+            removeBtn.style.display = 'inline-block';
+            document.getElementById('upload-' + docType).classList.remove('error');
+        }
+        function removeFile(docType) { if (!confirm('Are you sure you want to remove this file?')) return; removeFileSilent(docType); }
+        function removeFileSilent(docType) {
+            uploadedFiles[docType] = null;
+            const fileInput = document.getElementById('file-' + docType);
+            if (fileInput) fileInput.value = '';
+            const statusEl = document.getElementById('status-' + docType);
+            const uploadBtn = document.getElementById('uploadBtn-' + docType);
+            const viewBtn = document.getElementById('viewBtn-' + docType);
+            const replaceBtn = document.getElementById('replaceBtn-' + docType);
+            const removeBtn = document.getElementById('removeBtn-' + docType);
+            statusEl.textContent = 'No file uploaded';
+            statusEl.classList.remove('has-file');
+            uploadBtn.style.display = 'inline-block';
+            viewBtn.style.display = 'none';
+            replaceBtn.style.display = 'none';
+            removeBtn.style.display = 'none';
+            document.getElementById('upload-' + docType).classList.remove('error');
+        }
+
+        function openPreview(docType) {
+            const file = uploadedFiles[docType];
+            if (!file) { alert('No file uploaded.'); return; }
+            const overlay = document.getElementById('previewOverlay');
+            const title = document.getElementById('previewTitle');
+            const body = document.getElementById('previewBody');
+            const titles = { psa: 'PSA Birth Certificate', report: 'Your Previous Report Card', moral: 'Certificate of Good Moral Character' };
+            title.textContent = titles[docType] || 'Document Preview';
+            body.innerHTML = '';
+            const fileURL = URL.createObjectURL(file);
+            if (file.type.startsWith('image/')) {
+                const img = document.createElement('img');
+                img.src = fileURL;
+                body.appendChild(img);
+            } else if (file.type === 'application/pdf') {
+                const iframe = document.createElement('iframe');
+                iframe.src = fileURL;
+                body.appendChild(iframe);
+            } else {
+                body.innerHTML = '<div class="no-preview">Preview not available for this file type.</div>';
+            }
+            overlay.classList.add('active');
+        }
+        function closePreview() { document.getElementById('previewBody').innerHTML = ''; document.getElementById('previewOverlay').classList.remove('active'); }
+        document.getElementById('previewOverlay').addEventListener('click', function(e) { if (e.target === this) closePreview(); });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closePreview(); closeRescheduleModal(); } });
+
+        // ============ NAVIGATION ============
+        function setNavMode(mode) {
+            document.getElementById('btnLoginNav').style.display = 'none';
+            document.getElementById('btnEnrollNav').style.display = 'none';
+            document.getElementById('btnEnrollmentFormNav').style.display = 'none';
+            document.getElementById('btnCancelNav').style.display = 'none';
+            document.getElementById('btnStudentApplicantNav').style.display = 'none';
+            document.getElementById('btnCancelScheduleNav').style.display = 'none';
+            if (mode === 'home' || mode === 'login') {
+                document.getElementById('btnLoginNav').style.display = 'inline-block';
+                document.getElementById('btnEnrollNav').style.display = 'inline-block';
+            } else if (mode === 'enrollment') {
+                document.getElementById('btnEnrollmentFormNav').style.display = 'inline-block';
+                document.getElementById('btnCancelNav').style.display = 'inline-block';
+            } else if (mode === 'schedule') {
+                document.getElementById('btnStudentApplicantNav').style.display = 'inline-block';
+                document.getElementById('btnCancelScheduleNav').style.display = 'inline-block';
+            }
+        }
+
+        function showLogin() {
+            hideMainNavbar();
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('enrollmentPage').style.display = 'none';
+            document.getElementById('schedulePage').style.display = 'none';
+            document.getElementById('adminPage').style.display = 'none';
+            document.getElementById('studentPage').style.display = 'none';
+            document.getElementById('teacherPage').style.display = 'none';
+            document.body.style.overflow = 'hidden';
+            setNavMode('login');
+        }
+        function closeLogin() {
+            showMainNavbar();
+            document.getElementById('loginPage').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            setNavMode('home');
+        }
+        function showEnrollment() {
+            hideMainNavbar();
+            document.getElementById('enrollmentPage').style.display = 'block';
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('schedulePage').style.display = 'none';
+            document.getElementById('adminPage').style.display = 'none';
+            document.getElementById('studentPage').style.display = 'none';
+            document.getElementById('teacherPage').style.display = 'none';
+            document.body.style.overflow = 'hidden';
+            setNavMode('enrollment');
+        }
+        function closeEnrollment() {
+            showMainNavbar();
+            document.getElementById('enrollmentPage').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            setNavMode('home');
+        }
+        function showSchedule() {
+            hideMainNavbar();
+            document.getElementById('schedulePage').style.display = 'block';
+            document.getElementById('enrollmentPage').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('adminPage').style.display = 'none';
+            document.getElementById('studentPage').style.display = 'none';
+            document.getElementById('teacherPage').style.display = 'none';
+            document.body.style.overflow = 'hidden';
+            setNavMode('schedule');
+            renderCalendar();
+        }
+        function closeSchedule() {
+            showMainNavbar();
+            document.getElementById('schedulePage').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            setNavMode('home');
+        }
+        function backToEnrollment() {
+            hideMainNavbar();
+            document.getElementById('schedulePage').style.display = 'none';
+            document.getElementById('enrollmentPage').style.display = 'block';
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('adminPage').style.display = 'none';
+            document.getElementById('studentPage').style.display = 'none';
+            document.getElementById('teacherPage').style.display = 'none';
+            document.body.style.overflow = 'hidden';
+            setNavMode('enrollment');
+        }
+        function closeAllOverlays() {
+            showMainNavbar();
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('enrollmentPage').style.display = 'none';
+            document.getElementById('schedulePage').style.display = 'none';
+            document.getElementById('adminPage').style.display = 'none';
+            document.getElementById('studentPage').style.display = 'none';
+            document.getElementById('teacherPage').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            setNavMode('home');
+        }
+
+        // ============ ADMIN DASHBOARD ============
+        function showAdmin() {
+            hideMainNavbar();
+            document.getElementById('adminPage').style.display = 'block';
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('enrollmentPage').style.display = 'none';
+            document.getElementById('schedulePage').style.display = 'none';
+            document.getElementById('studentPage').style.display = 'none';
+            document.getElementById('teacherPage').style.display = 'none';
+            document.body.style.overflow = 'hidden';
+            setNavMode('home');
+            renderAdminDashboard();
+        }
+        function closeAdmin() {
+            showMainNavbar();
+            document.getElementById('adminPage').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            setNavMode('home');
+        }
+
+        // ============ MOCK DATA ============
+        const mockStudents = [
+            { id: 1, firstName: 'John', middleName: 'Doe', lastName: 'Ramos', grade: 'Grade 7', section: 'Grade 7 - Section A', lrn: '102876543210', gender: 'Male', dob: '2012-05-15', address: 'Liciada, Bustos, Bulacan', phone: '+63 912 345 6789', email: 'john.ramos@gmail.com', guardian: 'Ramon Ramos', guardianContact: '+63 912 987 6543', status: 'Pending', timeReceived: '10 mins ago', actionRequired: 'Documents Review', docs: { psa: true, report: true, moral: false }, hasRescheduleRequest: false },
+            { id: 2, firstName: 'Maria', middleName: 'Clara', lastName: 'Santos', grade: 'Grade 10', section: 'Grade 10 - Section B', lrn: '102876543211', gender: 'Female', dob: '2009-08-22', address: 'San Pedro, Bustos, Bulacan', phone: '+63 917 234 5678', email: 'maria.santos@gmail.com', guardian: 'Ana Santos', guardianContact: '+63 917 876 5432', status: 'Enrolled', timeReceived: '1 hour ago', actionRequired: 'Schedule Interview', docs: { psa: true, report: true, moral: true }, hasRescheduleRequest: false },
+            { id: 3, firstName: 'Juan', middleName: 'Dela', lastName: 'Cruz', grade: 'Grade 8', section: 'Grade 8 - Section A', lrn: '102876543212', gender: 'Male', dob: '2011-03-10', address: 'Poblacion, Bustos, Bulacan', phone: '+63 918 345 6789', email: 'juan.delacruz@gmail.com', guardian: 'Pedro Dela Cruz', guardianContact: '+63 918 987 6543', status: 'Pending', timeReceived: '3 hours ago', actionRequired: 'Finalize Enrollment', docs: { psa: true, report: false, moral: true }, hasRescheduleRequest: false },
+            { id: 4, firstName: 'Sarah', middleName: 'Mae', lastName: 'Flores', grade: 'Grade 9', section: 'Grade 9 - Section A', lrn: '102876543213', gender: 'Female', dob: '2010-11-30', address: 'Cambaog, Bustos, Bulacan', phone: '+63 919 456 7890', email: 'sarah.flores@gmail.com', guardian: 'Liza Flores', guardianContact: '+63 919 654 3210', status: 'Enrolled', timeReceived: 'Yesterday', actionRequired: 'Documents Review', docs: { psa: true, report: true, moral: true }, hasRescheduleRequest: false },
+            { id: 5, firstName: 'Miguel', middleName: 'Antonio', lastName: 'Reyes', grade: 'Grade 7', section: 'Grade 7 - Section A', lrn: '102876543214', gender: 'Male', dob: '2012-07-04', address: 'Liciada, Bustos, Bulacan', phone: '+63 920 567 8901', email: 'miguel.reyes@gmail.com', guardian: 'Rosa Reyes', guardianContact: '+63 920 765 4321', status: 'Pending', timeReceived: '2 days ago', actionRequired: 'Documents Review', docs: { psa: false, report: true, moral: true }, hasRescheduleRequest: false },
+            { id: 6, firstName: 'Marlon', middleName: 'Santos', lastName: 'Dela Cruz', grade: 'Grade 7', section: 'Pending Final Enrollment', lrn: '10287654321', gender: 'Male', dob: '2012-01-10', address: 'Liciada, Bustos, Bulacan', phone: '+63 912 345 6789', email: 'marlon.delacruz@gmail.com', guardian: 'Ramon Dela Cruz', guardianContact: '+63 912 987 6543', status: 'Enrolled', timeReceived: '5 hours ago', actionRequired: 'Schedule Interview', docs: { psa: true, report: true, moral: true }, hasRescheduleRequest: false, username: 'student' }
+        ];
+
+        const teachers = [
+            { name: 'Mrs. Clarissa Santos', section: 'Grade 7 - Section A', count: 32, students: 'Ana Cruz, Ben Santos, Chloe Reyes, ...' },
+            { name: 'Mr. Roberto Villanueva', section: 'Grade 8 - Section A', count: 30, students: 'Dana Flores, Ethan Mendez, Fiona Cruz, ...' },
+            { name: 'Ms. Diana Reyes', section: 'Grade 9 - Section A', count: 28, students: 'Gina Santos, Hannah Villanueva, Ian Reyes, ...' },
+            { name: 'Mr. Carlo Mendez', section: 'Grade 10 - Section B', count: 35, students: 'Julia Cruz, Kevin Santos, Lily Mendez, ...' }
+        ];
+
+        const sections = ['Grade 7 - Section A', 'Grade 7 - Section B', 'Grade 8 - Section A', 'Grade 8 - Section B', 'Grade 9 - Section A', 'Grade 9 - Section B', 'Grade 10 - Section A', 'Grade 10 - Section B'];
+
+        function syncRescheduleToMock() {
+            userDatabase.forEach(u => {
+                if (u.role === 'student' && u.rescheduleRequest) {
+                    const mock = mockStudents.find(s => s.lrn === u.studentData.lrn);
+                    if (mock) { mock.hasRescheduleRequest = true; mock.rescheduleRequest = u.rescheduleRequest; }
+                }
+            });
+        }
+
+        function renderAdminDashboard() {
+            syncRescheduleToMock();
+            const recentBody = document.getElementById('recentActivityBody');
+            recentBody.innerHTML = '';
+            mockStudents.slice(0, 5).forEach(s => {
+                const row = document.createElement('tr');
+                if (s.hasRescheduleRequest) row.classList.add('reschedule-row');
+                let tagClass = 'tag-review', tagText = s.actionRequired;
+                if (s.hasRescheduleRequest) { tagClass = 'tag-reschedule'; tagText = 'Reschedule Request'; }
+                else if (s.actionRequired === 'Documents Review') { tagClass = 'tag-review'; }
+                else if (s.actionRequired === 'Schedule Interview') { tagClass = 'tag-interview'; }
+                else { tagClass = 'tag-finalize'; }
+                row.innerHTML = `<td>${s.firstName} ${s.middleName} ${s.lastName}</td><td>${s.grade}</td><td>${s.timeReceived}</td><td><span class="tag ${tagClass}">${tagText}</span></td>`;
+                recentBody.appendChild(row);
+            });
+            const teachersBody = document.getElementById('teachersTableBody');
+            teachersBody.innerHTML = '';
+            teachers.forEach(t => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${t.name}</td><td>${t.section}</td><td><strong>${t.count}</strong></td><td>${t.students}</td>`;
+                teachersBody.appendChild(row);
+            });
+        }
+
+        function openAdminModal(title, contentHTML) { document.getElementById('adminModalTitle').textContent = title; document.getElementById('adminModalBody').innerHTML = contentHTML; document.getElementById('adminModal').classList.add('active'); }
+        function closeAdminModal() { document.getElementById('adminModal').classList.remove('active'); }
+        document.getElementById('adminModal').addEventListener('click', function(e) { if (e.target === this) closeAdminModal(); });
+
+        function openDirectory() {
+            syncRescheduleToMock();
+            let rows = '';
+            mockStudents.forEach(s => {
+                const statusClass = s.status === 'Pending' ? 'status-pending' : 'status-enrolled';
+                const rowClass = s.hasRescheduleRequest ? 'reschedule-row' : '';
+                const statusBadge = s.hasRescheduleRequest ? '<span class="status-badge status-reschedule">Reschedule</span>' : `<span class="status-badge ${statusClass}">${s.status}</span>`;
+                rows += `<tr class="${rowClass}"><td><strong>${s.lastName}, ${s.firstName} ${s.middleName}</strong><br><small style="color:#888">LRN: ${s.lrn}</small></td><td>${s.grade}</td><td>${s.section || '<em style="color:#aaa">Not assigned</em>'}</td><td>${statusBadge}</td><td><button class="btn-action btn-view-student" onclick="viewStudent(${s.id})">View</button><button class="btn-action btn-assign" onclick="openAssignTeacher(${s.id})">Assign</button></td></tr>`;
+            });
+            const content = `
+                <div class="directory-search">
+                    <input type="text" placeholder="Search by name or LRN..." oninput="filterDirectory(this.value)">
+                    <select><option>All Grade Levels</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option></select>
+                    <select><option>All Status</option><option>Pending</option><option>Enrolled</option></select>
+                </div>
+                <table class="directory-table" id="directoryTable"><thead><tr><th>Student Name</th><th>Grade Level</th><th>Section</th><th>Status</th><th>Actions</th></tr></thead><tbody>${rows}</tbody></table>
+            `;
+            openAdminModal('Student Directory', content);
+        }
+
+        function filterDirectory(query) {
+            const rows = document.querySelectorAll('#directoryTable tbody tr');
+            rows.forEach(row => { row.style.display = row.textContent.toLowerCase().includes(query.toLowerCase()) ? '' : 'none'; });
+        }
+
+        function viewStudent(id) {
+            const s = mockStudents.find(x => x.id === id);
+            if (!s) return;
+            const statusClass = s.status === 'Pending' ? 'status-pending' : 'status-enrolled';
+            const initials = (s.firstName[0] + s.lastName[0]).toUpperCase();
+            const docPSA = s.docs.psa ? '<span class="doc-status">Uploaded</span>' : '<span class="doc-status" style="background:#f8d7da;color:#842029">Missing</span>';
+            const docReport = s.docs.report ? '<span class="doc-status">Uploaded</span>' : '<span class="doc-status" style="background:#f8d7da;color:#842029">Missing</span>';
+            const docMoral = s.docs.moral ? '<span class="doc-status">Uploaded</span>' : '<span class="doc-status" style="background:#f8d7da;color:#842029">Missing</span>';
+            let rescheduleBanner = '';
+            if (s.hasRescheduleRequest && s.rescheduleRequest) {
+                rescheduleBanner = `
+                    <div class="reschedule-banner">
+                        <h6>Reschedule Request Pending</h6>
+                        <div class="banner-row"><strong>Preferred New Date:</strong> ${s.rescheduleRequest.preferredDate}</div>
+                        <div class="banner-row"><strong>Reason:</strong> ${s.rescheduleRequest.reason}</div>
+                        <div class="banner-row"><strong>Requested At:</strong> ${s.rescheduleRequest.requestedAt}</div>
+                        <button class="btn-approve-reschedule" onclick="approveReschedule(${s.id})">Approve Reschedule</button>
+                        <button class="btn-reject-reschedule" onclick="rejectReschedule(${s.id})">Reject Reschedule</button>
+                    </div>
+                `;
+            }
+            const content = `
+                <div class="student-profile-header">
+                    <div class="student-avatar">${initials}</div>
+                    <div class="info"><h4>${s.firstName} ${s.middleName} ${s.lastName}</h4><p>LRN: ${s.lrn} &middot; ${s.grade}</p><span class="status-badge ${statusClass}">${s.status}</span></div>
+                </div>
+                ${rescheduleBanner}
+                <div class="profile-section-title">Personal Information</div>
+                <div class="info-grid">
+                    <div class="info-item"><div class="label">Full Name</div><div class="value">${s.firstName} ${s.middleName} ${s.lastName}</div></div>
+                    <div class="info-item"><div class="label">Gender</div><div class="value">${s.gender}</div></div>
+                    <div class="info-item"><div class="label">Date of Birth</div><div class="value">${s.dob}</div></div>
+                    <div class="info-item"><div class="label">LRN</div><div class="value">${s.lrn}</div></div>
+                </div>
+                <div class="profile-section-title">Contact & Family</div>
+                <div class="info-grid">
+                    <div class="info-item"><div class="label">Home Address</div><div class="value">${s.address}</div></div>
+                    <div class="info-item"><div class="label">Phone Number</div><div class="value">${s.phone}</div></div>
+                    <div class="info-item"><div class="label">Email Address</div><div class="value">${s.email}</div></div>
+                    <div class="info-item"><div class="label">Guardian Name</div><div class="value">${s.guardian}</div></div>
+                    <div class="info-item"><div class="label">Guardian Contact</div><div class="value">${s.guardianContact}</div></div>
+                </div>
+                <div class="profile-section-title">Academic Profile</div>
+                <div class="info-grid">
+                    <div class="info-item"><div class="label">Grade Level</div><div class="value">${s.grade}</div></div>
+                    <div class="info-item"><div class="label">Section</div><div class="value">${s.section || 'Not yet assigned'}</div></div>
+                </div>
+                <div class="profile-section-title">Documents Submitted</div>
+                <div class="doc-list">
+                    <div class="doc-item"><span class="doc-name">PSA Birth Certificate</span><span>${docPSA}</span></div>
+                    <div class="doc-item"><span class="doc-name">Your Previous Report Card</span><span>${docReport}</span></div>
+                    <div class="doc-item"><span class="doc-name">Certificate of Good Moral Character</span><span>${docMoral}</span></div>
+                </div>
+                <div class="assign-section">
+                    <h5>Assign to Teacher</h5>
+                    <label>Select Section</label>
+                    <select id="assignSectionSelect"><option value="">-- Select Section --</option>${sections.map(sec => `<option value="${sec}" ${s.section === sec ? 'selected' : ''}>${sec}</option>`).join('')}</select>
+                    <button class="btn-assign-confirm" onclick="confirmAssign(${s.id})">Assign Student</button>
+                </div>
+            `;
+            openAdminModal('Student Profile', content);
+        }
+
+        function approveReschedule(id) {
+            const s = mockStudents.find(x => x.id === id);
+            if (!s) return;
+            s.hasRescheduleRequest = false;
+            s.rescheduleRequest = null;
+            s.actionRequired = 'Schedule Interview';
+            alert('Reschedule request approved! The student will be notified.');
+            closeAdminModal();
+            renderAdminDashboard();
+        }
+
+        function rejectReschedule(id) {
+            const s = mockStudents.find(x => x.id === id);
+            if (!s) return;
+            if (!confirm('Are you sure you want to reject this reschedule request?')) return;
+            s.hasRescheduleRequest = false;
+            s.rescheduleRequest = null;
+            alert('Reschedule request rejected. The student will be notified.');
+            closeAdminModal();
+            renderAdminDashboard();
+        }
+
+        function openAssignTeacher(id) { viewStudent(id); }
+
+        function confirmAssign(id) {
+            const s = mockStudents.find(x => x.id === id);
+            const selectedSection = document.getElementById('assignSectionSelect').value;
+            if (!selectedSection) { alert('Please select a section to assign this student.'); return; }
+            s.section = selectedSection;
+            alert('Student assigned to ' + selectedSection + ' successfully!');
+            closeAdminModal();
+            openDirectory();
+        }
+
+        function openNewEnrollment() {
+            const content = `
+                <p class="text-muted small mb-3">Register a new student who walked in to the admission office. Fill out all required fields.</p>
+                <div class="row">
+                    <div class="col-md-4 mb-2"><label class="form-label-sm">First Name <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newFirstName" placeholder="First name"></div>
+                    <div class="col-md-4 mb-2"><label class="form-label-sm">Middle Name <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newMiddleName" placeholder="Middle name"></div>
+                    <div class="col-md-4 mb-2"><label class="form-label-sm">Last Name <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newLastName" placeholder="Last name"></div>
+                    <div class="col-md-4 mb-2"><label class="form-label-sm">Date of Birth <span class="req">*</span></label><input type="date" class="form-control form-control-sm" id="newDob"></div>
+                    <div class="col-md-4 mb-2"><label class="form-label-sm">Gender <span class="req">*</span></label><select class="form-select form-select-sm" id="newGender"><option value="">-- Select --</option><option>Male</option><option>Female</option></select></div>
+                    <div class="col-md-4 mb-2"><label class="form-label-sm">LRN <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newLrn" placeholder="12-digit LRN"></div>
+                    <div class="col-md-6 mb-2"><label class="form-label-sm">Home Address <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newAddress" placeholder="Complete address"></div>
+                    <div class="col-md-6 mb-2"><label class="form-label-sm">Phone Number <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newPhone" placeholder="+63 912 345 6789"></div>
+                    <div class="col-md-6 mb-2"><label class="form-label-sm">Guardian Full Name <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newGuardian" placeholder="Parent / Guardian name"></div>
+                    <div class="col-md-6 mb-2"><label class="form-label-sm">Guardian Contact <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newGuardianContact" placeholder="+63 912 987 6543"></div>
+                    <div class="col-md-6 mb-2"><label class="form-label-sm">Grade Level <span class="req">*</span></label><select class="form-select form-select-sm" id="newGrade"><option value="">-- Select Grade --</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option></select></div>
+                    <div class="col-md-6 mb-2"><label class="form-label-sm">Assign to Section (optional)</label><select class="form-select form-select-sm" id="newSection"><option value="">-- Not yet assigned --</option>${sections.map(sec => `<option value="${sec}">${sec}</option>`).join('')}</select></div>
+                </div>
+                <div class="d-flex justify-content-end gap-2 mt-3">
+                    <button class="btn btn-outline-secondary btn-sm" onclick="closeAdminModal()">Cancel</button>
+                    <button class="btn-assign-confirm" onclick="registerNewStudent()">Register Student</button>
+                </div>
+            `;
+            openAdminModal('New Enrollment Registration', content);
+        }
+
+        function registerNewStudent() {
+            const fn = document.getElementById('newFirstName').value.trim();
+            const mn = document.getElementById('newMiddleName').value.trim();
+            const ln = document.getElementById('newLastName').value.trim();
+            const dob = document.getElementById('newDob').value;
+            const gender = document.getElementById('newGender').value;
+            const lrn = document.getElementById('newLrn').value.trim();
+            const address = document.getElementById('newAddress').value.trim();
+            const phone = document.getElementById('newPhone').value.trim();
+            const guardian = document.getElementById('newGuardian').value.trim();
+            const guardianContact = document.getElementById('newGuardianContact').value.trim();
+            const grade = document.getElementById('newGrade').value;
+            const section = document.getElementById('newSection').value;
+            if (!fn || !mn || !ln || !dob || !gender || !lrn || !address || !phone || !guardian || !guardianContact || !grade) { alert('Please fill in all required fields.'); return; }
+            const newId = Math.max(...mockStudents.map(s => s.id)) + 1;
+            mockStudents.push({ id: newId, firstName: fn, middleName: mn, lastName: ln, grade, section, lrn, gender, dob, address, phone, email: '-', guardian, guardianContact, status: 'Pending', timeReceived: 'Just now', actionRequired: 'Documents Review', docs: { psa: false, report: false, moral: false }, hasRescheduleRequest: false });
+            alert('Student registered successfully!');
+            closeAdminModal();
+            renderAdminDashboard();
+        }
+
+        function openTeacherAccountReg() {
+            const content = `
+                <p class="text-muted small mb-3">Create a new teacher account. The teacher can use these credentials to log in to the system.</p>
+                <div class="row">
+                    <div class="col-md-6 mb-2"><label class="form-label-sm">Teacher Full Name <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="regTeacherName" placeholder="e.g., Mrs. Clarissa Santos"></div>
+                    <div class="col-md-6 mb-2"><label class="form-label-sm">Email Address <span class="req">*</span></label><input type="email" class="form-control form-control-sm" id="regTeacherEmail" placeholder="teacher@agsnhs.edu.ph"></div>
+                    <div class="col-md-6 mb-2"><label class="form-label-sm">Username <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="regTeacherUsername" placeholder="Choose a username"></div>
+                    <div class="col-md-6 mb-2"><label class="form-label-sm">Password <span class="req">*</span></label><input type="password" class="form-control form-control-sm" id="regTeacherPassword" placeholder="Create a password (min. 8 characters)"></div>
+                    <div class="col-md-6 mb-2"><label class="form-label-sm">Assign Section <span class="req">*</span></label><select class="form-select form-select-sm" id="regTeacherSection"><option value="">-- Select Section --</option>${sections.map(sec => `<option value="${sec}">${sec}</option>`).join('')}</select></div>
+                    <div class="col-md-6 mb-2"><label class="form-label-sm">Confirm Password <span class="req">*</span></label><input type="password" class="form-control form-control-sm" id="regTeacherConfirmPassword" placeholder="Re-enter password"></div>
+                </div>
+                <div class="d-flex justify-content-end gap-2 mt-3">
+                    <button class="btn btn-outline-secondary btn-sm" onclick="closeAdminModal()">Cancel</button>
+                    <button class="btn-assign-confirm" onclick="registerTeacher()">Create Teacher Account</button>
+                </div>
+            `;
+            openAdminModal('Teacher Account Registration', content);
+        }
+
+        function registerTeacher() {
+            const name = document.getElementById('regTeacherName').value.trim();
+            const email = document.getElementById('regTeacherEmail').value.trim();
+            const username = document.getElementById('regTeacherUsername').value.trim().toLowerCase();
+            const password = document.getElementById('regTeacherPassword').value;
+            const confirmPass = document.getElementById('regTeacherConfirmPassword').value;
+            const section = document.getElementById('regTeacherSection').value;
+            if (!name || !email || !username || !password || !confirmPass || !section) { alert('Please fill in all required fields.'); return; }
+            if (username.length < 4) { alert('Username must be at least 4 characters long.'); return; }
+            if (password.length < 8) { alert('Password must be at least 8 characters long.'); return; }
+            if (password !== confirmPass) { alert('Passwords do not match.'); return; }
+            if (userDatabase.find(u => u.username === username) || teacherAccounts.find(u => u.username === username)) { alert('Username is already taken. Please choose another.'); return; }
+            teacherAccounts.push({ username, password, role: 'teacher', fullName: name, email, section, subject: 'Science', assignedSections: [section] });
+            teachers.push({ name: name, section: section, count: 0, students: 'No students assigned yet' });
+            alert('Teacher account created successfully!\n\nUsername: ' + username + '\nThey can now log in to the system.');
+            closeAdminModal();
+            renderAdminDashboard();
+        }
+
+        // ============ CALENDAR ============
+        let currentDate = new Date(2026, 9, 1);
+        let selectedDate = null;
+        let pickerYear = 2026;
+        const bookedDates = ['2026-10-15', '2026-10-08'];
+        const closedDates = ['2026-10-25', '2026-10-12'];
+        const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+        function renderCalendar() {
+            const year = currentDate.getFullYear();
+            const month = currentDate.getMonth();
+            document.getElementById('calendarMonthYear').textContent = monthNames[month] + ' ' + year;
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const grid = document.getElementById('calendarGrid');
+            grid.innerHTML = '';
+            ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(day => {
+                const h = document.createElement('div');
+                h.className = 'calendar-day-header';
+                h.textContent = day;
+                grid.appendChild(h);
+            });
+            for (let i = 0; i < firstDay; i++) {
+                const e = document.createElement('div');
+                e.className = 'calendar-day empty';
+                grid.appendChild(e);
+            }
+            const today = new Date();
+            today.setHours(0,0,0,0);
+            for (let day = 1; day <= daysInMonth; day++) {
+                const cell = document.createElement('div');
+                cell.className = 'calendar-day';
+                const dateObj = new Date(year, month, day);
+                const dateStr = formatDate(dateObj);
+                const dayOfWeek = dateObj.getDay();
+                const dayNum = document.createElement('div');
+                dayNum.className = 'day-number';
+                dayNum.textContent = day;
+                cell.appendChild(dayNum);
+                const isPast = dateObj < today;
+                const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
+                const isClosed = closedDates.includes(dateStr);
+                const isBooked = bookedDates.includes(dateStr);
+                const isToday = dateObj.getTime() === today.getTime();
+                if (isToday) cell.classList.add('today');
+                if (isPast || isWeekend || isClosed) {
+                    cell.classList.add('disabled');
+                    const status = document.createElement('div');
+                    status.className = 'day-status';
+                    status.textContent = (isWeekend || isClosed) ? 'School Closed' : 'Past Date';
+                    status.style.backgroundColor = '#e9ecef';
+                    status.style.color = '#6c757d';
+                    cell.appendChild(status);
+                    cell.onclick = function() {
+                        if (isWeekend) showPopup('School Closed', 'The school is closed on Saturdays and Sundays. Please select a weekday.', 'warning');
+                        else if (isClosed) showPopup('School Closed', 'The school is closed on this date (holiday). Please select another date.', 'warning');
+                        else showPopup('Invalid Date', 'This date has already passed. Please select a future date.', 'warning');
+                    };
+                } else if (isBooked) {
+                    cell.classList.add('disabled');
+                    const status = document.createElement('div');
+                    status.className = 'day-status slots-full';
+                    status.textContent = 'Slots Full';
+                    cell.appendChild(status);
+                    cell.onclick = function() { showPopup('Date Full', 'All document submission slots for this date are already taken. Please select another date.', 'danger'); };
+                } else {
+                    const status = document.createElement('div');
+                    status.className = 'day-status slots-open';
+                    status.textContent = 'Slots Open';
+                    cell.appendChild(status);
+                    if (selectedDate === dateStr) {
+                        cell.classList.add('selected-day');
+                        status.textContent = 'Selected';
+                        status.style.backgroundColor = '#198754';
+                        status.style.color = 'white';
+                    }
+                    cell.onclick = function() { selectDate(dateStr, dateObj); };
+                }
+                grid.appendChild(cell);
+            }
+        }
+
+        function formatDate(date) {
+            const y = date.getFullYear();
+            const m = String(date.getMonth() + 1).padStart(2, '0');
+            const d = String(date.getDate()).padStart(2, '0');
+            return y + '-' + m + '-' + d;
+        }
+
+        function formatDateLong(dateStr) {
+            const parts = dateStr.split('-');
+            const date = new Date(parts[0], parts[1] - 1, parts[2]);
+            const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+            const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+            return days[date.getDay()] + ', ' + months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+        }
+
+        function selectDate(dateStr, dateObj) {
+            selectedDate = dateStr;
+            document.getElementById('selectedDateLabel').textContent = 'For ' + formatDateLong(dateStr);
+            document.getElementById('btnBookSlot').disabled = false;
+            renderCalendar();
+        }
+
+        function changeMonth(delta) {
+            currentDate.setMonth(currentDate.getMonth() + delta);
+            selectedDate = null;
+            document.getElementById('selectedDateLabel').textContent = 'No date selected';
+            document.getElementById('btnBookSlot').disabled = true;
+            renderCalendar();
+        }
+
+        function toggleMonthPicker() {
+            const picker = document.getElementById('monthPicker');
+            picker.classList.toggle('active');
+            if (picker.classList.contains('active')) { pickerYear = currentDate.getFullYear(); renderMonthPicker(); }
+        }
+
+        function renderMonthPicker() {
+            document.getElementById('pickerYear').textContent = pickerYear;
+            const grid = document.getElementById('monthGrid');
+            grid.innerHTML = '';
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            const currentMonth = now.getMonth();
+            for (let m = 0; m < 12; m++) {
+                const monthEl = document.createElement('div');
+                monthEl.className = 'month-item';
+                monthEl.textContent = monthNames[m].substring(0, 3);
+                const isPast = (pickerYear < currentYear) || (pickerYear === currentYear && m < currentMonth);
+                const isCurrent = (pickerYear === currentDate.getFullYear() && m === currentDate.getMonth());
+                if (isPast) {
+                    monthEl.classList.add('disabled');
+                    monthEl.onclick = function() { showPopup('Month Not Available', 'This month is already in the past. Please select the current month or a future month.', 'warning'); };
+                } else if (isCurrent) {
+                    monthEl.classList.add('current');
+                    monthEl.onclick = function() {
+                        currentDate = new Date(pickerYear, m, 1);
+                        selectedDate = null;
+                        document.getElementById('selectedDateLabel').textContent = 'No date selected';
+                        document.getElementById('btnBookSlot').disabled = true;
+                        closeMonthPicker();
+                        renderCalendar();
+                    };
+                } else {
+                    monthEl.onclick = function() {
+                        currentDate = new Date(pickerYear, m, 1);
+                        selectedDate = null;
+                        document.getElementById('selectedDateLabel').textContent = 'No date selected';
+                        document.getElementById('btnBookSlot').disabled = true;
+                        closeMonthPicker();
+                        renderCalendar();
+                    };
+                }
+                grid.appendChild(monthEl);
+            }
+        }
+
+        function changePickerYear(delta) { pickerYear += delta; renderMonthPicker(); }
+        function closeMonthPicker() { document.getElementById('monthPicker').classList.remove('active'); }
+
+        document.addEventListener('click', function(e) {
+            const picker = document.getElementById('monthPicker');
+            const header = document.getElementById('calendarMonthYear');
+            if (picker && picker.classList.contains('active')) {
+                if (!picker.contains(e.target) && e.target !== header) { closeMonthPicker(); }
+            }
+        });
+
+        function bookSlot() {
+            if (!selectedDate) return;
+            scheduledDate = selectedDate;
+            const reminder = document.getElementById('scheduleReminder');
+            const reminderText = document.getElementById('scheduleReminderText');
+            reminder.classList.add('booked');
+            reminder.classList.remove('error');
+            reminderText.innerHTML = '<strong>Schedule Booked:</strong> ' + formatDateLong(scheduledDate) + ' (8:00 AM - 3:00 PM)';
+            showPopup('Appointment Booked!', 'Your document submission has been scheduled for ' + formatDateLong(selectedDate) + '. You may come anytime between 8:00 AM and 3:00 PM. Please bring all original documents.', 'success');
+        }
+
+        // ============ POPUP ============
+        function showPopup(title, message, type, callback) {
+            const overlay = document.getElementById('popupOverlay');
+            const icon = document.getElementById('popupIcon');
+            icon.className = 'popup-icon ' + type;
+            icon.textContent = (type === 'success') ? 'OK' : '!';
+            document.getElementById('popupTitle').textContent = title;
+            document.getElementById('popupMessage').textContent = message;
+            overlay.style.display = 'flex';
+            window._popupCallback = callback || null;
+        }
+        function closePopup() {
+            document.getElementById('popupOverlay').style.display = 'none';
+            if (window._popupCallback) { const cb = window._popupCallback; window._popupCallback = null; cb(); }
+        }
+        document.getElementById('popupOverlay').addEventListener('click', function(e) { if (e.target === this) closePopup(); });
+
+        // ============ VALIDATION ============
+        function clearErrors() {
+            document.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+            document.getElementById('errorMsg').classList.remove('show');
+            document.getElementById('errorMsg').textContent = '';
+        }
+        function showError(msg, fieldEl) {
+            const errBox = document.getElementById('errorMsg');
+            errBox.textContent = msg;
+            errBox.classList.add('show');
+            if (fieldEl) { fieldEl.classList.add('error'); fieldEl.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        }
+
+        function submitEnrollment() {
+            clearErrors();
+            const username = document.getElementById('accountUsername');
+            const accountEmail = document.getElementById('accountEmail');
+            const password = document.getElementById('accountPassword');
+            const confirmPassword = document.getElementById('accountConfirmPassword');
+            if (!username.value.trim()) { return showError('Username is required.', username); }
+            if (username.value.trim().length < 4) { return showError('Username must be at least 4 characters long.', username); }
+            if (!/^[a-zA-Z0-9_]+$/.test(username.value.trim())) { return showError('Username can only contain letters, numbers, and underscores.', username); }
+            if (!accountEmail.value.trim()) { return showError('Account email is required.', accountEmail); }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(accountEmail.value.trim())) { return showError('Please enter a valid email address.', accountEmail); }
+            if (!password.value) { return showError('Password is required.', password); }
+            if (password.value.length < 8) { return showError('Password must be at least 8 characters long.', password); }
+            if (!confirmPassword.value) { return showError('Please confirm your password.', confirmPassword); }
+            if (password.value !== confirmPassword.value) { return showError('Passwords do not match.', confirmPassword); }
+
+            const firstName = document.getElementById('firstName');
+            const middleName = document.getElementById('middleName');
+            const lastName = document.getElementById('lastName');
+            const dob = document.getElementById('dob');
+            const gender = document.getElementById('gender');
+            const lrn = document.getElementById('lrn');
+            if (!firstName.value.trim()) { return showError('First Name is required.', firstName); }
+            if (!middleName.value.trim()) { return showError('Middle Name is required.', middleName); }
+            if (!lastName.value.trim()) { return showError('Last Name is required.', lastName); }
+            if (!dob.value) { return showError('Date of Birth is required.', dob); }
+            if (!gender.value) { return showError('Please select your Gender.', gender); }
+            const lrnClean = lrn.value.replace(/[^0-9]/g, '');
+            if (!lrnClean) { return showError('Learner Reference Number (LRN) is required.', lrn); }
+            if (lrnClean.length < 10 || lrnClean.length > 12) { return showError('LRN must be 10 to 12 digits long.', lrn); }
+
+            const address = document.getElementById('address');
+            const phone = document.getElementById('phone');
+            const contactEmail = document.getElementById('contactEmail');
+            const guardianName = document.getElementById('guardianName');
+            const guardianContact = document.getElementById('guardianContact');
+            if (!address.value.trim()) { return showError('Home Address is required.', address); }
+            if (!phone.value.trim()) { return showError('Primary Phone Number is required.', phone); }
+            if (!contactEmail.value.trim()) { return showError('Contact Email Address is required.', contactEmail); }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail.value.trim())) { return showError('Please enter a valid contact email address.', contactEmail); }
+            if (!guardianName.value.trim()) { return showError('Parent / Guardian Full Name is required.', guardianName); }
+            if (!guardianContact.value.trim()) { return showError('Parent / Guardian Emergency Contact is required.', guardianContact); }
+
+            const gradeLevel = document.getElementById('gradeLevel');
+            const prevSchool = document.getElementById('prevSchool');
+            const schoolYear = document.getElementById('schoolYear');
+            if (!gradeLevel.value) { return showError('Please select a Target Grade Level.', gradeLevel); }
+            if (!prevSchool.value.trim()) { return showError('Previous School Attended is required.', prevSchool); }
+            if (!schoolYear.value) { return showError('Please select a School Year.', schoolYear); }
+
+            if (!uploadedFiles.psa) { document.getElementById('upload-psa').classList.add('error'); document.getElementById('upload-psa').scrollIntoView({ behavior: 'smooth', block: 'center' }); return showError('PSA Birth Certificate is required. Please upload the document.'); }
+            if (!uploadedFiles.report) { document.getElementById('upload-report').classList.add('error'); document.getElementById('upload-report').scrollIntoView({ behavior: 'smooth', block: 'center' }); return showError('Your Previous Report Card is required. Please upload the document.'); }
+            if (!uploadedFiles.moral) { document.getElementById('upload-moral').classList.add('error'); document.getElementById('upload-moral').scrollIntoView({ behavior: 'smooth', block: 'center' }); return showError('Certificate of Good Moral Character is required. Please upload the document.'); }
+
+            if (!scheduledDate) {
+                document.getElementById('scheduleReminder').classList.add('error');
+                document.getElementById('scheduleReminder').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                showPopup('Schedule Required', 'Please book a schedule for passing your documents before submitting. Click the "Schedule" button to pick a date.', 'warning', function() { showSchedule(); });
+                return;
+            }
+
+            showPopup('Enrollment Submitted!', 'Account created successfully and enrollment application submitted. You will be redirected to the home page.', 'success', function() {
+                document.getElementById('enrollmentForm').reset();
+                ['psa','report','moral'].forEach(d => removeFileSilent(d));
+                scheduledDate = null;
+                const reminder = document.getElementById('scheduleReminder');
+                const reminderText = document.getElementById('scheduleReminderText');
+                reminder.classList.remove('booked');
+                reminder.classList.remove('error');
+                reminderText.innerHTML = '<strong>Required:</strong> Please book a schedule for passing your documents before submitting.';
+                closeAllOverlays();
+            });
+        }
+
+        renderCalendar();
     </script>
 </body>
 </html>
