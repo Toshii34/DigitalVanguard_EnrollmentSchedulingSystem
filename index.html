@@ -261,8 +261,6 @@
         .admin-navbar .admin-actions button:hover { background-color: #f8f9fa; }
         .admin-navbar .admin-actions .btn-signout { background-color: #495057; color: white; border-color: #495057; }
         .admin-navbar .admin-actions .btn-signout:hover { background-color: #343a40; }
-        .admin-navbar .admin-actions .btn-home { background-color: white; color: #198754; border-color: #198754; }
-        .admin-navbar .admin-actions .btn-home:hover { background-color: #f0fdf4; }
         .admin-hero { background-image: linear-gradient(rgba(0,40,20,0.6), rgba(0,40,20,0.7)), url('background.jpg'); background-size: cover; background-position: center; padding: 30px 40px; color: white; }
         .admin-hero h1 { font-size: 1.8rem; font-weight: 700; margin: 0; }
         .admin-hero .academic-year { font-size: 0.8rem; color: #ccc; }
@@ -374,8 +372,6 @@
         .student-navbar .student-actions button:hover { background-color: #f8f9fa; }
         .student-navbar .student-actions .btn-signout { background-color: #495057; color: white; border-color: #495057; }
         .student-navbar .student-actions .btn-signout:hover { background-color: #343a40; }
-        .student-navbar .student-actions .btn-home { background-color: white; color: #198754; border-color: #198754; }
-        .student-navbar .student-actions .btn-home:hover { background-color: #f0fdf4; }
         .student-hero { background-image: linear-gradient(rgba(0,40,20,0.6), rgba(0,40,20,0.7)), url('background.jpg'); background-size: cover; background-position: center; padding: 30px 40px; color: white; }
         .student-hero h1 { font-size: 1.8rem; font-weight: 700; margin: 0; }
         .student-content { padding: 25px 40px 40px 40px; }
@@ -455,8 +451,6 @@
         .teacher-navbar .teacher-actions .teacher-badge { font-size: 0.8rem; padding: 5px 14px; border-radius: 20px; background-color: #f1f3f5; color: #333; font-weight: 600; border: 1px solid #ddd; }
         .teacher-navbar .teacher-actions .btn-signout { background-color: #495057; color: white; border: none; font-size: 0.8rem; padding: 6px 14px; border-radius: 6px; font-weight: 600; cursor: pointer; }
         .teacher-navbar .teacher-actions .btn-signout:hover { background-color: #343a40; }
-        .teacher-navbar .teacher-actions .btn-home { background-color: white; color: #198754; border: 1px solid #198754; font-size: 0.8rem; padding: 6px 14px; border-radius: 6px; font-weight: 600; cursor: pointer; }
-        .teacher-navbar .teacher-actions .btn-home:hover { background-color: #f0fdf4; }
         .teacher-navbar .teacher-actions .btn-pdf { background-color: #1a4d3e; color: white; border: none; font-size: 0.8rem; padding: 6px 14px; border-radius: 6px; font-weight: 600; cursor: pointer; }
         .teacher-navbar .teacher-actions .btn-pdf:hover { background-color: #0f3027; }
 
@@ -602,22 +596,15 @@
 
             <div class="mb-1">
                 <label for="loginUsername" class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="loginUsername" placeholder="Enter your full name (e.g., Marlon Dela Cruz)" autocomplete="off">
+                <input type="text" class="form-control" id="loginUsername" placeholder="Enter your full name" autocomplete="off">
             </div>
             <div class="mb-3">
                 <label for="loginPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="loginPassword" placeholder="••••••••" onkeydown="if(event.key==='Enter'){handleLogin();}">
+                <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" onkeydown="if(event.key==='Enter'){handleLogin();}">
             </div>
             <button type="button" class="btn btn-login-main" onclick="handleLogin()">Login</button>
             <button type="button" class="btn btn-enroll-main" onclick="showEnrollment()">Enroll</button>
             <a href="#" class="forgot-password" onclick="event.preventDefault(); showForgotPassword();">Forgot password?</a>
-
-            <div class="login-hint">
-                Demo accounts:<br>
-                Student: <strong>marlon santos dela cruz</strong> / <strong>student123</strong><br>
-                Teacher: <strong>mrs clarissa santos</strong> / <strong>teacher123</strong><br>
-                Admission: <strong>admission staff</strong> / <strong>admin123</strong>
-            </div>
         </div>
     </div>
 
@@ -631,7 +618,7 @@
             <div class="admin-modal-body">
                 <p class="text-muted small mb-3">Enter your Gmail address to recover your password. Your password will be shown to you.</p>
                 <label class="form-label-sm">Gmail Address <span class="req">*</span></label>
-                <input type="email" class="form-control form-control-sm" id="forgotEmail" placeholder="e.g., marlon.delacruz@gmail.com">
+                <input type="email" class="form-control form-control-sm" id="forgotEmail" placeholder="Enter your Gmail address">
                 <div class="d-flex justify-content-end gap-2 mt-3">
                     <button class="btn btn-outline-secondary btn-sm" onclick="closeForgotModal()">Cancel</button>
                     <button class="btn-assign-confirm" onclick="recoverPassword()">Recover Password</button>
@@ -659,12 +646,12 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label class="form-label-sm">Full Name <span class="req">*</span></label>
-                                <input type="text" class="form-control form-control-sm" id="accountUsername" placeholder="e.g., Marlon Dela Cruz" autocomplete="off">
+                                <input type="text" class="form-control form-control-sm" id="accountUsername" placeholder="Enter your full name" autocomplete="off">
                                 <span class="field-hint">Enter your full name (letters only, no numbers).</span>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label-sm">Email Address <span class="req">*</span></label>
-                                <input type="email" class="form-control form-control-sm" id="accountEmail" placeholder="e.g., marlon.delacruz@gmail.com">
+                                <input type="email" class="form-control form-control-sm" id="accountEmail" placeholder="Enter your email address">
                                 <span class="field-hint">A valid email address (e.g., name@example.com).</span>
                             </div>
                         </div>
@@ -686,17 +673,17 @@
                     <div class="row">
                         <div class="col-md-4">
                             <label class="form-label-sm">First Name <span class="req">*</span></label>
-                            <input type="text" class="form-control form-control-sm" id="firstName" placeholder="e.g., Marlon">
+                            <input type="text" class="form-control form-control-sm" id="firstName" placeholder="Enter your first name">
                             <span class="field-hint">Your given name.</span>
                         </div>
                         <div class="col-md-4">
                             <label class="form-label-sm">Middle Name <span class="req">*</span></label>
-                            <input type="text" class="form-control form-control-sm" id="middleName" placeholder="e.g., Santos">
+                            <input type="text" class="form-control form-control-sm" id="middleName" placeholder="Enter your middle name">
                             <span class="field-hint">Your mother's maiden surname.</span>
                         </div>
                         <div class="col-md-4">
                             <label class="form-label-sm">Last Name <span class="req">*</span></label>
-                            <input type="text" class="form-control form-control-sm" id="lastName" placeholder="e.g., Dela Cruz">
+                            <input type="text" class="form-control form-control-sm" id="lastName" placeholder="Enter your last name">
                             <span class="field-hint">Your family surname.</span>
                         </div>
                     </div>
@@ -713,7 +700,7 @@
                         </div>
                         <div class="col-md-4">
                             <label class="form-label-sm">Learner Reference Number (LRN) <span class="req">*</span></label>
-                            <input type="text" class="form-control form-control-sm" id="lrn" placeholder="e.g., 102876543210" inputmode="numeric" maxlength="14">
+                            <input type="text" class="form-control form-control-sm" id="lrn" placeholder="Enter your LRN" inputmode="numeric" maxlength="14">
                             <span class="field-hint">10-12 digits only.</span>
                         </div>
                     </div>
@@ -722,31 +709,31 @@
                     <div class="row">
                         <div class="col-12">
                             <label class="form-label-sm">Home Address <span class="req">*</span></label>
-                            <input type="text" class="form-control form-control-sm" id="address" placeholder="e.g., Liciada, Bustos, Bulacan">
+                            <input type="text" class="form-control form-control-sm" id="address" placeholder="Enter your complete address">
                             <span class="field-hint">Complete address.</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <label class="form-label-sm">Primary Phone Number <span class="req">*</span></label>
-                            <input type="text" class="form-control form-control-sm" id="phone" placeholder="e.g., +63 912 345 6789" inputmode="tel">
+                            <input type="text" class="form-control form-control-sm" id="phone" placeholder="Enter your phone number" inputmode="tel">
                             <span class="field-hint">Active mobile number.</span>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label-sm">Email Address <span class="req">*</span></label>
-                            <input type="email" class="form-control form-control-sm" id="contactEmail" placeholder="e.g., marlon.delacruz@gmail.com">
+                            <input type="email" class="form-control form-control-sm" id="contactEmail" placeholder="Enter your email address">
                             <span class="field-hint">Where we'll send enrollment updates.</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <label class="form-label-sm">Parent / Guardian Full Name <span class="req">*</span></label>
-                            <input type="text" class="form-control form-control-sm" id="guardianName" placeholder="e.g., Ramon Dela Cruz">
+                            <input type="text" class="form-control form-control-sm" id="guardianName" placeholder="Enter parent/guardian full name">
                             <span class="field-hint">Full name of your parent or guardian.</span>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label-sm">Parent / Guardian Emergency Contact <span class="req">*</span></label>
-                            <input type="text" class="form-control form-control-sm" id="guardianContact" placeholder="e.g., +63 912 987 6543" inputmode="tel">
+                            <input type="text" class="form-control form-control-sm" id="guardianContact" placeholder="Enter emergency contact number" inputmode="tel">
                             <span class="field-hint">Reachable number in case of emergency.</span>
                         </div>
                     </div>
@@ -768,7 +755,7 @@
                         </div>
                         <div class="col-md-4">
                             <label class="form-label-sm">Previous School Attended <span class="req">*</span></label>
-                            <input type="text" class="form-control form-control-sm" id="prevSchool" placeholder="e.g., Bustos Elementary School">
+                            <input type="text" class="form-control form-control-sm" id="prevSchool" placeholder="Enter previous school name">
                             <span class="field-hint">Name of the school you last attended.</span>
                         </div>
                         <div class="col-md-4">
@@ -802,7 +789,7 @@
                         <div class="row" id="generalAverageRow" style="display:none;">
                             <div class="col-md-6">
                                 <label class="form-label-sm">General Average <span class="req">*</span></label>
-                                <input type="number" class="form-control form-control-sm" id="generalAverage" placeholder="e.g., 88" min="60" max="100" step="0.01">
+                                <input type="number" class="form-control form-control-sm" id="generalAverage" placeholder="Enter your general average" min="60" max="100" step="0.01">
                                 <span class="field-hint" id="generalAverageHint">Your overall general average from the previous school year.</span>
                             </div>
                         </div>
@@ -928,7 +915,6 @@
             </div>
             <div class="admin-actions">
                 <span class="admin-user" id="adminUserName">Admission Staff</span>
-                <button class="btn-home" onclick="closeAdmin()">Home</button>
                 <button class="btn-signout" onclick="signOutAdmin()">Sign Out</button>
             </div>
         </div>
@@ -974,7 +960,6 @@
             </div>
             <div class="student-actions">
                 <span class="student-user" id="studentUserName">Student</span>
-                <button class="btn-home" onclick="closeStudent()">Home</button>
                 <button class="btn-signout" onclick="signOutStudent()">Sign Out</button>
             </div>
         </div>
@@ -1009,7 +994,6 @@
             <div class="teacher-actions">
                 <span class="teacher-badge" id="teacherBadgeName">Teacher</span>
                 <button class="btn-pdf" onclick="generateStudentListPDF()">Generate Student List (PDF)</button>
-                <button class="btn-home" onclick="closeTeacher()">Home</button>
                 <button class="btn-signout" onclick="signOutTeacher()">Sign Out</button>
             </div>
         </div>
@@ -1071,7 +1055,7 @@
                 <div class="selected-date-display" id="selectedDateDisplay"></div>
 
                 <label>Reason for Reschedule</label>
-                <textarea id="rescheduleReason" placeholder="e.g., Conflict with another appointment, feeling unwell, etc."></textarea>
+                <textarea id="rescheduleReason" placeholder="Enter your reason for reschedule"></textarea>
             </div>
             <div class="reschedule-modal-footer">
                 <button class="btn-reschedule-cancel" onclick="closeRescheduleModal()">Cancel</button>
