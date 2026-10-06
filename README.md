@@ -61,8 +61,3 @@ Built to deliver a stress-free, organized, and efficient enrollment experience f
 - CSS3 - styling and layout
 - JavaScript - interactivity and logic
 - Bootstrap 5 - responsive UI framework
-
-## Active Accounts
-Student: marlon santos dela cruz / student123
-Teacher: mrs clarissa santos / teacher123
-Admin: admission staff / admin123
