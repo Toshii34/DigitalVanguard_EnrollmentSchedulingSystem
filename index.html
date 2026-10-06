@@ -95,6 +95,35 @@
         }
         .login-back-btn:hover { background-color: #198754; color: white; }
 
+        /* Password toggle wrapper */
+        .password-wrapper { position: relative; }
+        .password-wrapper .form-control { padding-right: 45px; }
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: #666;
+            padding: 4px;
+            line-height: 1;
+            transition: 0.2s;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+        }
+        .password-toggle:hover { color: #198754; }
+        .password-toggle svg { width: 20px; height: 20px; display: block; }
+        .password-wrapper.sm { position: relative; }
+        .password-wrapper.sm .form-control-sm { padding-right: 38px; }
+        .password-wrapper.sm .password-toggle { right: 6px; width: 26px; height: 26px; }
+        .password-wrapper.sm .password-toggle svg { width: 16px; height: 16px; }
+
         /* Enrollment */
         .enrollment-section { display: none; position: fixed; top:0; left:0; width: 100%; height: 100vh; background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('background.jpg'); background-size: cover; background-position: center; z-index: 9999; overflow-y: auto; padding: 100px 0 40px 0; }
         .enrollment-container { background-color: white; width: 90%; max-width: 900px; margin: 0 auto; border-radius: 10px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
@@ -329,6 +358,8 @@
         .btn-assign:hover { background-color: #198754; color: white; }
         .btn-delete-student { background-color: white; color: #dc3545; border-color: #dc3545; }
         .btn-delete-student:hover { background-color: #dc3545; color: white; }
+        .btn-back-directory { background-color: #f8f9fa; color: #333; border: 1px solid #ccc; padding: 8px 18px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 15px; }
+        .btn-back-directory:hover { background-color: #198754; color: white; border-color: #198754; }
         .student-profile-header { display: flex; gap: 20px; background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px; align-items: center; }
         .student-avatar { width: 70px; height: 70px; border-radius: 50%; background-color: #1a4d3e; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; flex-shrink: 0; }
         .student-profile-header .info h4 { font-size: 1.1rem; font-weight: 700; margin: 0 0 3px 0; color: #222; }
@@ -600,7 +631,15 @@
             </div>
             <div class="mb-3">
                 <label for="loginPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" onkeydown="if(event.key==='Enter'){handleLogin();}">
+                <div class="password-wrapper">
+                    <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" onkeydown="if(event.key==='Enter'){handleLogin();}">
+                    <button type="button" class="password-toggle" onclick="togglePassword('loginPassword', this)" title="Show Password" aria-label="Toggle password visibility">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </button>
+                </div>
             </div>
             <button type="button" class="btn btn-login-main" onclick="handleLogin()">Login</button>
             <button type="button" class="btn btn-enroll-main" onclick="showEnrollment()">Enroll</button>
@@ -658,12 +697,28 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label class="form-label-sm">Password <span class="req">*</span></label>
-                                <input type="password" class="form-control form-control-sm" id="accountPassword" placeholder="Create a strong password">
+                                <div class="password-wrapper sm">
+                                    <input type="password" class="form-control form-control-sm" id="accountPassword" placeholder="Create a strong password">
+                                    <button type="button" class="password-toggle" onclick="togglePassword('accountPassword', this)" title="Show Password" aria-label="Toggle password visibility">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                    </button>
+                                </div>
                                 <span class="field-hint">At least 8 characters.</span>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label-sm">Confirm Password <span class="req">*</span></label>
-                                <input type="password" class="form-control form-control-sm" id="accountConfirmPassword" placeholder="Re-enter your password">
+                                <div class="password-wrapper sm">
+                                    <input type="password" class="form-control form-control-sm" id="accountConfirmPassword" placeholder="Re-enter your password">
+                                    <button type="button" class="password-toggle" onclick="togglePassword('accountConfirmPassword', this)" title="Show Password" aria-label="Toggle password visibility">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                    </button>
+                                </div>
                                 <span class="field-hint">Must match the password above.</span>
                             </div>
                         </div>
@@ -999,7 +1054,7 @@
         </div>
 
         <div class="teacher-hero">
-            <h1 id="teacherHeroTitle">Adviser: Mrs. Clarissa Santos</h1>
+            <h1 id="teacherHeroTitle">Adviser: Clarissa Santos</h1>
         </div>
 
         <div class="teacher-body">
@@ -1100,41 +1155,73 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
     <script>
-        const STORAGE_KEYS = {
-            mockStudents: 'agsnhs_mockStudents',
-            teachers: 'agsnhs_teachers',
-            teacherAccounts: 'agsnhs_teacherAccounts',
-            userDatabase: 'agsnhs_userDatabase'
-        };
+        // ============================================
+        // NO LOCALSTORAGE — Everything in memory only
+        // ============================================
+        function saveToStorage() { /* no-op */ }
+        function loadFromStorage(key, fallback) { return fallback; }
+        function saveAll() { /* no-op */ }
 
-        const bookedDates = ['2026-10-15', '2026-10-08'];
-        const closedDates = ['2026-10-25', '2026-10-12'];
-        const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-
-        const STEM_MINIMUM_AVERAGE = 85;
-
-        function saveToStorage(key, value) {
-            try { localStorage.setItem(key, JSON.stringify(value)); }
-            catch (e) { console.warn('Failed to save to localStorage:', e); }
-        }
-        function loadFromStorage(key, fallback) {
-            try {
-                const raw = localStorage.getItem(key);
-                return raw ? JSON.parse(raw) : fallback;
-            } catch (e) { console.warn('Failed to load from localStorage:', e); return fallback; }
-        }
-        function saveAll() {
-            saveToStorage(STORAGE_KEYS.userDatabase, userDatabase);
-            saveToStorage(STORAGE_KEYS.mockStudents, mockStudents);
-            saveToStorage(STORAGE_KEYS.teachers, teachers);
-            saveToStorage(STORAGE_KEYS.teacherAccounts, teacherAccounts);
-        }
         const mainNavbar = document.getElementById('mainNavbar');
         function hideMainNavbar() { if (mainNavbar) mainNavbar.style.display = 'none'; }
         function showMainNavbar() { if (mainNavbar) mainNavbar.style.display = ''; }
 
         // ============================================
-        // MASTER STUDENT ROSTER (used by teacher + admin)
+        // PASSWORD TOGGLE
+        // ============================================
+        const EYE_OPEN_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
+        const EYE_CLOSED_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>';
+
+        function togglePassword(inputId, btnEl) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            if (input.type === 'password') {
+                input.type = 'text';
+                if (btnEl) {
+                    btnEl.innerHTML = EYE_CLOSED_SVG;
+                    btnEl.title = 'Hide Password';
+                    btnEl.setAttribute('aria-label', 'Hide password');
+                }
+            } else {
+                input.type = 'password';
+                if (btnEl) {
+                    btnEl.innerHTML = EYE_OPEN_SVG;
+                    btnEl.title = 'Show Password';
+                    btnEl.setAttribute('aria-label', 'Show password');
+                }
+            }
+        }
+
+        // ============================================
+        // SECTION LIST BY GRADE
+        // ============================================
+        const SECTIONS_BY_GRADE = {
+            'Grade 7':  ['Grade 7 - Section A', 'Grade 7 - Section B'],
+            'Grade 8':  ['Grade 8 - Section A', 'Grade 8 - Section B'],
+            'Grade 9':  ['Grade 9 - Section A', 'Grade 9 - Section B', 'Grade 9 - Section C'],
+            'Grade 10': ['Grade 10 - Section A', 'Grade 10 - Section B'],
+            'Grade 11': ['Grade 11 - Academic Track', 'Grade 11 - TechPro Track'],
+            'Grade 12': ['Grade 12 - Academic Track', 'Grade 12 - TechPro Track']
+        };
+
+        function updateNewEnrollmentSections() {
+            const gradeSelect = document.getElementById('newGrade');
+            const sectionSelect = document.getElementById('newSection');
+            if (!gradeSelect || !sectionSelect) return;
+            const selectedGrade = gradeSelect.value;
+            sectionSelect.innerHTML = '<option value="">-- Not yet assigned --</option>';
+            if (selectedGrade && SECTIONS_BY_GRADE[selectedGrade]) {
+                SECTIONS_BY_GRADE[selectedGrade].forEach(sec => {
+                    const opt = document.createElement('option');
+                    opt.value = sec;
+                    opt.textContent = sec;
+                    sectionSelect.appendChild(opt);
+                });
+            }
+        }
+
+        // ============================================
+        // MASTER STUDENT ROSTER
         // ============================================
         const MASTER_ROSTER = {
             'Grade 7 - Section A': [
@@ -1254,7 +1341,7 @@
         };
 
         // ============================================
-        // DEFAULT DATA
+        // DEFAULT DATA (Teacher names WITHOUT prefixes)
         // ============================================
         const defaultUserDatabase = [
             {
@@ -1279,8 +1366,8 @@
                 rescheduleRequest: null
             },
             {
-                username: 'mrs clarissa santos', password: 'teacher123', role: 'teacher',
-                fullName: 'Mrs. Clarissa Santos',
+                username: 'clarissa santos', password: 'teacher123', role: 'teacher',
+                fullName: 'Clarissa Santos',
                 subject: 'Science',
                 email: 'clarissa.santos@agsnhs.edu.ph',
                 assignedSections: ['Grade 7 - Section A', 'Grade 8 - Section A', 'Grade 9 - Section C', 'Grade 10 - Section B', 'Grade 11 - Academic Track', 'Grade 11 - TechPro Track', 'Grade 12 - Academic Track', 'Grade 12 - TechPro Track']
@@ -1289,7 +1376,7 @@
             { username: 'maria clara santos', password: 'maria123', role: 'student', fullName: 'Maria Clara Santos',
               studentData: { firstName: 'Maria', middleName: 'Clara', lastName: 'Santos', fullName: 'Maria Clara Santos', lrn: '102876543211', gradeLevel: 'Grade 10', section: 'Grade 10 - Section B', phone: '+63 917 234 5678', guardian: 'Ana Santos', email: 'maria.santos@gmail.com' },
               appointment: null, rescheduleRequest: null },
-            { username: 'mr roberto villanueva', password: 'roberto123', role: 'teacher', fullName: 'Mr. Roberto Villanueva',
+            { username: 'roberto villanueva', password: 'roberto123', role: 'teacher', fullName: 'Roberto Villanueva',
               subject: 'Science', email: 'roberto.villanueva@agsnhs.edu.ph', assignedSections: ['Grade 7 - Section B', 'Grade 8 - Section B'] }
         ];
 
@@ -1303,16 +1390,22 @@
         ];
 
         const defaultTeachers = [
-            { name: 'Mrs. Clarissa Santos', section: 'Grade 7 - Section A', count: 12, students: 'Ana Cruz, Ben Santos, Chloe Reyes, ...', subject: 'Science' },
-            { name: 'Mr. Roberto Villanueva', section: 'Grade 8 - Section A', count: 12, students: 'Dana Flores, Ethan Mendez, Fiona Cruz, ...', subject: 'Science' },
-            { name: 'Ms. Diana Reyes', section: 'Grade 9 - Section C', count: 12, students: 'Gina Santos, Hannah Villanueva, Ian Reyes, ...', subject: 'Science' },
-            { name: 'Mr. Carlo Mendez', section: 'Grade 10 - Section B', count: 12, students: 'Julia Cruz, Kevin Santos, Lily Mendez, ...', subject: 'Science' }
+            { name: 'Clarissa Santos', section: 'Grade 7 - Section A', count: 12, students: 'Ana Cruz, Ben Santos, Chloe Reyes, ...', subject: 'Science' },
+            { name: 'Roberto Villanueva', section: 'Grade 8 - Section A', count: 12, students: 'Dana Flores, Ethan Mendez, Fiona Cruz, ...', subject: 'Science' },
+            { name: 'Diana Reyes', section: 'Grade 9 - Section C', count: 12, students: 'Gina Santos, Hannah Villanueva, Ian Reyes, ...', subject: 'Science' },
+            { name: 'Carlo Mendez', section: 'Grade 10 - Section B', count: 12, students: 'Julia Cruz, Kevin Santos, Lily Mendez, ...', subject: 'Science' }
         ];
 
-        let userDatabase = loadFromStorage(STORAGE_KEYS.userDatabase, defaultUserDatabase);
-        let mockStudents = loadFromStorage(STORAGE_KEYS.mockStudents, defaultMockStudents);
-        let teachers = loadFromStorage(STORAGE_KEYS.teachers, defaultTeachers);
-        let teacherAccounts = loadFromStorage(STORAGE_KEYS.teacherAccounts, []);
+        // ============================================
+        // IN-MEMORY DATA (no localStorage)
+        // ============================================
+        let userDatabase = JSON.parse(JSON.stringify(defaultUserDatabase));
+        let mockStudents = JSON.parse(JSON.stringify(defaultMockStudents));
+        let teachers = JSON.parse(JSON.stringify(defaultTeachers));
+        let teacherAccounts = [];
+
+        console.log('%c✅ AGSNHS System loaded with ' + userDatabase.length + ' default accounts', 'color: green; font-weight: bold; font-size: 14px;');
+        console.table(userDatabase.map(u => ({ username: u.username, password: u.password, role: u.role })));
 
         const sections = ['Grade 7 - Section A', 'Grade 7 - Section B', 'Grade 8 - Section A', 'Grade 8 - Section B', 'Grade 9 - Section A', 'Grade 9 - Section B', 'Grade 10 - Section A', 'Grade 10 - Section B'];
 
@@ -1327,13 +1420,7 @@
         // HELPERS
         // ============================================
         function normalizeUsername(name) {
-            return name.trim().toLowerCase().replace(/\s+/g, ' ');
-        }
-        function normalizeNameSortKey(student) {
-            // Format: "LASTNAME, FIRSTNAME" for sorting
-            const ln = (student.lastName || '').toUpperCase();
-            const fn = (student.firstName || '').toUpperCase();
-            return `${ln}, ${fn}`;
+            return name.trim().toLowerCase().replace(/[\s\u00A0]+/g, ' ');
         }
 
         // ============================================
@@ -1409,12 +1496,28 @@
             const passwordEl = document.getElementById('loginPassword');
             const username = normalizeUsername(usernameEl.value);
             const password = passwordEl.value;
-            if (!username || !password) { alert('Please enter both your full name and password.'); return; }
+
+            if (!username || !password) {
+                alert('Please enter both your full name and password.');
+                return;
+            }
+
+            console.log('Login attempt:', JSON.stringify(username), '/', JSON.stringify(password));
+
             let user = userDatabase.find(u => u.username === username && u.password === password);
             if (!user) user = teacherAccounts.find(u => u.username === username && u.password === password);
-            if (!user) { alert('Invalid name or password. Please try again.'); return; }
+
+            if (!user) {
+                console.warn('❌ Login failed. Available usernames:', userDatabase.map(u => u.username));
+                alert('Invalid name or password. Please try again.');
+                return;
+            }
+
+            console.log('✅ Login successful for:', user.fullName, '(' + user.role + ')');
+
             usernameEl.value = '';
             passwordEl.value = '';
+
             if (user.role === 'admin') {
                 document.getElementById('adminUserName').textContent = user.fullName || 'Admission Staff';
                 showAdmin();
@@ -1511,7 +1614,6 @@
                 tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:30px;color:#888;">No students assigned to this section yet.</td></tr>';
                 return;
             }
-            // Sort alphabetically
             const sorted = [...students].sort((a, b) => a.name.localeCompare(b.name));
             sorted.forEach(s => {
                 const statusClass = s.status === 'Enrolled' ? 'enrolled' : s.status === 'Pending' ? 'pending' : 'incomplete';
@@ -1527,7 +1629,7 @@
         }
 
         // ============================================
-        // TEACHER - GENERATE PDF (sorted, table format, boys/girls split)
+        // TEACHER - GENERATE PDF
         // ============================================
         function generateStudentListPDF() {
             if (!currentTeacherUser) { alert('No teacher logged in.'); return; }
@@ -1538,7 +1640,6 @@
             const teacherSubject = currentTeacherUser.subject || 'Science';
             const teacherSections = currentTeacherUser.assignedSections || [];
 
-            // ---------- COVER ----------
             doc.setFontSize(18);
             doc.setFont(undefined, 'bold');
             doc.text('Alexis G. Santos National High School', 105, 25, { align: 'center' });
@@ -1560,7 +1661,6 @@
 
             doc.addPage();
 
-            // ---------- CONTENT PER SECTION ----------
             let isFirstSection = true;
 
             teacherSections.forEach(section => {
@@ -1581,16 +1681,11 @@
                 doc.setFont(undefined, 'normal');
                 doc.text('Total Students: ' + students.length, 14, 27);
 
-                // Determine track grouping for Grade 11/12
-                const isSHS = section.startsWith('Grade 11') || section.startsWith('Grade 12');
-
-                // Split by gender
                 const boys = students.filter(s => s.gender === 'Male').sort((a, b) => a.name.localeCompare(b.name));
                 const girls = students.filter(s => s.gender === 'Female').sort((a, b) => a.name.localeCompare(b.name));
 
                 let startY = 35;
 
-                // ---- BOYS ----
                 if (boys.length > 0) {
                     doc.setFontSize(11);
                     doc.setFont(undefined, 'bold');
@@ -1617,7 +1712,6 @@
                     startY = doc.lastAutoTable.finalY + 10;
                 }
 
-                // ---- GIRLS ----
                 if (girls.length > 0) {
                     if (startY > 240) { doc.addPage(); startY = 20; }
                     doc.setFontSize(11);
@@ -1644,7 +1738,6 @@
                     });
                 }
 
-                // Footer page number
                 const pageCount = doc.internal.getNumberOfPages();
                 for (let i = 1; i <= pageCount; i++) {
                     doc.setPage(i);
@@ -1803,7 +1896,7 @@
                     requestedAt: new Date().toLocaleString()
                 };
                 const dbEntry = userDatabase.find(u => u.username === currentStudentUser.username);
-                if (dbEntry) { dbEntry.rescheduleRequest = currentStudentUser.rescheduleRequest; saveAll(); }
+                if (dbEntry) { dbEntry.rescheduleRequest = currentStudentUser.rescheduleRequest; }
             }
             closeRescheduleModal();
             showPopup('Reschedule Request Submitted', 'Your reschedule request for ' + formatDateLong(miniCalSelectedDate) + ' has been submitted.', 'success');
@@ -2023,6 +2116,9 @@
             });
         }
 
+        // ============================================
+        // TEACHER DETAILS (no back button — just close X)
+        // ============================================
         function showTeacherStudents(idx) {
             const t = teachers[idx];
             if (!t) return;
@@ -2179,7 +2275,6 @@
             if (!confirm('Are you sure you want to delete ' + s.firstName + ' ' + s.lastName + '? This cannot be undone.')) return;
             mockStudents = mockStudents.filter(x => x.id !== id);
             userDatabase = userDatabase.filter(u => !(u.role === 'student' && u.studentData && u.studentData.lrn === s.lrn));
-            saveAll();
             alert('Student deleted successfully.');
             renderDirectoryRows();
             renderAdminDashboard();
@@ -2207,6 +2302,7 @@
                 `;
             }
             const content = `
+                <button class="btn-back-directory" onclick="openDirectory()">&larr; Back to Directory</button>
                 <div class="student-profile-header">
                     <div class="student-avatar">${initials}</div>
                     <div class="info"><h4>${s.firstName} ${s.middleName} ${s.lastName}</h4><p>LRN: ${s.lrn} &middot; ${s.grade}</p><span class="status-badge ${statusClass}">${s.status}</span></div>
@@ -2255,7 +2351,6 @@
             s.rescheduleRequest = null;
             s.actionRequired = 'Schedule Interview';
             userDatabase.forEach(u => { if (u.role === 'student' && u.studentData.lrn === s.lrn) u.rescheduleRequest = null; });
-            saveAll();
             alert('Reschedule request approved!');
             closeAdminModal();
             renderAdminDashboard();
@@ -2267,7 +2362,6 @@
             s.hasRescheduleRequest = false;
             s.rescheduleRequest = null;
             userDatabase.forEach(u => { if (u.role === 'student' && u.studentData.lrn === s.lrn) u.rescheduleRequest = null; });
-            saveAll();
             alert('Reschedule request rejected.');
             closeAdminModal();
             renderAdminDashboard();
@@ -2278,7 +2372,6 @@
             const selectedSection = document.getElementById('assignSectionSelect').value;
             if (!selectedSection) { alert('Please select a section to assign this student.'); return; }
             s.section = selectedSection;
-            saveAll();
             alert('Student assigned to ' + selectedSection + ' successfully!');
             closeAdminModal();
             openDirectory();
@@ -2301,8 +2394,8 @@
                     <div class="col-md-6 mb-2"><label class="form-label-sm">Phone Number <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newPhone" placeholder="+63 912 345 6789"></div>
                     <div class="col-md-6 mb-2"><label class="form-label-sm">Guardian Full Name <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newGuardian" placeholder="Parent / Guardian name"></div>
                     <div class="col-md-6 mb-2"><label class="form-label-sm">Guardian Contact <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newGuardianContact" placeholder="+63 912 987 6543"></div>
-                    <div class="col-md-6 mb-2"><label class="form-label-sm">Grade Level <span class="req">*</span></label><select class="form-select form-select-sm" id="newGrade"><option value="">-- Select Grade --</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option></select></div>
-                    <div class="col-md-6 mb-2"><label class="form-label-sm">Assign to Section (optional)</label><select class="form-select form-select-sm" id="newSection"><option value="">-- Not yet assigned --</option>${sections.map(sec => `<option value="${sec}">${sec}</option>`).join('')}</select></div>
+                    <div class="col-md-6 mb-2"><label class="form-label-sm">Grade Level <span class="req">*</span></label><select class="form-select form-select-sm" id="newGrade" onchange="updateNewEnrollmentSections()"><option value="">-- Select Grade --</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option></select></div>
+                    <div class="col-md-6 mb-2"><label class="form-label-sm">Assign to Section (optional)</label><select class="form-select form-select-sm" id="newSection"><option value="">-- Select Grade First --</option></select></div>
                 </div>
                 <div class="d-flex justify-content-end gap-2 mt-3">
                     <button class="btn btn-outline-secondary btn-sm" onclick="closeAdminModal()">Cancel</button>
@@ -2310,6 +2403,7 @@
                 </div>
             `;
             openAdminModal('New Enrollment Registration', content);
+            updateNewEnrollmentSections();
         }
 
         function registerNewStudent() {
@@ -2328,7 +2422,6 @@
             if (!fn || !mn || !ln || !dob || !gender || !lrn || !address || !phone || !guardian || !guardianContact || !grade) { alert('Please fill in all required fields.'); return; }
             const newId = Math.max(...mockStudents.map(s => s.id), 0) + 1;
             mockStudents.push({ id: newId, firstName: fn, middleName: mn, lastName: ln, grade, section, lrn, gender, dob, address, phone, email: '-', guardian, guardianContact, status: 'Pending', timeReceived: 'Just now', actionRequired: 'Documents Review', docs: { psa: false, report: false, moral: false }, hasRescheduleRequest: false });
-            saveAll();
             alert('Student registered successfully!');
             closeAdminModal();
             renderAdminDashboard();
@@ -2341,12 +2434,32 @@
             const content = `
                 <p class="text-muted small mb-3">Create a new teacher account. The teacher can use their full name and password to log in.</p>
                 <div class="row">
-                    <div class="col-md-6 mb-2"><label class="form-label-sm">Teacher Full Name <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="regTeacherName" placeholder="e.g., Mrs. Clarissa Santos"></div>
+                    <div class="col-md-6 mb-2"><label class="form-label-sm">Teacher Full Name <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="regTeacherName" placeholder="e.g., Clarissa Santos"></div>
                     <div class="col-md-6 mb-2"><label class="form-label-sm">Email Address <span class="req">*</span></label><input type="email" class="form-control form-control-sm" id="regTeacherEmail" placeholder="teacher@agsnhs.edu.ph"></div>
-                    <div class="col-md-6 mb-2"><label class="form-label-sm">Password <span class="req">*</span></label><input type="password" class="form-control form-control-sm" id="regTeacherPassword" placeholder="Create a password (min. 8 characters)"></div>
+                    <div class="col-md-6 mb-2"><label class="form-label-sm">Password <span class="req">*</span></label>
+                        <div class="password-wrapper sm">
+                            <input type="password" class="form-control form-control-sm" id="regTeacherPassword" placeholder="Create a password (min. 8 characters)">
+                            <button type="button" class="password-toggle" onclick="togglePassword('regTeacherPassword', this)" title="Show Password" aria-label="Toggle password visibility">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-2"><label class="form-label-sm">Confirm Password <span class="req">*</span></label>
+                        <div class="password-wrapper sm">
+                            <input type="password" class="form-control form-control-sm" id="regTeacherConfirmPassword" placeholder="Re-enter password">
+                            <button type="button" class="password-toggle" onclick="togglePassword('regTeacherConfirmPassword', this)" title="Show Password" aria-label="Toggle password visibility">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
                     <div class="col-md-6 mb-2"><label class="form-label-sm">Assign Section <span class="req">*</span></label><select class="form-select form-select-sm" id="regTeacherSection"><option value="">-- Select Section --</option>${sections.map(sec => `<option value="${sec}">${sec}</option>`).join('')}</select></div>
                     <div class="col-md-6 mb-2"><label class="form-label-sm">Subject <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="regTeacherSubject" placeholder="e.g., Science" value="Science"></div>
-                    <div class="col-md-6 mb-2"><label class="form-label-sm">Confirm Password <span class="req">*</span></label><input type="password" class="form-control form-control-sm" id="regTeacherConfirmPassword" placeholder="Re-enter password"></div>
                 </div>
                 <div class="d-flex justify-content-end gap-2 mt-3">
                     <button class="btn btn-outline-secondary btn-sm" onclick="closeAdminModal()">Cancel</button>
@@ -2370,7 +2483,6 @@
             if (userDatabase.find(u => u.username === username) || teacherAccounts.find(u => u.username === username)) { alert('A teacher with that name already exists.'); return; }
             teacherAccounts.push({ username, password, role: 'teacher', fullName: name, email, section, subject, assignedSections: [section] });
             teachers.push({ name: name, section: section, count: 0, students: 'No students assigned yet', subject: subject });
-            saveAll();
             alert('Teacher account created successfully!\n\nName: ' + name + '\nThey can now log in using their full name.');
             closeAdminModal();
             renderAdminDashboard();
@@ -2382,6 +2494,10 @@
         let currentDate = new Date(2026, 9, 1);
         let selectedDate = null;
         let pickerYear = 2026;
+        const bookedDates = ['2026-10-15', '2026-10-08'];
+        const closedDates = ['2026-10-25', '2026-10-12'];
+        const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        const STEM_MINIMUM_AVERAGE = 85;
 
         function renderCalendar() {
             const year = currentDate.getFullYear();
@@ -2718,8 +2834,6 @@
                 },
                 rescheduleRequest: null
             });
-
-            saveAll();
 
             showPopup('Enrollment Submitted!', 'Account created successfully.', 'success', function() {
                 document.getElementById('enrollmentForm').reset();
