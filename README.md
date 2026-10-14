@@ -57,7 +57,7 @@ Built to deliver a stress-free, organized, and efficient enrollment experience f
 
 ## Technologies Used
 
-- HTML5 -Ppage structure
+- HTML5 -Page structure
 - CSS3 - Styling and layout
 - JavaScript - Interactivity and logic
 - Bootstrap 5 - Responsive UI framework
