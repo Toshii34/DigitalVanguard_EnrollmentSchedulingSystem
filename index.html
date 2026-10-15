@@ -18,8 +18,6 @@
         .btn-nav-group { display: flex; gap: 10px; }
         .btn-login-nav { border: 1px solid #198754; color: #198754; background: transparent; border-radius: 5px; padding: 5px 15px; font-weight: 500; transition: 0.3s; }
         .btn-login-nav:hover { background-color: #198754; color: white; }
-        .btn-enroll-nav { background-color: #198754; color: white; border-radius: 5px; padding: 5px 15px; border: none; font-weight: 500; transition: 0.3s; }
-        .btn-enroll-nav:hover { background-color: #157347; }
 
         /* Hero */
         .hero-section { position: relative; height: 80vh; min-height: 500px; display: flex; align-items: center; justify-content: center; text-align: center; color: white; overflow: hidden; }
@@ -39,6 +37,37 @@
         .info-card p, .info-card ul { font-size: 0.9rem; line-height: 1.6; color: #d1d1d1; margin: 0; text-align: left; }
         .info-card ul { padding-left: 20px; }
         .info-card ul li { margin-bottom: 5px; }
+
+        /* Junior High School Section */
+        .jhs-section { background: linear-gradient(to bottom, rgba(20,30,45,0.95), rgba(15,25,35,0.98)); color: white; padding: 80px 0; position: relative; overflow: hidden; }
+        .jhs-section h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; text-align: center; }
+        .jhs-section .jhs-subtitle { font-size: 1rem; color: #b0b0b0; text-align: center; max-width: 700px; margin: 0 auto 50px auto; line-height: 1.6; }
+        .jhs-card { background-color: #1a2e3d; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); border-left: 5px solid #f0ad4e; max-width: 900px; margin: 0 auto; }
+        .jhs-card h3 { color: #f0ad4e; font-size: 1.4rem; font-weight: 800; margin-bottom: 15px; }
+        .jhs-card p { font-size: 0.95rem; color: #d1d1d1; line-height: 1.7; }
+        .jhs-card ul { font-size: 0.9rem; color: #d1d1d1; line-height: 1.8; padding-left: 20px; }
+
+        /* School Events Carousel Section */
+        .events-section { background: linear-gradient(135deg, #e8f4f8 0%, #f5e6f0 100%); color: #333; padding: 70px 0 80px 0; position: relative; overflow: hidden; }
+        .events-section h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 40px; text-align: center; color: #2c3e50; }
+        .events-carousel-wrap { position: relative; max-width: 1100px; margin: 0 auto; padding: 0 60px; }
+        .events-carousel-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 20px; background: linear-gradient(135deg, #7fb3d5 0%, #b19cd9 100%); filter: blur(40px); opacity: 0.6; z-index: 0; }
+        .events-carousel-inner { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; min-height: 520px; }
+        .event-slide { display: none; width: 100%; max-width: 420px; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.35); background-color: white; }
+        .event-slide.active { display: block; animation: eventFadeIn 0.4s ease; }
+        @keyframes eventFadeIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+        .event-slide img { width: 100%; display: block; background-color: #fff; }
+        .event-slide .event-caption { padding: 14px 18px; background-color: #1a4d3e; color: white; }
+        .event-slide .event-caption h4 { font-size: 0.95rem; font-weight: 700; margin: 0 0 4px 0; }
+        .event-slide .event-caption p { font-size: 0.78rem; color: #c9e4d5; margin: 0; line-height: 1.4; }
+        .event-placeholder { display: flex; align-items: center; justify-content: center; height: 520px; background: linear-gradient(135deg, #3d2a4d, #2a1a35); color: #fff; font-size: 0.85rem; font-weight: 600; text-align: center; padding: 20px; }
+        .event-nav-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border-radius: 50%; background-color: white; border: 1px solid #ddd; box-shadow: 0 4px 12px rgba(0,0,0,0.15); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 700; color: #333; transition: 0.2s; z-index: 5; user-select: none; }
+        .event-nav-btn:hover { background-color: #1a4d3e; color: white; border-color: #1a4d3e; }
+        .event-nav-btn.prev { left: 0; }
+        .event-nav-btn.next { right: 0; }
+        .event-dots { display: flex; justify-content: center; gap: 10px; margin-top: 30px; }
+        .event-dot { width: 12px; height: 12px; border-radius: 50%; background-color: #c9d6df; cursor: pointer; transition: 0.2s; border: none; padding: 0; }
+        .event-dot.active { background-color: #1a4d3e; transform: scale(1.2); }
 
         /* Strands Section */
         .strands-section { background: linear-gradient(to bottom, rgba(0,40,20,0.95), rgba(0,30,15,0.98)); color: white; padding: 80px 0; position: relative; overflow: hidden; }
@@ -72,26 +101,11 @@
         .btn-enroll-main:hover { background-color: #f0fdf4; }
         .forgot-password { font-size: 0.85rem; color: #666; text-decoration: none; }
         .forgot-password:hover { text-decoration: underline; }
-        .login-hint { font-size: 0.7rem; color: #999; margin-top: 15px; line-height: 1.5; }
 
         .login-back-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background-color: rgba(255,255,255,0.95);
-            color: #198754;
-            border: 2px solid #198754;
-            padding: 8px 18px;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-decoration: none;
-            cursor: pointer;
-            transition: 0.2s;
-            z-index: 100;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+            position: absolute; top: 20px; left: 20px; background-color: rgba(255,255,255,0.95); color: #198754;
+            border: 2px solid #198754; padding: 8px 18px; border-radius: 8px; font-weight: 700; font-size: 0.85rem;
+            text-decoration: none; cursor: pointer; transition: 0.2s; z-index: 100; display: inline-flex; align-items: center; gap: 6px;
         }
         .login-back-btn:hover { background-color: #198754; color: white; }
 
@@ -99,23 +113,9 @@
         .password-wrapper { position: relative; }
         .password-wrapper .form-control { padding-right: 45px; }
         .password-toggle {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            color: #666;
-            padding: 4px;
-            line-height: 1;
-            transition: 0.2s;
-            z-index: 5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
+            position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: transparent;
+            border: none; cursor: pointer; color: #666; padding: 4px; line-height: 1; transition: 0.2s; z-index: 5;
+            display: flex; align-items: center; justify-content: center; width: 30px; height: 30px;
         }
         .password-toggle:hover { color: #198754; }
         .password-toggle svg { width: 20px; height: 20px; display: block; }
@@ -169,23 +169,9 @@
         .error-msg.show { display: block; }
 
         .section-back-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background-color: rgba(255,255,255,0.95);
-            color: #198754;
-            border: 2px solid #198754;
-            padding: 8px 18px;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-decoration: none;
-            cursor: pointer;
-            transition: 0.2s;
-            z-index: 100;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+            position: absolute; top: 20px; left: 20px; background-color: rgba(255,255,255,0.95); color: #198754;
+            border: 2px solid #198754; padding: 8px 18px; border-radius: 8px; font-weight: 700; font-size: 0.85rem;
+            text-decoration: none; cursor: pointer; transition: 0.2s; z-index: 100; display: inline-flex; align-items: center; gap: 6px;
         }
         .section-back-btn:hover { background-color: #198754; color: white; }
         .enrollment-section .section-back-btn { position: fixed; top: 20px; left: 20px; }
@@ -285,11 +271,6 @@
         .admin-navbar .brand-text strong { font-size: 1rem; color: #222; }
         .admin-navbar .brand-text span { font-size: 0.7rem; color: #666; }
         .admin-navbar .admin-actions { display: flex; gap: 8px; align-items: center; }
-        .admin-navbar .admin-user { font-size: 0.85rem; color: #333; font-weight: 600; margin-right: 8px; }
-        .admin-navbar .admin-actions button { font-size: 0.8rem; padding: 6px 14px; border-radius: 6px; font-weight: 600; border: 1px solid #ddd; background-color: white; color: #333; transition: 0.2s; }
-        .admin-navbar .admin-actions button:hover { background-color: #f8f9fa; }
-        .admin-navbar .admin-actions .btn-signout { background-color: #495057; color: white; border-color: #495057; }
-        .admin-navbar .admin-actions .btn-signout:hover { background-color: #343a40; }
         .admin-hero { background-image: linear-gradient(rgba(0,40,20,0.6), rgba(0,40,20,0.7)), url('background.jpg'); background-size: cover; background-position: center; padding: 30px 40px; color: white; }
         .admin-hero h1 { font-size: 1.8rem; font-weight: 700; margin: 0; }
         .admin-hero .academic-year { font-size: 0.8rem; color: #ccc; }
@@ -321,19 +302,23 @@
         .tag-interview { background-color: #cfe2ff; color: #084298; }
         .tag-finalize { background-color: #d1e7dd; color: #0f5132; }
         .tag-reschedule { background-color: #dc3545; color: white; }
+
+        /* Teachers Section */
         .teachers-section { background-color: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-        .teachers-section h3 { font-size: 0.95rem; font-weight: 700; color: #222; margin-bottom: 15px; }
+        .teachers-section .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .teachers-section h3 { font-size: 0.95rem; font-weight: 700; color: #222; margin: 0; }
         .teachers-section table { width: 100%; font-size: 0.8rem; }
         .teachers-section table thead th { color: #666; font-weight: 600; padding: 10px; border-bottom: 1px solid #eee; text-align: left; font-size: 0.75rem; }
         .teachers-section table tbody td { padding: 12px 10px; border-bottom: 1px solid #f5f5f5; color: #333; }
         .teacher-link { color: #198754; font-weight: 700; cursor: pointer; text-decoration: underline; }
         .teacher-link:hover { color: #0f5132; }
 
+        /* Admin Modal */
         .admin-modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); z-index: 30000; justify-content: center; align-items: flex-start; padding: 40px 20px; overflow-y: auto; }
         .admin-modal-overlay.active { display: flex; }
         .admin-modal { background-color: white; border-radius: 10px; width: 100%; max-width: 1000px; box-shadow: 0 20px 60px rgba(0,0,0,0.4); overflow: hidden; }
         .admin-modal-header { background-color: #1a4d3e; color: white; padding: 18px 25px; display: flex; justify-content: space-between; align-items: center; }
-        .admin-modal-header h3 { font-size: 1.1rem; font-weight: 700; margin: 0; }
+        .admin-modal-header h3 { font-size: 1.1rem; font-weight: 700; margin: 0; flex-grow: 1; }
         .admin-modal-close { background-color: rgba(255,255,255,0.15); color: white; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 1.1rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; line-height: 1; }
         .admin-modal-close:hover { background-color: rgba(255,255,255,0.3); }
         .admin-modal-body { padding: 25px; max-height: 75vh; overflow-y: auto; }
@@ -356,8 +341,22 @@
         .btn-view-student:hover { background-color: #0d6efd; color: white; }
         .btn-assign { background-color: white; color: #198754; border-color: #198754; }
         .btn-assign:hover { background-color: #198754; color: white; }
-        .btn-delete-student { background-color: white; color: #dc3545; border-color: #dc3545; }
-        .btn-delete-student:hover { background-color: #dc3545; color: white; }
+        .btn-edit-student { background-color: white; color: #fd7e14; border-color: #fd7e14; }
+        .btn-edit-student:hover { background-color: #fd7e14; color: white; }
+        .btn-dots {
+            background-color: #dc3545; color: white; border: 1px solid #dc3545;
+            font-size: 0.95rem; font-weight: 900; padding: 4px 12px; border-radius: 6px;
+            cursor: pointer; transition: 0.2s; line-height: 1;
+        }
+        .btn-dots:hover { background-color: #b02a37; border-color: #b02a37; }
+        .directory-action-bar { display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 10px; }
+        .btn-cancel-select { background-color: white; color: #666; border: 1px solid #ccc; padding: 6px 14px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; cursor: pointer; }
+        .btn-cancel-select:hover { background-color: #f8f9fa; }
+        .btn-delete-selected { background-color: #dc3545; color: white; border: none; padding: 6px 14px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: 0.2s; }
+        .btn-delete-selected:hover { background-color: #b02a37; }
+        .btn-delete-selected:disabled { background-color: #e9ecef; color: #adb5bd; cursor: not-allowed; }
+        .row-checkbox-wrap { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 4px; background-color: #f0fdf4; border: 1px solid #198754; cursor: pointer; }
+        .row-checkbox-wrap input[type="checkbox"] { width: 16px; height: 16px; accent-color: #1a4d3e; cursor: pointer; }
         .btn-back-directory { background-color: #f8f9fa; color: #333; border: 1px solid #ccc; padding: 8px 18px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 15px; }
         .btn-back-directory:hover { background-color: #198754; color: white; border-color: #198754; }
         .student-profile-header { display: flex; gap: 20px; background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px; align-items: center; }
@@ -398,11 +397,6 @@
         .student-navbar .brand-text strong { font-size: 1rem; color: #222; }
         .student-navbar .brand-text span { font-size: 0.7rem; color: #666; }
         .student-navbar .student-actions { display: flex; gap: 8px; align-items: center; }
-        .student-navbar .student-user { font-size: 0.85rem; color: #333; font-weight: 600; margin-right: 8px; }
-        .student-navbar .student-actions button { font-size: 0.8rem; padding: 6px 14px; border-radius: 6px; font-weight: 600; border: 1px solid #ddd; background-color: white; color: #333; transition: 0.2s; }
-        .student-navbar .student-actions button:hover { background-color: #f8f9fa; }
-        .student-navbar .student-actions .btn-signout { background-color: #495057; color: white; border-color: #495057; }
-        .student-navbar .student-actions .btn-signout:hover { background-color: #343a40; }
         .student-hero { background-image: linear-gradient(rgba(0,40,20,0.6), rgba(0,40,20,0.7)), url('background.jpg'); background-size: cover; background-position: center; padding: 30px 40px; color: white; }
         .student-hero h1 { font-size: 1.8rem; font-weight: 700; margin: 0; }
         .student-content { padding: 25px 40px 40px 40px; }
@@ -431,6 +425,10 @@
         .appointment-box .appt-date { font-size: 1rem; font-weight: 800; color: #222; margin-bottom: 5px; }
         .appointment-box .appt-time { font-size: 0.8rem; color: #555; margin-bottom: 10px; }
         .appointment-box .appt-location { font-size: 0.75rem; color: #888; line-height: 1.5; }
+        .appointment-box .appt-status { font-size: 0.75rem; font-weight: 700; margin-top: 8px; padding: 4px 10px; border-radius: 12px; display: inline-block; }
+        .appt-status.pending { background-color: #fff3cd; color: #856404; }
+        .appt-status.approved { background-color: #d1e7dd; color: #0f5132; }
+        .appt-status.rejected { background-color: #f8d7da; color: #842029; }
         .btn-reschedule { background-color: white; color: #1a4d3e; width: 100%; padding: 10px; border-radius: 8px; border: 1.5px solid #1a4d3e; font-weight: 700; font-size: 0.85rem; transition: 0.2s; }
         .btn-reschedule:hover { background-color: #f0fdf4; }
         .no-appointment { text-align: center; padding: 20px 0; color: #888; font-size: 0.85rem; }
@@ -479,30 +477,20 @@
         .teacher-navbar .brand-text strong { font-size: 1rem; color: #222; }
         .teacher-navbar .brand-text span { font-size: 0.7rem; color: #666; }
         .teacher-navbar .teacher-actions { display: flex; gap: 8px; align-items: center; }
-        .teacher-navbar .teacher-actions .teacher-badge { font-size: 0.8rem; padding: 5px 14px; border-radius: 20px; background-color: #f1f3f5; color: #333; font-weight: 600; border: 1px solid #ddd; }
-        .teacher-navbar .teacher-actions .btn-signout { background-color: #495057; color: white; border: none; font-size: 0.8rem; padding: 6px 14px; border-radius: 6px; font-weight: 600; cursor: pointer; }
-        .teacher-navbar .teacher-actions .btn-signout:hover { background-color: #343a40; }
-        .teacher-navbar .teacher-actions .btn-pdf { background-color: #1a4d3e; color: white; border: none; font-size: 0.8rem; padding: 6px 14px; border-radius: 6px; font-weight: 600; cursor: pointer; }
-        .teacher-navbar .teacher-actions .btn-pdf:hover { background-color: #0f3027; }
-
         .teacher-hero { background-image: linear-gradient(rgba(0,40,20,0.65), rgba(0,40,20,0.75)), url('background.jpg'); background-size: cover; background-position: center; padding: 25px 40px; color: white; }
         .teacher-hero h1 { font-size: 1.5rem; font-weight: 700; margin: 0; }
-
         .teacher-body { display: grid; grid-template-columns: 260px 1fr; gap: 0; min-height: calc(100vh - 130px); }
-
         .teacher-sidebar { background-color: white; border-right: 1px solid #e9ecef; padding: 25px 20px; }
         .teacher-sidebar h4 { font-size: 0.7rem; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 15px; }
         .section-list { display: flex; flex-direction: column; gap: 6px; }
         .section-item { padding: 10px 15px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: #555; cursor: pointer; transition: 0.2s; border: 1px solid transparent; }
         .section-item:hover { background-color: #f0fdf4; color: #198754; }
         .section-item.active { background-color: #f0fdf4; color: #1a4d3e; border-color: #198754; font-weight: 700; }
-
         .teacher-main { background-color: #f4f6f9; padding: 25px 30px; }
         .teacher-main-header { margin-bottom: 20px; }
         .teacher-main-header .advisor-label { font-size: 0.75rem; color: #888; margin-bottom: 3px; }
         .teacher-main-header h2 { font-size: 1.3rem; font-weight: 700; color: #222; margin: 0; }
         .teacher-main-header .subject-badge { display: inline-block; background-color: #d1e7dd; color: #0f5132; font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 12px; margin-left: 10px; vertical-align: middle; }
-
         .class-table-card { background-color: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
         .class-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
         .class-table thead th { text-align: left; font-size: 0.72rem; color: #555; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; padding: 12px 10px; border-bottom: 2px solid #eee; }
@@ -510,11 +498,60 @@
         .class-table tbody tr:hover { background-color: #f9fdfb; }
         .class-table .student-name { font-weight: 700; color: #222; }
         .class-table .lrn { color: #666; font-family: monospace; font-size: 0.8rem; }
-
         .enroll-status { display: inline-block; font-size: 0.7rem; padding: 4px 12px; border-radius: 12px; font-weight: 700; }
         .enroll-status.enrolled { background-color: #d1e7dd; color: #0f5132; }
         .enroll-status.pending { background-color: #fff3cd; color: #856404; }
         .enroll-status.incomplete { background-color: #f8d7da; color: #842029; }
+
+        /* Profile Modal */
+        .profile-modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); z-index: 35000; justify-content: center; align-items: center; padding: 20px; overflow-y: auto; }
+        .profile-modal-overlay.active { display: flex; }
+        .profile-modal { background-color: white; border-radius: 12px; width: 100%; max-width: 560px; box-shadow: 0 20px 60px rgba(0,0,0,0.4); overflow: hidden; }
+        .profile-modal-header { background-color: #1a4d3e; color: white; padding: 18px 25px; display: flex; justify-content: space-between; align-items: center; }
+        .profile-modal-header h3 { font-size: 1.1rem; font-weight: 700; margin: 0; }
+        .profile-modal-body { padding: 25px; max-height: 70vh; overflow-y: auto; }
+        .profile-modal-body label { font-size: 0.8rem; font-weight: 600; color: #555; display: block; margin-bottom: 5px; }
+        .profile-modal-body input { width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 6px; font-size: 0.85rem; margin-bottom: 15px; }
+        .profile-modal-body input:focus { outline: none; border-color: #1a4d3e; box-shadow: 0 0 0 0.2rem rgba(26,77,62,0.15); }
+        .profile-modal-footer { display: flex; justify-content: flex-end; gap: 10px; padding: 0 25px 25px 25px; }
+        .btn-profile-cancel { background-color: white; color: #666; padding: 10px 20px; border-radius: 6px; border: 1px solid #ccc; font-weight: 600; font-size: 0.85rem; cursor: pointer; }
+        .btn-profile-save { background-color: #1a4d3e; color: white; padding: 10px 20px; border-radius: 6px; border: none; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
+        .profile-tab-buttons { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 2px solid #e9ecef; padding-bottom: 10px; }
+        .profile-tab-btn { background: transparent; border: none; font-size: 0.85rem; font-weight: 600; color: #666; padding: 8px 16px; border-radius: 6px; cursor: pointer; transition: 0.2s; }
+        .profile-tab-btn:hover { background-color: #f0fdf4; color: #198754; }
+        .profile-tab-btn.active { background-color: #1a4d3e; color: white; }
+        .profile-info-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f5f5f5; font-size: 0.85rem; }
+        .profile-info-row .info-label { color: #666; font-weight: 500; }
+        .profile-info-row .info-value { color: #222; font-weight: 700; text-align: right; }
+
+        /* Profile dropdown in navbar */
+        .profile-dropdown-wrap { position: relative; display: inline-block; z-index: 50000; }
+        .profile-dropdown-btn {
+            display: inline-flex; align-items: center; gap: 8px; background-color: #f1f3f5;
+            border: 1px solid #ddd; border-radius: 20px; padding: 5px 14px 5px 6px;
+            cursor: pointer; font-weight: 600; font-size: 0.8rem; color: #333; transition: 0.2s;
+        }
+        .profile-dropdown-btn:hover { background-color: #e9ecef; }
+        .profile-avatar-circle {
+            width: 28px; height: 28px; border-radius: 50%; background-color: #1a4d3e; color: white;
+            display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.75rem;
+        }
+        .profile-dropdown-menu {
+            display: none; position: absolute; right: 0; top: calc(100% + 8px);
+            background-color: white; border: 1px solid #e9ecef; border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); min-width: 230px; z-index: 50000; overflow: hidden;
+        }
+        .profile-dropdown-menu.active { display: block; }
+        .profile-dropdown-header { padding: 14px 16px; border-bottom: 1px solid #f0f0f0; background-color: #f8f9fa; }
+        .profile-dropdown-header .pd-name { font-size: 0.9rem; font-weight: 700; color: #222; }
+        .profile-dropdown-header .pd-role { font-size: 0.7rem; color: #666; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin-top: 2px; }
+        .profile-dropdown-item {
+            display: flex; align-items: center; gap: 10px; width: 100%; padding: 11px 16px;
+            background: transparent; border: none; text-align: left; font-size: 0.82rem;
+            font-weight: 600; color: #333; cursor: pointer; transition: 0.15s;
+        }
+        .profile-dropdown-item:hover { background-color: #f0fdf4; color: #198754; }
+        .profile-dropdown-divider { height: 1px; background-color: #f0f0f0; }
 
         @media (max-width: 768px) {
             .hero-content h1 { font-size: 2.5rem; }
@@ -535,6 +572,8 @@
             .teacher-body { grid-template-columns: 1fr; }
             .teacher-sidebar { border-right: none; border-bottom: 1px solid #e9ecef; }
             .section-back-btn, .login-back-btn { font-size: 0.75rem; padding: 6px 12px; top: 12px; left: 12px; }
+            .events-carousel-wrap { padding: 0 50px; }
+            .event-nav-btn { width: 40px; height: 40px; font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -556,7 +595,6 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <div class="btn-nav-group mt-3 mt-lg-0" id="navButtons">
                     <button class="btn btn-login-nav" id="btnLoginNav" onclick="showLogin()">Log In</button>
-                    <button class="btn btn-enroll-nav" id="btnEnrollNav" onclick="showEnrollment()">Enroll</button>
                 </div>
             </div>
         </div>
@@ -581,6 +619,73 @@
                 <div class="info-card"><h3>VISION</h3><p>To dream of Filipinos who passionately love their country and whose values and competencies enable them to realize their full potential and contribute meaningfully to building the nation.</p></div>
                 <div class="info-card"><h3>MISSION</h3><p>To protect and promote the right of every Filipino to quality, equitable, culture-based, and complete basic education where students learn in a child-friendly, gender-sensitive, safe, and motivating environment.</p></div>
                 <div class="info-card"><h3>CORE VALUES</h3><ul><li>Maka-Diyos</li><li>Maka-tao</li><li>Makakalikasan</li><li>Makabansa</li></ul></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Junior High School STE Section -->
+    <div class="jhs-section">
+        <div class="container">
+            <h2>JUNIOR HIGH SCHOOL OFFERINGS</h2>
+            <p class="jhs-subtitle">Alexis G. Santos National High School proudly offers the Special Program in Science, Technology, and Engineering (STE) for academically gifted Junior High School students.</p>
+            <div class="jhs-card">
+                <h3>🔬 Special Program in Science, Technology, and Engineering (STE)</h3>
+                <p>The STE Program is a DepEd-initiated curriculum designed for students with high aptitude and interest in science, mathematics, and technology. It provides advanced learning experiences to prepare students for higher education and careers in the fields of science and engineering.</p>
+                <p style="margin-top: 15px;"><strong>Program Highlights:</strong></p>
+                <ul>
+                    <li>Advanced and enriched science and mathematics curriculum</li>
+                    <li>Research-based learning and investigatory projects</li>
+                    <li>Exposure to robotics, ICT, and laboratory experiments</li>
+                    <li>Competitions, science fairs, and academic olympiads</li>
+                    <li>Preparation for Senior High School STEM strand and college science courses</li>
+                </ul>
+                <p style="margin-top: 15px; font-size: 0.85rem; color: #f0ad4e;"><strong>Note:</strong> Admission to the STE Program is based on academic performance, an entrance examination, and interview. Inquire at the school's registrar for details.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- School Events Carousel Section -->
+    <div class="events-section">
+        <div class="container">
+            <h2>School Events</h2>
+            <div class="events-carousel-wrap">
+                <div class="events-carousel-bg"></div>
+                <button class="event-nav-btn prev" onclick="changeEventSlide(-1)" aria-label="Previous">&lsaquo;</button>
+                <div class="events-carousel-inner">
+                    <!-- Slide 1: National Teachers' Month -->
+                    <div class="event-slide active" data-slide="0">
+                        <img src="event-teachers-month.png" alt="National Teachers' Month 2026"
+                             onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('afterbegin', '<div class=\'event-placeholder\'>National Teachers\' Month 2026<br><br>Add file: event-teachers-month.png</div>');">
+                        <div class="event-caption">
+                            <h4>National Teachers' Month 2026</h4>
+                            <p>September 5 – October 5, 2026</p>
+                        </div>
+                    </div>
+                    <!-- Slide 2: Welcome Alexians to Term 2 -->
+                    <div class="event-slide" data-slide="1">
+                        <img src="event-welcome-term2.png" alt="Welcome Alexians to Term 2"
+                             onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('afterbegin', '<div class=\'event-placeholder\'>Welcome Alexians to Term 2<br><br>Add file: event-welcome-term2.png</div>');">
+                        <div class="event-caption">
+                            <h4>Welcome Alexians to Term 2</h4>
+                            <p>September 16, 2026</p>
+                        </div>
+                    </div>
+                    <!-- Slide 3: A Value A Month -->
+                    <div class="event-slide" data-slide="2">
+                        <img src="event-value-month.png" alt="A Value A Month - August 2026"
+                             onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('afterbegin', '<div class=\'event-placeholder\'>A Value A Month — August 2026<br><br>Add file: event-value-month.png</div>');">
+                        <div class="event-caption">
+                            <h4>A Value A Month — August 2026</h4>
+                            <p>Nationalism · Patriotism · Global Citizenship</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="event-nav-btn next" onclick="changeEventSlide(1)" aria-label="Next">&rsaquo;</button>
+            </div>
+            <div class="event-dots" id="eventDots">
+                <button class="event-dot active" onclick="goToEventSlide(0)" aria-label="Slide 1"></button>
+                <button class="event-dot" onclick="goToEventSlide(1)" aria-label="Slide 2"></button>
+                <button class="event-dot" onclick="goToEventSlide(2)" aria-label="Slide 3"></button>
             </div>
         </div>
     </div>
@@ -754,9 +859,9 @@
                             <span class="field-hint">Select your gender.</span>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label-sm">Learner Reference Number (LRN) <span class="req">*</span></label>
-                            <input type="text" class="form-control form-control-sm" id="lrn" placeholder="Enter your LRN" inputmode="numeric" maxlength="14">
-                            <span class="field-hint">10-12 digits only.</span>
+                            <label class="form-label-sm">Learner Reference Number (LRN)</label>
+                            <input type="text" class="form-control form-control-sm" id="lrn" placeholder="Enter your LRN if known" inputmode="numeric" maxlength="14">
+                            <span class="field-hint">10-12 digits only. Leave blank if you don't know it.</span>
                         </div>
                     </div>
 
@@ -969,8 +1074,22 @@
                 </div>
             </div>
             <div class="admin-actions">
-                <span class="admin-user" id="adminUserName">Admission Staff</span>
-                <button class="btn-signout" onclick="signOutAdmin()">Sign Out</button>
+                <div class="profile-dropdown-wrap">
+                    <button class="profile-dropdown-btn" onclick="toggleProfileDropdown(event, 'adminDropdown')">
+                        <span class="profile-avatar-circle" id="adminAvatarInitial">A</span>
+                        <span id="adminDropdownName">Admission Staff</span>
+                        <span style="font-size:0.7rem;">▾</span>
+                    </button>
+                    <div class="profile-dropdown-menu" id="adminDropdown">
+                        <div class="profile-dropdown-header">
+                            <div class="pd-name" id="adminDropdownFullName">Admission Staff</div>
+                            <div class="pd-role">Admin / Admission Staff</div>
+                        </div>
+                        <button class="profile-dropdown-item" onclick="handleDropdownAction(event, openAdminProfile)">👤 View &amp; Edit Profile</button>
+                        <div class="profile-dropdown-divider"></div>
+                        <button class="profile-dropdown-item" onclick="handleDropdownAction(event, signOutAdmin)">↩ Sign Out</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="admin-hero">
@@ -990,6 +1109,7 @@
                     <button class="qa-primary" onclick="openNewEnrollment()">New Enrollment Registration</button>
                     <button class="qa-outline" onclick="openTeacherAccountReg()">Teacher Account Registration</button>
                     <button class="qa-outline" onclick="openDirectory()">Student Directory</button>
+                    <button class="qa-outline" onclick="openMaxLimitSettings()">Daily Slot Limit Settings</button>
                 </div>
                 <div class="recent-activity">
                     <h3>Recent Applications Activity</h3>
@@ -997,8 +1117,19 @@
                 </div>
             </div>
             <div class="teachers-section">
-                <h3>Teachers Advisory</h3>
-                <table><thead><tr><th>Teacher Name</th><th>Section</th><th>Students Assigned</th></tr></thead><tbody id="teachersTableBody"></tbody></table>
+                <div class="section-header">
+                    <h3>Teachers Advisory</h3>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Teacher Name</th>
+                            <th>Section</th>
+                            <th>Students Assigned</th>
+                        </tr>
+                    </thead>
+                    <tbody id="teachersTableBody"></tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -1014,8 +1145,22 @@
                 </div>
             </div>
             <div class="student-actions">
-                <span class="student-user" id="studentUserName">Student</span>
-                <button class="btn-signout" onclick="signOutStudent()">Sign Out</button>
+                <div class="profile-dropdown-wrap">
+                    <button class="profile-dropdown-btn" onclick="toggleProfileDropdown(event, 'studentDropdown')">
+                        <span class="profile-avatar-circle" id="studentAvatarInitial">S</span>
+                        <span id="studentDropdownName">Student</span>
+                        <span style="font-size:0.7rem;">▾</span>
+                    </button>
+                    <div class="profile-dropdown-menu" id="studentDropdown">
+                        <div class="profile-dropdown-header">
+                            <div class="pd-name" id="studentDropdownFullName">Student</div>
+                            <div class="pd-role">Student</div>
+                        </div>
+                        <button class="profile-dropdown-item" onclick="handleDropdownAction(event, openStudentProfile)">👤 View &amp; Edit Profile</button>
+                        <div class="profile-dropdown-divider"></div>
+                        <button class="profile-dropdown-item" onclick="handleDropdownAction(event, signOutStudent)">↩ Sign Out</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="student-hero"><h1>My Enrollment Dashboard</h1></div>
@@ -1047,9 +1192,23 @@
                 </div>
             </div>
             <div class="teacher-actions">
-                <span class="teacher-badge" id="teacherBadgeName">Teacher</span>
-                <button class="btn-pdf" onclick="generateStudentListPDF()">Generate Student List (PDF)</button>
-                <button class="btn-signout" onclick="signOutTeacher()">Sign Out</button>
+                <div class="profile-dropdown-wrap">
+                    <button class="profile-dropdown-btn" onclick="toggleProfileDropdown(event, 'teacherDropdown')">
+                        <span class="profile-avatar-circle" id="teacherAvatarInitial">T</span>
+                        <span id="teacherDropdownName">Teacher</span>
+                        <span style="font-size:0.7rem;">▾</span>
+                    </button>
+                    <div class="profile-dropdown-menu" id="teacherDropdown">
+                        <div class="profile-dropdown-header">
+                            <div class="pd-name" id="teacherDropdownFullName">Teacher</div>
+                            <div class="pd-role">Teacher</div>
+                        </div>
+                        <button class="profile-dropdown-item" onclick="handleDropdownAction(event, openTeacherProfile)">👤 View &amp; Edit Profile</button>
+                        <button class="profile-dropdown-item" onclick="handleDropdownAction(event, generateStudentListPDF)">📄 Generate Student List (PDF)</button>
+                        <div class="profile-dropdown-divider"></div>
+                        <button class="profile-dropdown-item" onclick="handleDropdownAction(event, signOutTeacher)">↩ Sign Out</button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -1124,9 +1283,22 @@
         <div class="admin-modal">
             <div class="admin-modal-header">
                 <h3 id="adminModalTitle">Student Directory</h3>
-                <button class="admin-modal-close" onclick="closeAdminModal()">&times;</button>
+                <!-- 3-dots button on top of the title (in the header) -->
+                <button class="btn-dots" id="headerDotsBtn" onclick="toggleDirectorySelectionMode(true)" title="Select students to delete" style="display:none; margin-left:12px;">⋮</button>
+                <button class="admin-modal-close" onclick="closeAdminModal()" style="margin-left:8px;">&times;</button>
             </div>
             <div class="admin-modal-body" id="adminModalBody"></div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="profile-modal-overlay" id="profileModal">
+        <div class="profile-modal">
+            <div class="profile-modal-header">
+                <h3 id="profileModalTitle">My Profile</h3>
+                <button class="admin-modal-close" onclick="closeProfileModal()">&times;</button>
+            </div>
+            <div class="profile-modal-body" id="profileModalBody"></div>
         </div>
     </div>
 
@@ -1156,15 +1328,66 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
     <script>
         // ============================================
-        // NO LOCALSTORAGE — Everything in memory only
+        // NO LOCALSTORAGE
         // ============================================
-        function saveToStorage() { /* no-op */ }
-        function loadFromStorage(key, fallback) { return fallback; }
-        function saveAll() { /* no-op */ }
-
         const mainNavbar = document.getElementById('mainNavbar');
         function hideMainNavbar() { if (mainNavbar) mainNavbar.style.display = 'none'; }
         function showMainNavbar() { if (mainNavbar) mainNavbar.style.display = ''; }
+
+        // ============================================
+        // EVENTS CAROUSEL
+        // ============================================
+        let currentEventSlide = 0;
+        const totalEventSlides = 3;
+
+        function showEventSlide(index) {
+            const slides = document.querySelectorAll('.event-slide');
+            const dots = document.querySelectorAll('.event-dot');
+            slides.forEach(s => s.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+            if (slides[index]) slides[index].classList.add('active');
+            if (dots[index]) dots[index].classList.add('active');
+            currentEventSlide = index;
+        }
+        function changeEventSlide(delta) {
+            let newIndex = currentEventSlide + delta;
+            if (newIndex < 0) newIndex = totalEventSlides - 1;
+            if (newIndex >= totalEventSlides) newIndex = 0;
+            showEventSlide(newIndex);
+        }
+        function goToEventSlide(index) { showEventSlide(index); }
+        // Auto-rotate every 6 seconds
+        setInterval(() => { changeEventSlide(1); }, 6000);
+
+        // ============================================
+        // PROFILE DROPDOWN
+        // ============================================
+        function toggleProfileDropdown(e, id) {
+            if (e) e.stopPropagation();
+            const menu = document.getElementById(id);
+            const isOpen = menu.classList.contains('active');
+            closeAllProfileDropdowns();
+            if (!isOpen) menu.classList.add('active');
+        }
+        function closeAllProfileDropdowns() {
+            document.querySelectorAll('.profile-dropdown-menu').forEach(m => m.classList.remove('active'));
+        }
+        // Close dropdown when clicking outside — but NOT when clicking inside the dropdown
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.profile-dropdown-wrap')) closeAllProfileDropdowns();
+        });
+
+        // Wrapper that closes the dropdown, then safely runs the action after a tick.
+        // This prevents the document click handler from swallowing the button's click.
+        function handleDropdownAction(e, actionFn) {
+            if (e) { e.stopPropagation(); e.preventDefault(); }
+            closeAllProfileDropdowns();
+            // Small timeout so the dropdown close animation happens first,
+            // and so the confirm() dialog isn't blocked.
+            setTimeout(function() {
+                try { actionFn(); } catch (err) { console.error(err); }
+            }, 50);
+        }
 
         // ============================================
         // PASSWORD TOGGLE
@@ -1177,18 +1400,10 @@
             if (!input) return;
             if (input.type === 'password') {
                 input.type = 'text';
-                if (btnEl) {
-                    btnEl.innerHTML = EYE_CLOSED_SVG;
-                    btnEl.title = 'Hide Password';
-                    btnEl.setAttribute('aria-label', 'Hide password');
-                }
+                if (btnEl) { btnEl.innerHTML = EYE_CLOSED_SVG; btnEl.title = 'Hide Password'; }
             } else {
                 input.type = 'password';
-                if (btnEl) {
-                    btnEl.innerHTML = EYE_OPEN_SVG;
-                    btnEl.title = 'Show Password';
-                    btnEl.setAttribute('aria-label', 'Show password');
-                }
+                if (btnEl) { btnEl.innerHTML = EYE_OPEN_SVG; btnEl.title = 'Show Password'; }
             }
         }
 
@@ -1341,7 +1556,7 @@
         };
 
         // ============================================
-        // DEFAULT DATA (Teacher names WITHOUT prefixes)
+        // DEFAULT DATA
         // ============================================
         const defaultUserDatabase = [
             {
@@ -1349,26 +1564,21 @@
                 fullName: 'Marlon Santos Dela Cruz',
                 studentData: {
                     firstName: 'Marlon', middleName: 'Santos', lastName: 'Dela Cruz',
-                    fullName: 'Marlon Santos Dela Cruz',
-                    lrn: '10287654321',
-                    gradeLevel: 'Grade 7',
-                    section: 'Pending Final Enrollment',
-                    phone: '+63 912 345 6789',
-                    guardian: 'Ramon Dela Cruz',
+                    fullName: 'Marlon Santos Dela Cruz', lrn: '10287654321',
+                    gradeLevel: 'Grade 7', section: 'Pending Final Enrollment',
+                    phone: '+63 912 345 6789', guardian: 'Ramon Dela Cruz',
                     email: 'marlon.delacruz@gmail.com'
                 },
                 appointment: {
-                    type: 'Passing of Enrollment Form',
-                    date: 'Monday, July 15, 2024',
-                    time: '10:00 AM - 11:00 AM',
-                    location: 'Admission Office, Main Building.'
+                    type: 'Passing of Enrollment Form', date: 'Monday, July 15, 2024',
+                    time: '10:00 AM - 11:00 AM', location: 'Admission Office, Main Building.',
+                    status: 'approved'
                 },
                 rescheduleRequest: null
             },
             {
                 username: 'clarissa santos', password: 'teacher123', role: 'teacher',
-                fullName: 'Clarissa Santos',
-                subject: 'Science',
+                fullName: 'Clarissa Santos', subject: 'Science',
                 email: 'clarissa.santos@agsnhs.edu.ph',
                 assignedSections: ['Grade 7 - Section A', 'Grade 8 - Section A', 'Grade 9 - Section C', 'Grade 10 - Section B', 'Grade 11 - Academic Track', 'Grade 11 - TechPro Track', 'Grade 12 - Academic Track', 'Grade 12 - TechPro Track']
             },
@@ -1397,15 +1607,14 @@
         ];
 
         // ============================================
-        // IN-MEMORY DATA (no localStorage)
+        // IN-MEMORY DATA
         // ============================================
         let userDatabase = JSON.parse(JSON.stringify(defaultUserDatabase));
         let mockStudents = JSON.parse(JSON.stringify(defaultMockStudents));
         let teachers = JSON.parse(JSON.stringify(defaultTeachers));
         let teacherAccounts = [];
 
-        console.log('%c✅ AGSNHS System loaded with ' + userDatabase.length + ' default accounts', 'color: green; font-weight: bold; font-size: 14px;');
-        console.table(userDatabase.map(u => ({ username: u.username, password: u.password, role: u.role })));
+        let maxStudentsPerDay = 5;
 
         const sections = ['Grade 7 - Section A', 'Grade 7 - Section B', 'Grade 8 - Section A', 'Grade 8 - Section B', 'Grade 9 - Section A', 'Grade 9 - Section B', 'Grade 10 - Section A', 'Grade 10 - Section B'];
 
@@ -1415,10 +1624,8 @@
         let miniCalDate = new Date(2026, 6, 1);
         let miniCalSelectedDate = null;
         let scheduledDate = null;
+        let directorySelectionMode = false;
 
-        // ============================================
-        // HELPERS
-        // ============================================
         function normalizeUsername(name) {
             return name.trim().toLowerCase().replace(/[\s\u00A0]+/g, ' ');
         }
@@ -1436,10 +1643,8 @@
             const shsFields = document.getElementById('shsFields');
             const isSHS = (gradeLevel === 'Grade 11' || gradeLevel === 'Grade 12');
             shsFields.style.display = isSHS ? 'block' : 'none';
-
             document.getElementById('documentsTitle').innerHTML = isSHS ? '5. Document Requirements' : '4. Document Requirements';
             document.getElementById('scheduleTitle').innerHTML = isSHS ? '6. Appointment Schedule' : '5. Appointment Schedule';
-
             if (!isSHS) {
                 document.getElementById('shsTrack').value = '';
                 document.getElementById('shsStrand').innerHTML = '<option value="">-- Select Track First --</option>';
@@ -1452,9 +1657,7 @@
             const track = document.getElementById('shsTrack').value;
             const strandSelect = document.getElementById('shsStrand');
             const avgRow = document.getElementById('generalAverageRow');
-
             strandSelect.innerHTML = '<option value="">-- Select Strand --</option>';
-
             if (track && strandOptions[track]) {
                 strandOptions[track].forEach(strand => {
                     const opt = document.createElement('option');
@@ -1473,15 +1676,14 @@
             const avgRow = document.getElementById('generalAverageRow');
             const avgInput = document.getElementById('generalAverage');
             const hint = document.getElementById('generalAverageHint');
-
             if (strand === 'STEM') {
                 avgRow.style.display = 'flex';
                 avgInput.required = true;
-                hint.innerHTML = '<strong style="color:#dc3545;">STEM requires a General Average of 85 or higher.</strong> Enter your general average.';
+                hint.innerHTML = '<strong style="color:#dc3545;">STEM requires a General Average of 85 or higher.</strong>';
             } else if (strand) {
                 avgRow.style.display = 'flex';
                 avgInput.required = false;
-                hint.textContent = 'Your overall general average from the previous school year (optional).';
+                hint.textContent = 'Optional.';
             } else {
                 avgRow.style.display = 'none';
                 avgInput.value = '';
@@ -1496,30 +1698,13 @@
             const passwordEl = document.getElementById('loginPassword');
             const username = normalizeUsername(usernameEl.value);
             const password = passwordEl.value;
-
-            if (!username || !password) {
-                alert('Please enter both your full name and password.');
-                return;
-            }
-
-            console.log('Login attempt:', JSON.stringify(username), '/', JSON.stringify(password));
-
+            if (!username || !password) { alert('Please enter both your full name and password.'); return; }
             let user = userDatabase.find(u => u.username === username && u.password === password);
             if (!user) user = teacherAccounts.find(u => u.username === username && u.password === password);
-
-            if (!user) {
-                console.warn('❌ Login failed. Available usernames:', userDatabase.map(u => u.username));
-                alert('Invalid name or password. Please try again.');
-                return;
-            }
-
-            console.log('✅ Login successful for:', user.fullName, '(' + user.role + ')');
-
+            if (!user) { alert('Invalid name or password. Please try again.'); return; }
             usernameEl.value = '';
             passwordEl.value = '';
-
             if (user.role === 'admin') {
-                document.getElementById('adminUserName').textContent = user.fullName || 'Admission Staff';
                 showAdmin();
             } else if (user.role === 'teacher') {
                 currentTeacherUser = user;
@@ -1530,16 +1715,11 @@
             }
         }
 
-        // ============================================
-        // FORGOT PASSWORD
-        // ============================================
         function showForgotPassword() {
             document.getElementById('forgotEmail').value = '';
             document.getElementById('forgotModal').classList.add('active');
         }
-        function closeForgotModal() {
-            document.getElementById('forgotModal').classList.remove('active');
-        }
+        function closeForgotModal() { document.getElementById('forgotModal').classList.remove('active'); }
         function recoverPassword() {
             const email = document.getElementById('forgotEmail').value.trim().toLowerCase();
             if (!email) { alert('Please enter your Gmail address.'); return; }
@@ -1547,20 +1727,260 @@
                 (u.studentData && u.studentData.email && u.studentData.email.toLowerCase() === email) ||
                 (u.email && u.email.toLowerCase() === email)
             );
-            if (!user) {
-                alert('No account found with that Gmail address.');
-                return;
-            }
+            if (!user) { alert('No account found with that Gmail address.'); return; }
             alert('Account Found!\n\nName: ' + (user.fullName || user.username) + '\nPassword: ' + user.password);
             closeForgotModal();
         }
 
+        function signOutAdmin() {
+            if (!confirm('Are you sure you want to sign out?')) return;
+            closeAdmin();
+        }
+        function signOutStudent() {
+            if (!confirm('Are you sure you want to sign out?')) return;
+            closeStudent();
+        }
+        function signOutTeacher() {
+            if (!confirm('Are you sure you want to sign out?')) return;
+            closeTeacher();
+        }
+
         // ============================================
-        // SIGN OUT
+        // PROFILE PAGES
         // ============================================
-        function signOutAdmin() { if (!confirm('Are you sure you want to sign out?')) return; closeAdmin(); }
-        function signOutStudent() { if (!confirm('Are you sure you want to sign out?')) return; closeStudent(); }
-        function signOutTeacher() { if (!confirm('Are you sure you want to sign out?')) return; closeTeacher(); }
+        function openProfileModal(title, bodyHTML) {
+            document.getElementById('profileModalTitle').textContent = title;
+            document.getElementById('profileModalBody').innerHTML = bodyHTML;
+            document.getElementById('profileModal').classList.add('active');
+        }
+        function closeProfileModal() { document.getElementById('profileModal').classList.remove('active'); }
+        document.getElementById('profileModal').addEventListener('click', function(e) { if (e.target === this) closeProfileModal(); });
+
+        function openAdminProfile() {
+            const user = userDatabase.find(u => u.role === 'admin');
+            if (!user) return;
+            const body = `
+                <div class="profile-tab-buttons">
+                    <button class="profile-tab-btn active" onclick="switchProfileTab('admin', 'view')">View</button>
+                    <button class="profile-tab-btn" onclick="switchProfileTab('admin', 'edit')">Edit</button>
+                </div>
+                <div id="adminProfileTabContent"></div>
+            `;
+            openProfileModal('My Profile — Admin', body);
+            renderAdminProfileView();
+        }
+
+        function renderAdminProfileView() {
+            const user = userDatabase.find(u => u.role === 'admin');
+            if (!user) return;
+            document.getElementById('adminProfileTabContent').innerHTML = `
+                <div class="profile-info-row"><span class="info-label">Full Name</span><span class="info-value">${user.fullName || '-'}</span></div>
+                <div class="profile-info-row"><span class="info-label">Email Address</span><span class="info-value">${user.email || '-'}</span></div>
+                <div class="profile-info-row"><span class="info-label">Role</span><span class="info-value">Admin / Admission Staff</span></div>
+            `;
+        }
+
+        function switchProfileTab(role, tab) {
+            const buttons = document.querySelectorAll('.profile-tab-btn');
+            buttons.forEach(btn => btn.classList.toggle('active', btn.textContent.toLowerCase() === tab));
+            const content = document.getElementById(role + 'ProfileTabContent');
+            if (!content) return;
+            if (role === 'admin') {
+                if (tab === 'view') renderAdminProfileView();
+                else content.innerHTML = renderAdminProfileEditForm();
+            } else if (role === 'student') {
+                if (tab === 'view') renderStudentProfileView();
+                else content.innerHTML = renderStudentProfileEditForm();
+            } else if (role === 'teacher') {
+                if (tab === 'view') renderTeacherProfileView();
+                else content.innerHTML = renderTeacherProfileEditForm();
+            }
+        }
+
+        function renderAdminProfileEditForm() {
+            const user = userDatabase.find(u => u.role === 'admin');
+            return `
+                <label>Full Name</label>
+                <input type="text" id="profileFullName" value="${user.fullName || ''}">
+                <label>Email Address</label>
+                <input type="email" id="profileEmail" value="${user.email || ''}">
+                <label>New Password (leave blank to keep current)</label>
+                <input type="password" id="profileNewPassword" placeholder="Enter new password">
+                <label>Confirm New Password</label>
+                <input type="password" id="profileConfirmPassword" placeholder="Re-enter new password">
+                <div class="profile-modal-footer" style="padding:0;margin-top:10px;">
+                    <button class="btn-profile-cancel" onclick="switchProfileTab('admin', 'view')">Cancel</button>
+                    <button class="btn-profile-save" onclick="saveAdminProfile()">Save Changes</button>
+                </div>
+            `;
+        }
+
+        function saveAdminProfile() {
+            const user = userDatabase.find(u => u.role === 'admin');
+            if (!user) return;
+            const fullName = document.getElementById('profileFullName').value.trim();
+            const email = document.getElementById('profileEmail').value.trim();
+            const newPass = document.getElementById('profileNewPassword').value;
+            const confirmPass = document.getElementById('profileConfirmPassword').value;
+            if (!fullName || !email) { alert('Full name and email are required.'); return; }
+            if (newPass) {
+                if (newPass.length < 8) { alert('Password must be at least 8 characters.'); return; }
+                if (newPass !== confirmPass) { alert('Passwords do not match.'); return; }
+                user.password = newPass;
+            }
+            user.fullName = fullName;
+            user.email = email;
+            user.username = normalizeUsername(fullName);
+            document.getElementById('adminDropdownName').textContent = fullName;
+            document.getElementById('adminDropdownFullName').textContent = fullName;
+            document.getElementById('adminAvatarInitial').textContent = fullName.charAt(0).toUpperCase();
+            alert('Profile updated successfully!');
+            closeProfileModal();
+        }
+
+        function openStudentProfile() {
+            if (!currentStudentUser) return;
+            const body = `
+                <div class="profile-tab-buttons">
+                    <button class="profile-tab-btn active" onclick="switchProfileTab('student', 'view')">View</button>
+                    <button class="profile-tab-btn" onclick="switchProfileTab('student', 'edit')">Edit</button>
+                </div>
+                <div id="studentProfileTabContent"></div>
+            `;
+            openProfileModal('My Profile — Student', body);
+            renderStudentProfileView();
+        }
+
+        function renderStudentProfileView() {
+            if (!currentStudentUser) return;
+            const s = currentStudentUser.studentData || {};
+            document.getElementById('studentProfileTabContent').innerHTML = `
+                <div class="profile-info-row"><span class="info-label">Full Name</span><span class="info-value">${s.fullName || currentStudentUser.fullName || '-'}</span></div>
+                <div class="profile-info-row"><span class="info-label">LRN</span><span class="info-value">${s.lrn || '-'}</span></div>
+                <div class="profile-info-row"><span class="info-label">Grade Level</span><span class="info-value">${s.gradeLevel || '-'}</span></div>
+                <div class="profile-info-row"><span class="info-label">Section</span><span class="info-value">${s.section || '-'}</span></div>
+                <div class="profile-info-row"><span class="info-label">Email</span><span class="info-value">${s.email || '-'}</span></div>
+                <div class="profile-info-row"><span class="info-label">Phone</span><span class="info-value">${s.phone || '-'}</span></div>
+                <div class="profile-info-row"><span class="info-label">Guardian</span><span class="info-value">${s.guardian || '-'}</span></div>
+            `;
+        }
+
+        function renderStudentProfileEditForm() {
+            const s = currentStudentUser.studentData || {};
+            return `
+                <label>Full Name</label>
+                <input type="text" id="studentProfileFullName" value="${currentStudentUser.fullName || ''}">
+                <label>Email Address</label>
+                <input type="email" id="studentProfileEmail" value="${s.email || ''}">
+                <label>Phone Number</label>
+                <input type="text" id="studentProfilePhone" value="${s.phone || ''}">
+                <label>Guardian Name</label>
+                <input type="text" id="studentProfileGuardian" value="${s.guardian || ''}">
+                <label>New Password (leave blank to keep current)</label>
+                <input type="password" id="studentProfileNewPassword" placeholder="Enter new password">
+                <label>Confirm New Password</label>
+                <input type="password" id="studentProfileConfirmPassword" placeholder="Re-enter new password">
+                <div class="profile-modal-footer" style="padding:0;margin-top:10px;">
+                    <button class="btn-profile-cancel" onclick="switchProfileTab('student', 'view')">Cancel</button>
+                    <button class="btn-profile-save" onclick="saveStudentProfile()">Save Changes</button>
+                </div>
+            `;
+        }
+
+        function saveStudentProfile() {
+            if (!currentStudentUser) return;
+            const fullName = document.getElementById('studentProfileFullName').value.trim();
+            const email = document.getElementById('studentProfileEmail').value.trim();
+            const phone = document.getElementById('studentProfilePhone').value.trim();
+            const guardian = document.getElementById('studentProfileGuardian').value.trim();
+            const newPass = document.getElementById('studentProfileNewPassword').value;
+            const confirmPass = document.getElementById('studentProfileConfirmPassword').value;
+            if (!fullName) { alert('Full name is required.'); return; }
+            if (newPass) {
+                if (newPass.length < 8) { alert('Password must be at least 8 characters.'); return; }
+                if (newPass !== confirmPass) { alert('Passwords do not match.'); return; }
+                currentStudentUser.password = newPass;
+            }
+            currentStudentUser.fullName = fullName;
+            currentStudentUser.username = normalizeUsername(fullName);
+            if (currentStudentUser.studentData) {
+                currentStudentUser.studentData.fullName = fullName;
+                currentStudentUser.studentData.email = email;
+                currentStudentUser.studentData.phone = phone;
+                currentStudentUser.studentData.guardian = guardian;
+            }
+            document.getElementById('studentDropdownName').textContent = fullName;
+            document.getElementById('studentDropdownFullName').textContent = fullName;
+            document.getElementById('studentAvatarInitial').textContent = fullName.charAt(0).toUpperCase();
+            alert('Profile updated successfully!');
+            switchProfileTab('student', 'view');
+        }
+
+        function openTeacherProfile() {
+            if (!currentTeacherUser) return;
+            const body = `
+                <div class="profile-tab-buttons">
+                    <button class="profile-tab-btn active" onclick="switchProfileTab('teacher', 'view')">View</button>
+                    <button class="profile-tab-btn" onclick="switchProfileTab('teacher', 'edit')">Edit</button>
+                </div>
+                <div id="teacherProfileTabContent"></div>
+            `;
+            openProfileModal('My Profile — Teacher', body);
+            renderTeacherProfileView();
+        }
+
+        function renderTeacherProfileView() {
+            if (!currentTeacherUser) return;
+            document.getElementById('teacherProfileTabContent').innerHTML = `
+                <div class="profile-info-row"><span class="info-label">Full Name</span><span class="info-value">${currentTeacherUser.fullName || '-'}</span></div>
+                <div class="profile-info-row"><span class="info-label">Email</span><span class="info-value">${currentTeacherUser.email || '-'}</span></div>
+                <div class="profile-info-row"><span class="info-label">Subject</span><span class="info-value">${currentTeacherUser.subject || '-'}</span></div>
+                <div class="profile-info-row"><span class="info-label">Assigned Sections</span><span class="info-value">${(currentTeacherUser.assignedSections || []).join(', ') || '-'}</span></div>
+            `;
+        }
+
+        function renderTeacherProfileEditForm() {
+            return `
+                <label>Full Name</label>
+                <input type="text" id="teacherProfileFullName" value="${currentTeacherUser.fullName || ''}">
+                <label>Email Address</label>
+                <input type="email" id="teacherProfileEmail" value="${currentTeacherUser.email || ''}">
+                <label>Subject</label>
+                <input type="text" id="teacherProfileSubject" value="${currentTeacherUser.subject || ''}">
+                <label>New Password (leave blank to keep current)</label>
+                <input type="password" id="teacherProfileNewPassword" placeholder="Enter new password">
+                <label>Confirm New Password</label>
+                <input type="password" id="teacherProfileConfirmPassword" placeholder="Re-enter new password">
+                <div class="profile-modal-footer" style="padding:0;margin-top:10px;">
+                    <button class="btn-profile-cancel" onclick="switchProfileTab('teacher', 'view')">Cancel</button>
+                    <button class="btn-profile-save" onclick="saveTeacherProfile()">Save Changes</button>
+                </div>
+            `;
+        }
+
+        function saveTeacherProfile() {
+            if (!currentTeacherUser) return;
+            const fullName = document.getElementById('teacherProfileFullName').value.trim();
+            const email = document.getElementById('teacherProfileEmail').value.trim();
+            const subject = document.getElementById('teacherProfileSubject').value.trim();
+            const newPass = document.getElementById('teacherProfileNewPassword').value;
+            const confirmPass = document.getElementById('teacherProfileConfirmPassword').value;
+            if (!fullName) { alert('Full name is required.'); return; }
+            if (newPass) {
+                if (newPass.length < 8) { alert('Password must be at least 8 characters.'); return; }
+                if (newPass !== confirmPass) { alert('Passwords do not match.'); return; }
+                currentTeacherUser.password = newPass;
+            }
+            currentTeacherUser.fullName = fullName;
+            currentTeacherUser.username = normalizeUsername(fullName);
+            currentTeacherUser.email = email;
+            currentTeacherUser.subject = subject;
+            document.getElementById('teacherDropdownName').textContent = fullName;
+            document.getElementById('teacherDropdownFullName').textContent = fullName;
+            document.getElementById('teacherAvatarInitial').textContent = fullName.charAt(0).toUpperCase();
+            alert('Profile updated successfully!');
+            switchProfileTab('teacher', 'view');
+        }
 
         // ============================================
         // TEACHER DASHBOARD
@@ -1574,7 +1994,9 @@
             document.getElementById('adminPage').style.display = 'none';
             document.getElementById('studentPage').style.display = 'none';
             document.body.style.overflow = 'hidden';
-            document.getElementById('teacherBadgeName').textContent = user.fullName || 'Teacher';
+            document.getElementById('teacherDropdownName').textContent = user.fullName || 'Teacher';
+            document.getElementById('teacherDropdownFullName').textContent = user.fullName || 'Teacher';
+            document.getElementById('teacherAvatarInitial').textContent = (user.fullName || 'T').charAt(0).toUpperCase();
             document.getElementById('teacherHeroTitle').textContent = 'Adviser: ' + (user.fullName || 'Teacher');
             renderTeacherSections(user);
             if (user.assignedSections && user.assignedSections.length > 0) {
@@ -1609,7 +2031,10 @@
         function renderClassList(section) {
             const tbody = document.getElementById('classListBody');
             tbody.innerHTML = '';
-            const students = MASTER_ROSTER[section] || [];
+            const baseStudents = MASTER_ROSTER[section] || [];
+            const addedStudents = mockStudents.filter(s => s.section === section && !baseStudents.some(b => b.lrn === s.lrn))
+                .map(s => ({ name: `${s.lastName}, ${s.firstName} ${s.middleName}`, lrn: s.lrn, grade: s.grade, gender: s.gender, status: s.status }));
+            const students = [...baseStudents, ...addedStudents];
             if (students.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:30px;color:#888;">No students assigned to this section yet.</td></tr>';
                 return;
@@ -1629,115 +2054,78 @@
         }
 
         // ============================================
-        // TEACHER - GENERATE PDF
+        // TEACHER - PDF
         // ============================================
         function generateStudentListPDF() {
             if (!currentTeacherUser) { alert('No teacher logged in.'); return; }
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-
             const teacherName = currentTeacherUser.fullName || 'Teacher';
             const teacherSubject = currentTeacherUser.subject || 'Science';
             const teacherSections = currentTeacherUser.assignedSections || [];
-
-            doc.setFontSize(18);
-            doc.setFont(undefined, 'bold');
+            doc.setFontSize(18); doc.setFont(undefined, 'bold');
             doc.text('Alexis G. Santos National High School', 105, 25, { align: 'center' });
-            doc.setFontSize(12);
-            doc.setFont(undefined, 'normal');
+            doc.setFontSize(12); doc.setFont(undefined, 'normal');
             doc.text('Liciada, Bustos, Bulacan', 105, 33, { align: 'center' });
-
-            doc.setFontSize(14);
-            doc.setFont(undefined, 'bold');
+            doc.setFontSize(14); doc.setFont(undefined, 'bold');
             doc.text('OFFICIAL STUDENT LIST', 105, 50, { align: 'center' });
-
-            doc.setFontSize(11);
-            doc.setFont(undefined, 'normal');
+            doc.setFontSize(11); doc.setFont(undefined, 'normal');
             doc.text('Teacher: ' + teacherName, 105, 60, { align: 'center' });
             doc.text('Subject: ' + teacherSubject, 105, 66, { align: 'center' });
-
             doc.setFontSize(9);
             doc.text('Generated on: ' + new Date().toLocaleString(), 105, 74, { align: 'center' });
-
             doc.addPage();
-
             let isFirstSection = true;
-
             teacherSections.forEach(section => {
-                const students = MASTER_ROSTER[section] || [];
-
-                if (!isFirstSection) {
-                    doc.addPage();
-                }
+                const baseStudents = MASTER_ROSTER[section] || [];
+                const addedStudents = mockStudents.filter(s => s.section === section && !baseStudents.some(b => b.lrn === s.lrn))
+                    .map(s => ({ name: `${s.lastName}, ${s.firstName} ${s.middleName}`, lrn: s.lrn, grade: s.grade, gender: s.gender, status: s.status }));
+                const students = [...baseStudents, ...addedStudents];
+                if (!isFirstSection) doc.addPage();
                 isFirstSection = false;
-
-                doc.setFontSize(14);
-                doc.setFont(undefined, 'bold');
+                doc.setFontSize(14); doc.setFont(undefined, 'bold');
                 doc.setTextColor(25, 135, 84);
                 doc.text(section, 14, 20);
                 doc.setTextColor(0, 0, 0);
-
-                doc.setFontSize(10);
-                doc.setFont(undefined, 'normal');
+                doc.setFontSize(10); doc.setFont(undefined, 'normal');
                 doc.text('Total Students: ' + students.length, 14, 27);
-
                 const boys = students.filter(s => s.gender === 'Male').sort((a, b) => a.name.localeCompare(b.name));
                 const girls = students.filter(s => s.gender === 'Female').sort((a, b) => a.name.localeCompare(b.name));
-
                 let startY = 35;
-
                 if (boys.length > 0) {
-                    doc.setFontSize(11);
-                    doc.setFont(undefined, 'bold');
+                    doc.setFontSize(11); doc.setFont(undefined, 'bold');
                     doc.text('BOYS', 14, startY);
                     doc.setFont(undefined, 'normal');
-
                     const boyRows = boys.map((s, i) => [i + 1, s.name, s.lrn, s.status]);
                     doc.autoTable({
                         startY: startY + 4,
                         head: [['#', 'Name', 'LRN', 'Enrollment Status']],
-                        body: boyRows,
-                        theme: 'grid',
+                        body: boyRows, theme: 'grid',
                         headStyles: { fillColor: [26, 77, 62], textColor: 255, fontStyle: 'bold', fontSize: 9 },
                         bodyStyles: { fontSize: 9 },
                         alternateRowStyles: { fillColor: [240, 253, 244] },
-                        columnStyles: {
-                            0: { cellWidth: 10, halign: 'center' },
-                            1: { cellWidth: 80 },
-                            2: { cellWidth: 40 },
-                            3: { cellWidth: 40, halign: 'center' }
-                        },
+                        columnStyles: { 0: { cellWidth: 10, halign: 'center' }, 1: { cellWidth: 80 }, 2: { cellWidth: 40 }, 3: { cellWidth: 40, halign: 'center' } },
                         margin: { left: 14, right: 14 }
                     });
                     startY = doc.lastAutoTable.finalY + 10;
                 }
-
                 if (girls.length > 0) {
                     if (startY > 240) { doc.addPage(); startY = 20; }
-                    doc.setFontSize(11);
-                    doc.setFont(undefined, 'bold');
+                    doc.setFontSize(11); doc.setFont(undefined, 'bold');
                     doc.text('GIRLS', 14, startY);
                     doc.setFont(undefined, 'normal');
-
                     const girlRows = girls.map((s, i) => [i + 1, s.name, s.lrn, s.status]);
                     doc.autoTable({
                         startY: startY + 4,
                         head: [['#', 'Name', 'LRN', 'Enrollment Status']],
-                        body: girlRows,
-                        theme: 'grid',
+                        body: girlRows, theme: 'grid',
                         headStyles: { fillColor: [26, 77, 62], textColor: 255, fontStyle: 'bold', fontSize: 9 },
                         bodyStyles: { fontSize: 9 },
                         alternateRowStyles: { fillColor: [240, 253, 244] },
-                        columnStyles: {
-                            0: { cellWidth: 10, halign: 'center' },
-                            1: { cellWidth: 80 },
-                            2: { cellWidth: 40 },
-                            3: { cellWidth: 40, halign: 'center' }
-                        },
+                        columnStyles: { 0: { cellWidth: 10, halign: 'center' }, 1: { cellWidth: 80 }, 2: { cellWidth: 40 }, 3: { cellWidth: 40, halign: 'center' } },
                         margin: { left: 14, right: 14 }
                     });
                 }
-
                 const pageCount = doc.internal.getNumberOfPages();
                 for (let i = 1; i <= pageCount; i++) {
                     doc.setPage(i);
@@ -1746,7 +2134,6 @@
                     doc.text('AGSNHS Enrollment System - Page ' + i + ' of ' + pageCount, 105, 290, { align: 'center' });
                 }
             });
-
             doc.save('Student_List_' + teacherName.replace(/[^a-zA-Z0-9]/g, '_') + '.pdf');
         }
 
@@ -1762,7 +2149,9 @@
             document.getElementById('adminPage').style.display = 'none';
             document.getElementById('teacherPage').style.display = 'none';
             document.body.style.overflow = 'hidden';
-            document.getElementById('studentUserName').textContent = user.fullName || 'Student';
+            document.getElementById('studentDropdownName').textContent = user.fullName || 'Student';
+            document.getElementById('studentDropdownFullName').textContent = user.fullName || 'Student';
+            document.getElementById('studentAvatarInitial').textContent = (user.fullName || 'S').charAt(0).toUpperCase();
             renderStudentDashboard(user);
         }
         function closeStudent() {
@@ -1792,12 +2181,15 @@
             const apptContent = document.getElementById('appointmentContent');
             if (user.appointment) {
                 const a = user.appointment;
+                const statusClass = a.status === 'pending' ? 'pending' : a.status === 'rejected' ? 'rejected' : 'approved';
+                const statusText = a.status === 'pending' ? 'Pending Approval' : a.status === 'rejected' ? 'Rejected' : 'Approved';
                 apptContent.innerHTML = `
                     <div class="appointment-box">
                         <div class="appt-type"></div>
                         <div class="appt-date"></div>
                         <div class="appt-time"></div>
                         <div class="appt-location"></div>
+                        <div class="appt-status ${statusClass}"></div>
                     </div>
                     <button class="btn-reschedule" onclick="openRescheduleModal()">Request a Reschedule</button>
                 `;
@@ -1806,6 +2198,7 @@
                 box.querySelector('.appt-date').textContent = a.date;
                 box.querySelector('.appt-time').textContent = 'Time Slot: ' + a.time;
                 box.querySelector('.appt-location').textContent = 'Location: ' + a.location;
+                box.querySelector('.appt-status').textContent = statusText;
             } else {
                 apptContent.innerHTML = `<div class="no-appointment"><p>You have no scheduled appointments yet.</p><button class="btn-reschedule" onclick="closeStudent(); showEnrollment();">Book an Appointment</button></div>`;
             }
@@ -1845,8 +2238,7 @@
                 e.className = 'mini-cal-day empty';
                 grid.appendChild(e);
             }
-            const today = new Date();
-            today.setHours(0,0,0,0);
+            const today = new Date(); today.setHours(0,0,0,0);
             for (let day = 1; day <= daysInMonth; day++) {
                 const dateObj = new Date(year, month, day);
                 const dateStr = formatDate(dateObj);
@@ -1893,13 +2285,15 @@
                     preferredDate: formatDateLong(miniCalSelectedDate),
                     preferredDateRaw: miniCalSelectedDate,
                     reason: reason,
-                    requestedAt: new Date().toLocaleString()
+                    requestedAt: new Date().toLocaleString(),
+                    status: 'pending'
                 };
                 const dbEntry = userDatabase.find(u => u.username === currentStudentUser.username);
                 if (dbEntry) { dbEntry.rescheduleRequest = currentStudentUser.rescheduleRequest; }
+                if (currentStudentUser.appointment) currentStudentUser.appointment.status = 'pending';
             }
             closeRescheduleModal();
-            showPopup('Reschedule Request Submitted', 'Your reschedule request for ' + formatDateLong(miniCalSelectedDate) + ' has been submitted.', 'success');
+            showPopup('Reschedule Request Submitted', 'Your reschedule request for ' + formatDateLong(miniCalSelectedDate) + ' has been submitted and is pending approval.', 'success');
         }
 
         // ============================================
@@ -1969,7 +2363,7 @@
         }
         function closePreview() { document.getElementById('previewBody').innerHTML = ''; document.getElementById('previewOverlay').classList.remove('active'); }
         document.getElementById('previewOverlay').addEventListener('click', function(e) { if (e.target === this) closePreview(); });
-        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closePreview(); closeRescheduleModal(); } });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closePreview(); closeRescheduleModal(); closeProfileModal(); } });
 
         // ============================================
         // NAVIGATION
@@ -2049,6 +2443,12 @@
             document.getElementById('studentPage').style.display = 'none';
             document.getElementById('teacherPage').style.display = 'none';
             document.body.style.overflow = 'hidden';
+            const user = userDatabase.find(u => u.role === 'admin');
+            if (user) {
+                document.getElementById('adminDropdownName').textContent = user.fullName || 'Admin';
+                document.getElementById('adminDropdownFullName').textContent = user.fullName || 'Admin';
+                document.getElementById('adminAvatarInitial').textContent = (user.fullName || 'A').charAt(0).toUpperCase();
+            }
             renderAdminDashboard();
         }
         function closeAdmin() {
@@ -2116,13 +2516,9 @@
             });
         }
 
-        // ============================================
-        // TEACHER DETAILS (no back button — just close X)
-        // ============================================
         function showTeacherStudents(idx) {
             const t = teachers[idx];
             if (!t) return;
-
             const sampleStudents = MASTER_ROSTER[t.section] || [];
             const content = `
                 <div class="student-profile-header">
@@ -2141,7 +2537,11 @@
             openAdminModal('Teacher Details', content);
         }
 
-        function openAdminModal(title, contentHTML) { document.getElementById('adminModalTitle').textContent = title; document.getElementById('adminModalBody').innerHTML = contentHTML; document.getElementById('adminModal').classList.add('active'); }
+        function openAdminModal(title, contentHTML) {
+            document.getElementById('adminModalTitle').textContent = title;
+            document.getElementById('adminModalBody').innerHTML = contentHTML;
+            document.getElementById('adminModal').classList.add('active');
+        }
         function closeAdminModal() { document.getElementById('adminModal').classList.remove('active'); }
         document.getElementById('adminModal').addEventListener('click', function(e) { if (e.target === this) closeAdminModal(); });
 
@@ -2150,6 +2550,9 @@
         // ============================================
         function openDirectory() {
             syncRescheduleToMock();
+            directorySelectionMode = false;
+            // Show the header dots button in the directory view
+            document.getElementById('headerDotsBtn').style.display = 'inline-flex';
             openAdminModal('Student Directory', `
                 <div class="directory-search">
                     <input type="text" id="dirSearchInput" placeholder="Search by name or LRN..." oninput="filterDirectory()">
@@ -2175,6 +2578,7 @@
                         <option value="lrn">LRN</option>
                     </select>
                 </div>
+                <div id="directoryActionBar" class="directory-action-bar"></div>
                 <table class="directory-table" id="directoryTable">
                     <thead>
                         <tr>
@@ -2193,6 +2597,7 @@
 
         function renderDirectoryRows() {
             const body = document.getElementById('directoryBody');
+            if (!body) return;
             body.innerHTML = '';
             const gradeFilter = document.getElementById('dirGradeFilter').value;
             const statusFilter = document.getElementById('dirStatusFilter').value;
@@ -2248,15 +2653,29 @@
                 viewBtn.className = 'btn-action btn-view-student';
                 viewBtn.textContent = 'View';
                 viewBtn.onclick = function() { viewStudent(s.id); };
+                const editBtn = document.createElement('button');
+                editBtn.className = 'btn-action btn-edit-student';
+                editBtn.textContent = 'Edit';
+                editBtn.onclick = function() { editStudent(s.id); };
                 const assignBtn = document.createElement('button');
                 assignBtn.className = 'btn-action btn-assign';
                 assignBtn.textContent = 'Assign';
                 assignBtn.onclick = function() { openAssignTeacher(s.id); };
-                const deleteBtn = document.createElement('button');
-                deleteBtn.className = 'btn-action btn-delete-student';
-                deleteBtn.textContent = 'Delete';
-                deleteBtn.onclick = function() { deleteStudent(s.id); };
-                td5.appendChild(viewBtn); td5.appendChild(assignBtn); td5.appendChild(deleteBtn);
+
+                td5.appendChild(viewBtn);
+                td5.appendChild(editBtn);
+                td5.appendChild(assignBtn);
+
+                if (directorySelectionMode) {
+                    const checkWrap = document.createElement('label');
+                    checkWrap.className = 'row-checkbox-wrap';
+                    const cb = document.createElement('input');
+                    cb.type = 'checkbox';
+                    cb.dataset.studentId = s.id;
+                    cb.onchange = function() { updateDirectorySelectionState(); };
+                    checkWrap.appendChild(cb);
+                    td5.appendChild(checkWrap);
+                }
 
                 tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3); tr.appendChild(td4); tr.appendChild(td5);
                 body.appendChild(tr);
@@ -2265,24 +2684,105 @@
             if (filtered.length === 0) {
                 body.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:30px;color:#888;">No students match the current filters.</td></tr>';
             }
+
+            renderDirectoryActionBar();
+        }
+
+        function renderDirectoryActionBar() {
+            const bar = document.getElementById('directoryActionBar');
+            if (!bar) return;
+            if (directorySelectionMode) {
+                bar.innerHTML = `
+                    <button class="btn-cancel-select" onclick="toggleDirectorySelectionMode(false)">Cancel</button>
+                    <button class="btn-delete-selected" id="deleteSelectedStudentsBtn" onclick="deleteSelectedStudents()" disabled>Delete Selected</button>
+                `;
+            } else {
+                bar.innerHTML = '';
+            }
+        }
+
+        function toggleDirectorySelectionMode(enable) {
+            directorySelectionMode = enable;
+            const headerDots = document.getElementById('headerDotsBtn');
+            if (headerDots) headerDots.style.display = enable ? 'none' : 'inline-flex';
+            renderDirectoryRows();
+        }
+
+        function updateDirectorySelectionState() {
+            const checked = document.querySelectorAll('#directoryBody input[type="checkbox"]:checked');
+            const btn = document.getElementById('deleteSelectedStudentsBtn');
+            if (!btn) return;
+            btn.disabled = checked.length === 0;
+            btn.textContent = checked.length > 0 ? `Delete Selected (${checked.length})` : 'Delete Selected';
+        }
+
+        function deleteSelectedStudents() {
+            const checked = document.querySelectorAll('#directoryBody input[type="checkbox"]:checked');
+            if (checked.length === 0) return;
+            if (!confirm(`Are you sure you want to delete ${checked.length} student(s)? This cannot be undone.`)) return;
+            const ids = Array.from(checked).map(cb => parseInt(cb.dataset.studentId));
+            ids.forEach(id => {
+                const s = mockStudents.find(x => x.id === id);
+                if (s) {
+                    userDatabase = userDatabase.filter(u => !(u.role === 'student' && u.studentData && u.studentData.lrn === s.lrn));
+                }
+            });
+            mockStudents = mockStudents.filter(x => !ids.includes(x.id));
+            directorySelectionMode = false;
+            document.getElementById('headerDotsBtn').style.display = 'inline-flex';
+            alert('Selected student(s) deleted successfully.');
+            renderDirectoryRows();
+            renderAdminDashboard();
         }
 
         function filterDirectory() { renderDirectoryRows(); }
 
-        function deleteStudent(id) {
+        function editStudent(id) {
             const s = mockStudents.find(x => x.id === id);
             if (!s) return;
-            if (!confirm('Are you sure you want to delete ' + s.firstName + ' ' + s.lastName + '? This cannot be undone.')) return;
-            mockStudents = mockStudents.filter(x => x.id !== id);
-            userDatabase = userDatabase.filter(u => !(u.role === 'student' && u.studentData && u.studentData.lrn === s.lrn));
-            alert('Student deleted successfully.');
-            renderDirectoryRows();
-            renderAdminDashboard();
+            const content = `
+                <button class="btn-back-directory" onclick="openDirectory()">&larr; Back to Directory</button>
+                <div class="profile-section-title">Edit Student Information</div>
+                <div class="row">
+                    <div class="col-md-4 mb-2"><label class="form-label-sm">First Name</label><input type="text" class="form-control form-control-sm" id="editFirstName" value="${s.firstName}"></div>
+                    <div class="col-md-4 mb-2"><label class="form-label-sm">Middle Name</label><input type="text" class="form-control form-control-sm" id="editMiddleName" value="${s.middleName}"></div>
+                    <div class="col-md-4 mb-2"><label class="form-label-sm">Last Name</label><input type="text" class="form-control form-control-sm" id="editLastName" value="${s.lastName}"></div>
+                    <div class="col-md-4 mb-2"><label class="form-label-sm">LRN</label><input type="text" class="form-control form-control-sm" id="editLrn" value="${s.lrn}"></div>
+                    <div class="col-md-4 mb-2"><label class="form-label-sm">Grade</label><select class="form-select form-select-sm" id="editGrade"><option ${s.grade==='Grade 7'?'selected':''}>Grade 7</option><option ${s.grade==='Grade 8'?'selected':''}>Grade 8</option><option ${s.grade==='Grade 9'?'selected':''}>Grade 9</option><option ${s.grade==='Grade 10'?'selected':''}>Grade 10</option><option ${s.grade==='Grade 11'?'selected':''}>Grade 11</option><option ${s.grade==='Grade 12'?'selected':''}>Grade 12</option></select></div>
+                    <div class="col-md-4 mb-2"><label class="form-label-sm">Section</label><input type="text" class="form-control form-control-sm" id="editSection" value="${s.section || ''}"></div>
+                    <div class="col-md-4 mb-2"><label class="form-label-sm">Phone</label><input type="text" class="form-control form-control-sm" id="editPhone" value="${s.phone}"></div>
+                    <div class="col-md-4 mb-2"><label class="form-label-sm">Email</label><input type="email" class="form-control form-control-sm" id="editEmail" value="${s.email}"></div>
+                    <div class="col-md-4 mb-2"><label class="form-label-sm">Guardian</label><input type="text" class="form-control form-control-sm" id="editGuardian" value="${s.guardian}"></div>
+                </div>
+                <div class="d-flex justify-content-end gap-2 mt-3">
+                    <button class="btn btn-outline-secondary btn-sm" onclick="openDirectory()">Cancel</button>
+                    <button class="btn-assign-confirm" onclick="saveEditedStudent(${s.id})">Save Changes</button>
+                </div>
+            `;
+            openAdminModal('Edit Student', content);
+            document.getElementById('headerDotsBtn').style.display = 'none';
+        }
+
+        function saveEditedStudent(id) {
+            const s = mockStudents.find(x => x.id === id);
+            if (!s) return;
+            s.firstName = document.getElementById('editFirstName').value.trim();
+            s.middleName = document.getElementById('editMiddleName').value.trim();
+            s.lastName = document.getElementById('editLastName').value.trim();
+            s.lrn = document.getElementById('editLrn').value.trim();
+            s.grade = document.getElementById('editGrade').value;
+            s.section = document.getElementById('editSection').value.trim();
+            s.phone = document.getElementById('editPhone').value.trim();
+            s.email = document.getElementById('editEmail').value.trim();
+            s.guardian = document.getElementById('editGuardian').value.trim();
+            alert('Student information updated!');
+            openDirectory();
         }
 
         function viewStudent(id) {
             const s = mockStudents.find(x => x.id === id);
             if (!s) return;
+            document.getElementById('headerDotsBtn').style.display = 'none';
             const statusClass = s.status === 'Pending' ? 'status-pending' : 'status-enrolled';
             const initials = (s.firstName[0] + s.lastName[0]).toUpperCase();
             const docPSA = s.docs.psa ? '<span class="doc-status">Uploaded</span>' : '<span class="doc-status" style="background:#f8d7da;color:#842029">Missing</span>';
@@ -2350,7 +2850,12 @@
             s.hasRescheduleRequest = false;
             s.rescheduleRequest = null;
             s.actionRequired = 'Schedule Interview';
-            userDatabase.forEach(u => { if (u.role === 'student' && u.studentData.lrn === s.lrn) u.rescheduleRequest = null; });
+            userDatabase.forEach(u => {
+                if (u.role === 'student' && u.studentData.lrn === s.lrn) {
+                    u.rescheduleRequest = null;
+                    if (u.appointment) u.appointment.status = 'approved';
+                }
+            });
             alert('Reschedule request approved!');
             closeAdminModal();
             renderAdminDashboard();
@@ -2361,7 +2866,12 @@
             if (!confirm('Are you sure you want to reject this reschedule request?')) return;
             s.hasRescheduleRequest = false;
             s.rescheduleRequest = null;
-            userDatabase.forEach(u => { if (u.role === 'student' && u.studentData.lrn === s.lrn) u.rescheduleRequest = null; });
+            userDatabase.forEach(u => {
+                if (u.role === 'student' && u.studentData.lrn === s.lrn) {
+                    u.rescheduleRequest = null;
+                    if (u.appointment) u.appointment.status = 'rejected';
+                }
+            });
             alert('Reschedule request rejected.');
             closeAdminModal();
             renderAdminDashboard();
@@ -2372,15 +2882,60 @@
             const selectedSection = document.getElementById('assignSectionSelect').value;
             if (!selectedSection) { alert('Please select a section to assign this student.'); return; }
             s.section = selectedSection;
+            const studentName = `${s.lastName}, ${s.firstName} ${s.middleName}`;
+            if (!MASTER_ROSTER[selectedSection]) MASTER_ROSTER[selectedSection] = [];
+            if (!MASTER_ROSTER[selectedSection].some(x => x.lrn === s.lrn)) {
+                MASTER_ROSTER[selectedSection].push({
+                    name: studentName,
+                    lrn: s.lrn,
+                    grade: s.grade,
+                    gender: s.gender,
+                    status: s.status
+                });
+            }
+            const teacherObj = teachers.find(t => t.section === selectedSection);
+            if (teacherObj) {
+                teacherObj.count = (MASTER_ROSTER[selectedSection] || []).length;
+            }
             alert('Student assigned to ' + selectedSection + ' successfully!');
             closeAdminModal();
             openDirectory();
         }
 
         // ============================================
+        // MAX SLOT LIMIT
+        // ============================================
+        function openMaxLimitSettings() {
+            document.getElementById('headerDotsBtn').style.display = 'none';
+            const content = `
+                <p class="text-muted small mb-3">Set the maximum number of students allowed to book an appointment per day.</p>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label-sm">Maximum Students Per Day <span class="req">*</span></label>
+                        <input type="number" class="form-control form-control-sm" id="maxLimitInput" value="${maxStudentsPerDay}" min="1" max="100">
+                        <span class="field-hint">Current limit: ${maxStudentsPerDay} students per day.</span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end gap-2 mt-3">
+                    <button class="btn btn-outline-secondary btn-sm" onclick="closeAdminModal()">Cancel</button>
+                    <button class="btn-assign-confirm" onclick="saveMaxLimit()">Save Limit</button>
+                </div>
+            `;
+            openAdminModal('Daily Slot Limit Settings', content);
+        }
+        function saveMaxLimit() {
+            const val = parseInt(document.getElementById('maxLimitInput').value);
+            if (!val || val < 1 || val > 100) { alert('Please enter a valid number between 1 and 100.'); return; }
+            maxStudentsPerDay = val;
+            alert('Daily limit updated to ' + val + ' students per day.');
+            closeAdminModal();
+        }
+
+        // ============================================
         // NEW ENROLLMENT (WALK-IN)
         // ============================================
         function openNewEnrollment() {
+            document.getElementById('headerDotsBtn').style.display = 'none';
             const content = `
                 <p class="text-muted small mb-3">Register a new student who walked in to the admission office.</p>
                 <div class="row">
@@ -2389,7 +2944,7 @@
                     <div class="col-md-4 mb-2"><label class="form-label-sm">Last Name <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newLastName" placeholder="Last name"></div>
                     <div class="col-md-4 mb-2"><label class="form-label-sm">Date of Birth <span class="req">*</span></label><input type="date" class="form-control form-control-sm" id="newDob"></div>
                     <div class="col-md-4 mb-2"><label class="form-label-sm">Gender <span class="req">*</span></label><select class="form-select form-select-sm" id="newGender"><option value="">-- Select --</option><option>Male</option><option>Female</option></select></div>
-                    <div class="col-md-4 mb-2"><label class="form-label-sm">LRN <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newLrn" placeholder="12-digit LRN"></div>
+                    <div class="col-md-4 mb-2"><label class="form-label-sm">LRN</label><input type="text" class="form-control form-control-sm" id="newLrn" placeholder="12-digit LRN if known"></div>
                     <div class="col-md-6 mb-2"><label class="form-label-sm">Home Address <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newAddress" placeholder="Complete address"></div>
                     <div class="col-md-6 mb-2"><label class="form-label-sm">Phone Number <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newPhone" placeholder="+63 912 345 6789"></div>
                     <div class="col-md-6 mb-2"><label class="form-label-sm">Guardian Full Name <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newGuardian" placeholder="Parent / Guardian name"></div>
@@ -2419,10 +2974,26 @@
             const guardianContact = document.getElementById('newGuardianContact').value.trim();
             const grade = document.getElementById('newGrade').value;
             const section = document.getElementById('newSection').value;
-            if (!fn || !mn || !ln || !dob || !gender || !lrn || !address || !phone || !guardian || !guardianContact || !grade) { alert('Please fill in all required fields.'); return; }
+            if (!fn || !mn || !ln || !dob || !gender || !address || !phone || !guardian || !guardianContact || !grade) { alert('Please fill in all required fields.'); return; }
             const newId = Math.max(...mockStudents.map(s => s.id), 0) + 1;
-            mockStudents.push({ id: newId, firstName: fn, middleName: mn, lastName: ln, grade, section, lrn, gender, dob, address, phone, email: '-', guardian, guardianContact, status: 'Pending', timeReceived: 'Just now', actionRequired: 'Documents Review', docs: { psa: false, report: false, moral: false }, hasRescheduleRequest: false });
-            alert('Student registered successfully!');
+            const newLrn = lrn || '—';
+            mockStudents.push({ id: newId, firstName: fn, middleName: mn, lastName: ln, grade, section, lrn: newLrn, gender, dob, address, phone, email: '-', guardian, guardianContact, status: 'Pending', timeReceived: 'Just now', actionRequired: 'Documents Review', docs: { psa: false, report: false, moral: false }, hasRescheduleRequest: false });
+            if (section) {
+                const studentName = `${ln}, ${fn} ${mn}`;
+                if (!MASTER_ROSTER[section]) MASTER_ROSTER[section] = [];
+                if (!MASTER_ROSTER[section].some(x => x.lrn === newLrn)) {
+                    MASTER_ROSTER[section].push({
+                        name: studentName,
+                        lrn: newLrn,
+                        grade: grade,
+                        gender: gender,
+                        status: 'Pending'
+                    });
+                }
+                const teacherObj = teachers.find(t => t.section === section);
+                if (teacherObj) teacherObj.count = (MASTER_ROSTER[section] || []).length;
+            }
+            alert('Student registered successfully!' + (section ? '\nAssigned to ' + section : ''));
             closeAdminModal();
             renderAdminDashboard();
         }
@@ -2431,6 +3002,7 @@
         // TEACHER ACCOUNT REGISTRATION
         // ============================================
         function openTeacherAccountReg() {
+            document.getElementById('headerDotsBtn').style.display = 'none';
             const content = `
                 <p class="text-muted small mb-3">Create a new teacher account. The teacher can use their full name and password to log in.</p>
                 <div class="row">
@@ -2438,23 +3010,17 @@
                     <div class="col-md-6 mb-2"><label class="form-label-sm">Email Address <span class="req">*</span></label><input type="email" class="form-control form-control-sm" id="regTeacherEmail" placeholder="teacher@agsnhs.edu.ph"></div>
                     <div class="col-md-6 mb-2"><label class="form-label-sm">Password <span class="req">*</span></label>
                         <div class="password-wrapper sm">
-                            <input type="password" class="form-control form-control-sm" id="regTeacherPassword" placeholder="Create a password (min. 8 characters)">
-                            <button type="button" class="password-toggle" onclick="togglePassword('regTeacherPassword', this)" title="Show Password" aria-label="Toggle password visibility">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                    <circle cx="12" cy="12" r="3"></circle>
-                                </svg>
+                            <input type="password" class="form-control form-control-sm" id="regTeacherPassword" placeholder="Min. 8 characters">
+                            <button type="button" class="password-toggle" onclick="togglePassword('regTeacherPassword', this)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </button>
                         </div>
                     </div>
                     <div class="col-md-6 mb-2"><label class="form-label-sm">Confirm Password <span class="req">*</span></label>
                         <div class="password-wrapper sm">
                             <input type="password" class="form-control form-control-sm" id="regTeacherConfirmPassword" placeholder="Re-enter password">
-                            <button type="button" class="password-toggle" onclick="togglePassword('regTeacherConfirmPassword', this)" title="Show Password" aria-label="Toggle password visibility">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                    <circle cx="12" cy="12" r="3"></circle>
-                                </svg>
+                            <button type="button" class="password-toggle" onclick="togglePassword('regTeacherConfirmPassword', this)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                             </button>
                         </div>
                     </div>
@@ -2518,8 +3084,7 @@
                 e.className = 'calendar-day empty';
                 grid.appendChild(e);
             }
-            const today = new Date();
-            today.setHours(0,0,0,0);
+            const today = new Date(); today.setHours(0,0,0,0);
             for (let day = 1; day <= daysInMonth; day++) {
                 const cell = document.createElement('div');
                 cell.className = 'calendar-day';
@@ -2681,7 +3246,7 @@
         document.getElementById('popupOverlay').addEventListener('click', function(e) { if (e.target === this) closePopup(); });
 
         // ============================================
-        // VALIDATION
+        // VALIDATION & SUBMIT
         // ============================================
         function clearErrors() {
             document.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
@@ -2690,9 +3255,7 @@
         }
         function clearFieldError(event) {
             const target = event.target;
-            if (target && target.classList && target.classList.contains('error')) {
-                target.classList.remove('error');
-            }
+            if (target && target.classList && target.classList.contains('error')) target.classList.remove('error');
             const uploadParent = target.closest && target.closest('.upload-item.error');
             if (uploadParent) uploadParent.classList.remove('error');
         }
@@ -2731,8 +3294,7 @@
             if (!dob.value) { return showError('Date of Birth is required.', dob); }
             if (!gender.value) { return showError('Please select your Gender.', gender); }
             const lrnClean = lrn.value.replace(/[^0-9]/g, '');
-            if (!lrnClean) { return showError('LRN is required.', lrn); }
-            if (lrnClean.length < 10 || lrnClean.length > 12) { return showError('LRN must be 10 to 12 digits long.', lrn); }
+            if (lrnClean && (lrnClean.length < 10 || lrnClean.length > 12)) { return showError('LRN must be 10 to 12 digits long.', lrn); }
 
             const address = document.getElementById('address');
             const phone = document.getElementById('phone');
@@ -2765,19 +3327,12 @@
                 if (!strandEl.value) { return showError('Please select a Strand.', strandEl); }
                 shsTrack = trackEl.value;
                 shsStrand = strandEl.value;
-
                 if (shsStrand === 'STEM') {
                     const avgVal = parseFloat(avgEl.value);
-                    if (!avgEl.value || isNaN(avgVal)) {
-                        return showError('General Average is required for STEM applicants.', avgEl);
-                    }
-                    if (avgVal < STEM_MINIMUM_AVERAGE) {
-                        return showError('STEM applicants must have a General Average of ' + STEM_MINIMUM_AVERAGE + ' or higher. Your average is ' + avgVal + '.', avgEl);
-                    }
+                    if (!avgEl.value || isNaN(avgVal)) return showError('General Average is required for STEM applicants.', avgEl);
+                    if (avgVal < STEM_MINIMUM_AVERAGE) return showError('STEM applicants must have a General Average of ' + STEM_MINIMUM_AVERAGE + ' or higher.', avgEl);
                     generalAverage = avgVal;
-                } else if (avgEl.value) {
-                    generalAverage = parseFloat(avgEl.value);
-                }
+                } else if (avgEl.value) generalAverage = parseFloat(avgEl.value);
             }
 
             if (!uploadedFiles.psa) { document.getElementById('upload-psa').classList.add('error'); document.getElementById('upload-psa').scrollIntoView({ behavior: 'smooth', block: 'center' }); return showError('PSA Birth Certificate is required.'); }
@@ -2794,7 +3349,7 @@
             const fn = firstName.value.trim();
             const mn = middleName.value.trim();
             const ln = lastName.value.trim();
-            const newLrn = lrnClean;
+            const newLrn = lrnClean || '—';
             const newId = Math.max(...mockStudents.map(s => s.id), 0) + 1;
             const fullName = fn + ' ' + mn + ' ' + ln;
             const accountUsername = normalizeUsername(fullName);
@@ -2813,11 +3368,8 @@
             });
 
             userDatabase.push({
-                username: accountUsername,
-                password: password.value,
-                role: 'student',
-                fullName: fullName,
-                email: accountEmail.value.trim(),
+                username: accountUsername, password: password.value, role: 'student',
+                fullName: fullName, email: accountEmail.value.trim(),
                 studentData: {
                     firstName: fn, middleName: mn, lastName: ln, fullName: fullName,
                     lrn: newLrn, gradeLevel: gradeLevel.value,
@@ -2830,12 +3382,13 @@
                     type: 'Passing of Enrollment Form',
                     date: formatDateLong(scheduledDate),
                     time: '8:00 AM - 3:00 PM',
-                    location: 'Admission Office, Main Building.'
+                    location: 'Admission Office, Main Building.',
+                    status: 'pending'
                 },
                 rescheduleRequest: null
             });
 
-            showPopup('Enrollment Submitted!', 'Account created successfully.', 'success', function() {
+            showPopup('Enrollment Submitted!', 'Account created successfully. Your appointment is pending approval.', 'success', function() {
                 document.getElementById('enrollmentForm').reset();
                 ['psa','report','moral'].forEach(d => removeFileSilent(d));
                 scheduledDate = null;
