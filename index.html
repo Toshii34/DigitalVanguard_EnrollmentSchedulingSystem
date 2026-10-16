@@ -349,7 +349,17 @@
             cursor: pointer; transition: 0.2s; line-height: 1;
         }
         .btn-dots:hover { background-color: #b02a37; border-color: #b02a37; }
-        .directory-action-bar { display: flex; justify-content: flex-end; gap: 8px; margin-bottom: 10px; }
+        /* NEW: action bar aligned with table header */
+        .directory-action-bar { display: flex; justify-content: flex-end; align-items: center; gap: 8px; padding: 0 0 6px 0; }
+        .directory-header-row {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+            margin-bottom: 2px;
+            min-height: 30px;
+        }
         .btn-cancel-select { background-color: white; color: #666; border: 1px solid #ccc; padding: 6px 14px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; cursor: pointer; }
         .btn-cancel-select:hover { background-color: #f8f9fa; }
         .btn-delete-selected { background-color: #dc3545; color: white; border: none; padding: 6px 14px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: 0.2s; }
@@ -652,7 +662,6 @@
                 <div class="events-carousel-bg"></div>
                 <button class="event-nav-btn prev" onclick="changeEventSlide(-1)" aria-label="Previous">&lsaquo;</button>
                 <div class="events-carousel-inner">
-                    <!-- Slide 1: National Teachers' Month -->
                     <div class="event-slide active" data-slide="0">
                         <img src="event-teachers-month.png" alt="National Teachers' Month 2026"
                              onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('afterbegin', '<div class=\'event-placeholder\'>National Teachers\' Month 2026<br><br>Add file: event-teachers-month.png</div>');">
@@ -661,7 +670,6 @@
                             <p>September 5 – October 5, 2026</p>
                         </div>
                     </div>
-                    <!-- Slide 2: Welcome Alexians to Term 2 -->
                     <div class="event-slide" data-slide="1">
                         <img src="event-welcome-term2.png" alt="Welcome Alexians to Term 2"
                              onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('afterbegin', '<div class=\'event-placeholder\'>Welcome Alexians to Term 2<br><br>Add file: event-welcome-term2.png</div>');">
@@ -670,7 +678,6 @@
                             <p>September 16, 2026</p>
                         </div>
                     </div>
-                    <!-- Slide 3: A Value A Month -->
                     <div class="event-slide" data-slide="2">
                         <img src="event-value-month.png" alt="A Value A Month - August 2026"
                              onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('afterbegin', '<div class=\'event-placeholder\'>A Value A Month — August 2026<br><br>Add file: event-value-month.png</div>');">
@@ -876,8 +883,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label class="form-label-sm">Primary Phone Number <span class="req">*</span></label>
-                            <input type="text" class="form-control form-control-sm" id="phone" placeholder="Enter your phone number" inputmode="tel">
-                            <span class="field-hint">Active mobile number.</span>
+                            <input type="text" class="form-control form-control-sm" id="phone" placeholder="09123456789" inputmode="numeric" maxlength="13">
+                            <span class="field-hint">11–12 digits only (e.g., 09123456789).</span>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label-sm">Email Address <span class="req">*</span></label>
@@ -893,8 +900,8 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label-sm">Parent / Guardian Emergency Contact <span class="req">*</span></label>
-                            <input type="text" class="form-control form-control-sm" id="guardianContact" placeholder="Enter emergency contact number" inputmode="tel">
-                            <span class="field-hint">Reachable number in case of emergency.</span>
+                            <input type="text" class="form-control form-control-sm" id="guardianContact" placeholder="09123456789" inputmode="numeric" maxlength="13">
+                            <span class="field-hint">11–12 digits only.</span>
                         </div>
                     </div>
 
@@ -1283,9 +1290,7 @@
         <div class="admin-modal">
             <div class="admin-modal-header">
                 <h3 id="adminModalTitle">Student Directory</h3>
-                <!-- 3-dots button on top of the title (in the header) -->
-                <button class="btn-dots" id="headerDotsBtn" onclick="toggleDirectorySelectionMode(true)" title="Select students to delete" style="display:none; margin-left:12px;">⋮</button>
-                <button class="admin-modal-close" onclick="closeAdminModal()" style="margin-left:8px;">&times;</button>
+                <button class="admin-modal-close" onclick="closeAdminModal()">&times;</button>
             </div>
             <div class="admin-modal-body" id="adminModalBody"></div>
         </div>
@@ -1356,7 +1361,6 @@
             showEventSlide(newIndex);
         }
         function goToEventSlide(index) { showEventSlide(index); }
-        // Auto-rotate every 6 seconds
         setInterval(() => { changeEventSlide(1); }, 6000);
 
         // ============================================
@@ -1372,18 +1376,13 @@
         function closeAllProfileDropdowns() {
             document.querySelectorAll('.profile-dropdown-menu').forEach(m => m.classList.remove('active'));
         }
-        // Close dropdown when clicking outside — but NOT when clicking inside the dropdown
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.profile-dropdown-wrap')) closeAllProfileDropdowns();
         });
 
-        // Wrapper that closes the dropdown, then safely runs the action after a tick.
-        // This prevents the document click handler from swallowing the button's click.
         function handleDropdownAction(e, actionFn) {
             if (e) { e.stopPropagation(); e.preventDefault(); }
             closeAllProfileDropdowns();
-            // Small timeout so the dropdown close animation happens first,
-            // and so the confirm() dialog isn't blocked.
             setTimeout(function() {
                 try { actionFn(); } catch (err) { console.error(err); }
             }, 50);
@@ -1591,12 +1590,12 @@
         ];
 
         const defaultMockStudents = [
-            { id: 1, firstName: 'John', middleName: 'Doe', lastName: 'Ramos', grade: 'Grade 7', section: 'Grade 7 - Section A', lrn: '102876543210', gender: 'Male', dob: '2012-05-15', address: 'Liciada, Bustos, Bulacan', phone: '+63 912 345 6789', email: 'john.ramos@gmail.com', guardian: 'Ramon Ramos', guardianContact: '+63 912 987 6543', status: 'Pending', timeReceived: '10 mins ago', actionRequired: 'Documents Review', docs: { psa: true, report: true, moral: false }, hasRescheduleRequest: false },
-            { id: 2, firstName: 'Maria', middleName: 'Clara', lastName: 'Santos', grade: 'Grade 10', section: 'Grade 10 - Section B', lrn: '102876543211', gender: 'Female', dob: '2009-08-22', address: 'San Pedro, Bustos, Bulacan', phone: '+63 917 234 5678', email: 'maria.santos@gmail.com', guardian: 'Ana Santos', guardianContact: '+63 917 876 5432', status: 'Enrolled', timeReceived: '1 hour ago', actionRequired: 'Schedule Interview', docs: { psa: true, report: true, moral: true }, hasRescheduleRequest: false },
-            { id: 3, firstName: 'Juan', middleName: 'Dela', lastName: 'Cruz', grade: 'Grade 8', section: 'Grade 8 - Section A', lrn: '102876543212', gender: 'Male', dob: '2011-03-10', address: 'Poblacion, Bustos, Bulacan', phone: '+63 918 345 6789', email: 'juan.delacruz@gmail.com', guardian: 'Pedro Dela Cruz', guardianContact: '+63 918 987 6543', status: 'Pending', timeReceived: '3 hours ago', actionRequired: 'Finalize Enrollment', docs: { psa: true, report: false, moral: true }, hasRescheduleRequest: false },
-            { id: 4, firstName: 'Sarah', middleName: 'Mae', lastName: 'Flores', grade: 'Grade 9', section: 'Grade 9 - Section A', lrn: '102876543213', gender: 'Female', dob: '2010-11-30', address: 'Cambaog, Bustos, Bulacan', phone: '+63 919 456 7890', email: 'sarah.flores@gmail.com', guardian: 'Liza Flores', guardianContact: '+63 919 654 3210', status: 'Enrolled', timeReceived: 'Yesterday', actionRequired: 'Documents Review', docs: { psa: true, report: true, moral: true }, hasRescheduleRequest: false },
-            { id: 5, firstName: 'Miguel', middleName: 'Antonio', lastName: 'Reyes', grade: 'Grade 7', section: 'Grade 7 - Section A', lrn: '102876543214', gender: 'Male', dob: '2012-07-04', address: 'Liciada, Bustos, Bulacan', phone: '+63 920 567 8901', email: 'miguel.reyes@gmail.com', guardian: 'Rosa Reyes', guardianContact: '+63 920 765 4321', status: 'Pending', timeReceived: '2 days ago', actionRequired: 'Documents Review', docs: { psa: false, report: true, moral: true }, hasRescheduleRequest: false },
-            { id: 6, firstName: 'Marlon', middleName: 'Santos', lastName: 'Dela Cruz', grade: 'Grade 7', section: 'Pending Final Enrollment', lrn: '10287654321', gender: 'Male', dob: '2012-01-10', address: 'Liciada, Bustos, Bulacan', phone: '+63 912 345 6789', email: 'marlon.delacruz@gmail.com', guardian: 'Ramon Dela Cruz', guardianContact: '+63 912 987 6543', status: 'Enrolled', timeReceived: '5 hours ago', actionRequired: 'Schedule Interview', docs: { psa: true, report: true, moral: true }, hasRescheduleRequest: false, username: 'marlon santos dela cruz' }
+            { id: 1, firstName: 'John', middleName: 'Doe', lastName: 'Ramos', grade: 'Grade 7', section: 'Grade 7 - Section A', lrn: '102876543210', gender: 'Male', dob: '2012-05-15', address: 'Liciada, Bustos, Bulacan', phone: '09123456789', email: 'john.ramos@gmail.com', guardian: 'Ramon Ramos', guardianContact: '09129876543', status: 'Pending', timeReceived: '10 mins ago', actionRequired: 'Documents Review', docs: { psa: true, report: true, moral: false }, hasRescheduleRequest: false },
+            { id: 2, firstName: 'Maria', middleName: 'Clara', lastName: 'Santos', grade: 'Grade 10', section: 'Grade 10 - Section B', lrn: '102876543211', gender: 'Female', dob: '2009-08-22', address: 'San Pedro, Bustos, Bulacan', phone: '09172345678', email: 'maria.santos@gmail.com', guardian: 'Ana Santos', guardianContact: '09178765432', status: 'Enrolled', timeReceived: '1 hour ago', actionRequired: 'Schedule Interview', docs: { psa: true, report: true, moral: true }, hasRescheduleRequest: false },
+            { id: 3, firstName: 'Juan', middleName: 'Dela', lastName: 'Cruz', grade: 'Grade 8', section: 'Grade 8 - Section A', lrn: '102876543212', gender: 'Male', dob: '2011-03-10', address: 'Poblacion, Bustos, Bulacan', phone: '09183456789', email: 'juan.delacruz@gmail.com', guardian: 'Pedro Dela Cruz', guardianContact: '09189876543', status: 'Pending', timeReceived: '3 hours ago', actionRequired: 'Finalize Enrollment', docs: { psa: true, report: false, moral: true }, hasRescheduleRequest: false },
+            { id: 4, firstName: 'Sarah', middleName: 'Mae', lastName: 'Flores', grade: 'Grade 9', section: 'Grade 9 - Section A', lrn: '102876543213', gender: 'Female', dob: '2010-11-30', address: 'Cambaog, Bustos, Bulacan', phone: '09194567890', email: 'sarah.flores@gmail.com', guardian: 'Liza Flores', guardianContact: '09196543210', status: 'Enrolled', timeReceived: 'Yesterday', actionRequired: 'Documents Review', docs: { psa: true, report: true, moral: true }, hasRescheduleRequest: false },
+            { id: 5, firstName: 'Miguel', middleName: 'Antonio', lastName: 'Reyes', grade: 'Grade 7', section: 'Grade 7 - Section A', lrn: '102876543214', gender: 'Male', dob: '2012-07-04', address: 'Liciada, Bustos, Bulacan', phone: '09205678901', email: 'miguel.reyes@gmail.com', guardian: 'Rosa Reyes', guardianContact: '09207654321', status: 'Pending', timeReceived: '2 days ago', actionRequired: 'Documents Review', docs: { psa: false, report: true, moral: true }, hasRescheduleRequest: false },
+            { id: 6, firstName: 'Marlon', middleName: 'Santos', lastName: 'Dela Cruz', grade: 'Grade 7', section: 'Pending Final Enrollment', lrn: '10287654321', gender: 'Male', dob: '2012-01-10', address: 'Liciada, Bustos, Bulacan', phone: '09123456789', email: 'marlon.delacruz@gmail.com', guardian: 'Ramon Dela Cruz', guardianContact: '09129876543', status: 'Enrolled', timeReceived: '5 hours ago', actionRequired: 'Schedule Interview', docs: { psa: true, report: true, moral: true }, hasRescheduleRequest: false, username: 'marlon santos dela cruz' }
         ];
 
         const defaultTeachers = [
@@ -1625,9 +1624,19 @@
         let miniCalSelectedDate = null;
         let scheduledDate = null;
         let directorySelectionMode = false;
+        // Real-time refresh interval reference
+        let adminRefreshInterval = null;
 
         function normalizeUsername(name) {
             return name.trim().toLowerCase().replace(/[\s\u00A0]+/g, ' ');
+        }
+
+        // ============================================
+        // PHONE VALIDATION HELPER (11–12 digits only)
+        // ============================================
+        function isValidPhone(val) {
+            const digits = String(val || '').replace(/[^0-9]/g, '');
+            return digits.length >= 11 && digits.length <= 12;
         }
 
         // ============================================
@@ -1873,7 +1882,7 @@
                 <label>Email Address</label>
                 <input type="email" id="studentProfileEmail" value="${s.email || ''}">
                 <label>Phone Number</label>
-                <input type="text" id="studentProfilePhone" value="${s.phone || ''}">
+                <input type="text" id="studentProfilePhone" value="${s.phone || ''}" inputmode="numeric" maxlength="13">
                 <label>Guardian Name</label>
                 <input type="text" id="studentProfileGuardian" value="${s.guardian || ''}">
                 <label>New Password (leave blank to keep current)</label>
@@ -1896,6 +1905,7 @@
             const newPass = document.getElementById('studentProfileNewPassword').value;
             const confirmPass = document.getElementById('studentProfileConfirmPassword').value;
             if (!fullName) { alert('Full name is required.'); return; }
+            if (phone && !isValidPhone(phone)) { alert('Phone number must be 11–12 digits only.'); return; }
             if (newPass) {
                 if (newPass.length < 8) { alert('Password must be at least 8 characters.'); return; }
                 if (newPass !== confirmPass) { alert('Passwords do not match.'); return; }
@@ -2179,8 +2189,10 @@
             vals[5].textContent = s.guardian || '-';
 
             const apptContent = document.getElementById('appointmentContent');
-            if (user.appointment) {
-                const a = user.appointment;
+            // Resolve latest appointment data from userDatabase (source of truth) so admin changes reflect
+            const liveUser = userDatabase.find(u => u.username === user.username) || user;
+            if (liveUser.appointment) {
+                const a = liveUser.appointment;
                 const statusClass = a.status === 'pending' ? 'pending' : a.status === 'rejected' ? 'rejected' : 'approved';
                 const statusText = a.status === 'pending' ? 'Pending Approval' : a.status === 'rejected' ? 'Rejected' : 'Approved';
                 apptContent.innerHTML = `
@@ -2291,6 +2303,17 @@
                 const dbEntry = userDatabase.find(u => u.username === currentStudentUser.username);
                 if (dbEntry) { dbEntry.rescheduleRequest = currentStudentUser.rescheduleRequest; }
                 if (currentStudentUser.appointment) currentStudentUser.appointment.status = 'pending';
+                if (dbEntry && dbEntry.appointment) dbEntry.appointment.status = 'pending';
+                // Also sync to mockStudents so admin sees the pending reschedule
+                const mock = mockStudents.find(s => s.lrn === currentStudentUser.studentData.lrn);
+                if (mock) {
+                    mock.hasRescheduleRequest = true;
+                    mock.rescheduleRequest = currentStudentUser.rescheduleRequest;
+                }
+                // Refresh admin dashboard if it's open
+                if (document.getElementById('adminPage').style.display === 'block') {
+                    renderAdminDashboard();
+                }
             }
             closeRescheduleModal();
             showPopup('Reschedule Request Submitted', 'Your reschedule request for ' + formatDateLong(miniCalSelectedDate) + ' has been submitted and is pending approval.', 'success');
@@ -2450,11 +2473,24 @@
                 document.getElementById('adminAvatarInitial').textContent = (user.fullName || 'A').charAt(0).toUpperCase();
             }
             renderAdminDashboard();
+            // Real-time refresh: update dashboard + directory every 4 seconds
+            if (adminRefreshInterval) clearInterval(adminRefreshInterval);
+            adminRefreshInterval = setInterval(function() {
+                if (document.getElementById('adminPage').style.display === 'block') {
+                    renderAdminDashboard();
+                    // If directory modal is open, refresh the directory rows too
+                    if (document.getElementById('adminModal').classList.contains('active') &&
+                        document.getElementById('directoryBody')) {
+                        renderDirectoryRows();
+                    }
+                }
+            }, 4000);
         }
         function closeAdmin() {
             showMainNavbar();
             document.getElementById('adminPage').style.display = 'none';
             document.body.style.overflow = 'auto';
+            if (adminRefreshInterval) { clearInterval(adminRefreshInterval); adminRefreshInterval = null; }
         }
 
         function syncRescheduleToMock() {
@@ -2469,12 +2505,21 @@
             });
         }
 
-        function renderAdminDashboard() {
-            syncRescheduleToMock();
+        // ============================================
+        // STATS RECALCULATION (fix: total enrolled & pending now update)
+        // ============================================
+        function recalcStats() {
             const totalEnrolled = mockStudents.filter(s => s.status === 'Enrolled').length;
             const pendingCount = mockStudents.filter(s => s.status === 'Pending').length;
-            document.getElementById('statTotalEnrolled').textContent = totalEnrolled.toLocaleString();
-            document.getElementById('statPending').textContent = pendingCount;
+            const elEnrolled = document.getElementById('statTotalEnrolled');
+            const elPending = document.getElementById('statPending');
+            if (elEnrolled) elEnrolled.textContent = totalEnrolled.toLocaleString();
+            if (elPending) elPending.textContent = pendingCount.toLocaleString();
+        }
+
+        function renderAdminDashboard() {
+            syncRescheduleToMock();
+            recalcStats();
 
             const recentBody = document.getElementById('recentActivityBody');
             recentBody.innerHTML = '';
@@ -2551,8 +2596,6 @@
         function openDirectory() {
             syncRescheduleToMock();
             directorySelectionMode = false;
-            // Show the header dots button in the directory view
-            document.getElementById('headerDotsBtn').style.display = 'inline-flex';
             openAdminModal('Student Directory', `
                 <div class="directory-search">
                     <input type="text" id="dirSearchInput" placeholder="Search by name or LRN..." oninput="filterDirectory()">
@@ -2577,6 +2620,10 @@
                         <option value="name_desc">Name (Z-A)</option>
                         <option value="lrn">LRN</option>
                     </select>
+                </div>
+                <!-- 3-dots button placed BELOW the filters, ABOVE the table header, right-aligned -->
+                <div class="directory-header-row" id="directoryHeaderRow">
+                    <button class="btn-dots" id="headerDotsBtn" onclick="toggleDirectorySelectionMode(true)" title="Select students to delete">⋮</button>
                 </div>
                 <div id="directoryActionBar" class="directory-action-bar"></div>
                 <table class="directory-table" id="directoryTable">
@@ -2703,8 +2750,8 @@
 
         function toggleDirectorySelectionMode(enable) {
             directorySelectionMode = enable;
-            const headerDots = document.getElementById('headerDotsBtn');
-            if (headerDots) headerDots.style.display = enable ? 'none' : 'inline-flex';
+            const headerRow = document.getElementById('directoryHeaderRow');
+            if (headerRow) headerRow.style.display = enable ? 'none' : 'flex';
             renderDirectoryRows();
         }
 
@@ -2729,10 +2776,11 @@
             });
             mockStudents = mockStudents.filter(x => !ids.includes(x.id));
             directorySelectionMode = false;
-            document.getElementById('headerDotsBtn').style.display = 'inline-flex';
+            const headerRow = document.getElementById('directoryHeaderRow');
+            if (headerRow) headerRow.style.display = 'flex';
             alert('Selected student(s) deleted successfully.');
             renderDirectoryRows();
-            renderAdminDashboard();
+            recalcStats();  // Fix: update stats after delete
         }
 
         function filterDirectory() { renderDirectoryRows(); }
@@ -2750,7 +2798,7 @@
                     <div class="col-md-4 mb-2"><label class="form-label-sm">LRN</label><input type="text" class="form-control form-control-sm" id="editLrn" value="${s.lrn}"></div>
                     <div class="col-md-4 mb-2"><label class="form-label-sm">Grade</label><select class="form-select form-select-sm" id="editGrade"><option ${s.grade==='Grade 7'?'selected':''}>Grade 7</option><option ${s.grade==='Grade 8'?'selected':''}>Grade 8</option><option ${s.grade==='Grade 9'?'selected':''}>Grade 9</option><option ${s.grade==='Grade 10'?'selected':''}>Grade 10</option><option ${s.grade==='Grade 11'?'selected':''}>Grade 11</option><option ${s.grade==='Grade 12'?'selected':''}>Grade 12</option></select></div>
                     <div class="col-md-4 mb-2"><label class="form-label-sm">Section</label><input type="text" class="form-control form-control-sm" id="editSection" value="${s.section || ''}"></div>
-                    <div class="col-md-4 mb-2"><label class="form-label-sm">Phone</label><input type="text" class="form-control form-control-sm" id="editPhone" value="${s.phone}"></div>
+                    <div class="col-md-4 mb-2"><label class="form-label-sm">Phone (11–12 digits)</label><input type="text" class="form-control form-control-sm" id="editPhone" value="${s.phone}" inputmode="numeric" maxlength="13"></div>
                     <div class="col-md-4 mb-2"><label class="form-label-sm">Email</label><input type="email" class="form-control form-control-sm" id="editEmail" value="${s.email}"></div>
                     <div class="col-md-4 mb-2"><label class="form-label-sm">Guardian</label><input type="text" class="form-control form-control-sm" id="editGuardian" value="${s.guardian}"></div>
                 </div>
@@ -2760,19 +2808,22 @@
                 </div>
             `;
             openAdminModal('Edit Student', content);
-            document.getElementById('headerDotsBtn').style.display = 'none';
+            const headerRow = document.getElementById('directoryHeaderRow');
+            if (headerRow) headerRow.style.display = 'none';
         }
 
         function saveEditedStudent(id) {
             const s = mockStudents.find(x => x.id === id);
             if (!s) return;
+            const newPhone = document.getElementById('editPhone').value.trim();
+            if (newPhone && !isValidPhone(newPhone)) { alert('Phone number must be 11–12 digits only.'); return; }
             s.firstName = document.getElementById('editFirstName').value.trim();
             s.middleName = document.getElementById('editMiddleName').value.trim();
             s.lastName = document.getElementById('editLastName').value.trim();
             s.lrn = document.getElementById('editLrn').value.trim();
             s.grade = document.getElementById('editGrade').value;
             s.section = document.getElementById('editSection').value.trim();
-            s.phone = document.getElementById('editPhone').value.trim();
+            s.phone = newPhone;
             s.email = document.getElementById('editEmail').value.trim();
             s.guardian = document.getElementById('editGuardian').value.trim();
             alert('Student information updated!');
@@ -2782,7 +2833,8 @@
         function viewStudent(id) {
             const s = mockStudents.find(x => x.id === id);
             if (!s) return;
-            document.getElementById('headerDotsBtn').style.display = 'none';
+            const headerRow = document.getElementById('directoryHeaderRow');
+            if (headerRow) headerRow.style.display = 'none';
             const statusClass = s.status === 'Pending' ? 'status-pending' : 'status-enrolled';
             const initials = (s.firstName[0] + s.lastName[0]).toUpperCase();
             const docPSA = s.docs.psa ? '<span class="doc-status">Uploaded</span>' : '<span class="doc-status" style="background:#f8d7da;color:#842029">Missing</span>';
@@ -2844,21 +2896,35 @@
             openAdminModal('Student Profile', content);
         }
 
+        // ============================================
+        // APPROVE / REJECT RESCHEDULE — reflects to student account
+        // ============================================
         function approveReschedule(id) {
             const s = mockStudents.find(x => x.id === id);
             if (!s) return;
             s.hasRescheduleRequest = false;
             s.rescheduleRequest = null;
             s.actionRequired = 'Schedule Interview';
+            // Reflect on student account
             userDatabase.forEach(u => {
-                if (u.role === 'student' && u.studentData.lrn === s.lrn) {
+                if (u.role === 'student' && u.studentData && u.studentData.lrn === s.lrn) {
                     u.rescheduleRequest = null;
-                    if (u.appointment) u.appointment.status = 'approved';
+                    if (u.appointment) {
+                        u.appointment.status = 'approved';
+                        // Update the appointment date to the requested date
+                        if (s.rescheduleRequest && s.rescheduleRequest.preferredDate) {
+                            u.appointment.date = s.rescheduleRequest.preferredDate;
+                        }
+                    }
                 }
             });
-            alert('Reschedule request approved!');
+            alert('Reschedule request approved! The student account has been updated.');
             closeAdminModal();
             renderAdminDashboard();
+            // If the current logged-in student IS this student, refresh their dashboard
+            if (currentStudentUser && currentStudentUser.studentData && currentStudentUser.studentData.lrn === s.lrn) {
+                renderStudentDashboard(currentStudentUser);
+            }
         }
         function rejectReschedule(id) {
             const s = mockStudents.find(x => x.id === id);
@@ -2866,15 +2932,19 @@
             if (!confirm('Are you sure you want to reject this reschedule request?')) return;
             s.hasRescheduleRequest = false;
             s.rescheduleRequest = null;
+            // Reflect on student account
             userDatabase.forEach(u => {
-                if (u.role === 'student' && u.studentData.lrn === s.lrn) {
+                if (u.role === 'student' && u.studentData && u.studentData.lrn === s.lrn) {
                     u.rescheduleRequest = null;
                     if (u.appointment) u.appointment.status = 'rejected';
                 }
             });
-            alert('Reschedule request rejected.');
+            alert('Reschedule request rejected. The student account has been updated.');
             closeAdminModal();
             renderAdminDashboard();
+            if (currentStudentUser && currentStudentUser.studentData && currentStudentUser.studentData.lrn === s.lrn) {
+                renderStudentDashboard(currentStudentUser);
+            }
         }
         function openAssignTeacher(id) { viewStudent(id); }
         function confirmAssign(id) {
@@ -2900,13 +2970,15 @@
             alert('Student assigned to ' + selectedSection + ' successfully!');
             closeAdminModal();
             openDirectory();
+            recalcStats();
         }
 
         // ============================================
         // MAX SLOT LIMIT
         // ============================================
         function openMaxLimitSettings() {
-            document.getElementById('headerDotsBtn').style.display = 'none';
+            const headerRow = document.getElementById('directoryHeaderRow');
+            if (headerRow) headerRow.style.display = 'none';
             const content = `
                 <p class="text-muted small mb-3">Set the maximum number of students allowed to book an appointment per day.</p>
                 <div class="row">
@@ -2935,7 +3007,8 @@
         // NEW ENROLLMENT (WALK-IN)
         // ============================================
         function openNewEnrollment() {
-            document.getElementById('headerDotsBtn').style.display = 'none';
+            const headerRow = document.getElementById('directoryHeaderRow');
+            if (headerRow) headerRow.style.display = 'none';
             const content = `
                 <p class="text-muted small mb-3">Register a new student who walked in to the admission office.</p>
                 <div class="row">
@@ -2946,9 +3019,9 @@
                     <div class="col-md-4 mb-2"><label class="form-label-sm">Gender <span class="req">*</span></label><select class="form-select form-select-sm" id="newGender"><option value="">-- Select --</option><option>Male</option><option>Female</option></select></div>
                     <div class="col-md-4 mb-2"><label class="form-label-sm">LRN</label><input type="text" class="form-control form-control-sm" id="newLrn" placeholder="12-digit LRN if known"></div>
                     <div class="col-md-6 mb-2"><label class="form-label-sm">Home Address <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newAddress" placeholder="Complete address"></div>
-                    <div class="col-md-6 mb-2"><label class="form-label-sm">Phone Number <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newPhone" placeholder="+63 912 345 6789"></div>
+                    <div class="col-md-6 mb-2"><label class="form-label-sm">Phone Number (11–12 digits) <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newPhone" placeholder="09123456789" inputmode="numeric" maxlength="13"></div>
                     <div class="col-md-6 mb-2"><label class="form-label-sm">Guardian Full Name <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newGuardian" placeholder="Parent / Guardian name"></div>
-                    <div class="col-md-6 mb-2"><label class="form-label-sm">Guardian Contact <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newGuardianContact" placeholder="+63 912 987 6543"></div>
+                    <div class="col-md-6 mb-2"><label class="form-label-sm">Guardian Contact (11–12 digits) <span class="req">*</span></label><input type="text" class="form-control form-control-sm" id="newGuardianContact" placeholder="09123456789" inputmode="numeric" maxlength="13"></div>
                     <div class="col-md-6 mb-2"><label class="form-label-sm">Grade Level <span class="req">*</span></label><select class="form-select form-select-sm" id="newGrade" onchange="updateNewEnrollmentSections()"><option value="">-- Select Grade --</option><option>Grade 7</option><option>Grade 8</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option></select></div>
                     <div class="col-md-6 mb-2"><label class="form-label-sm">Assign to Section (optional)</label><select class="form-select form-select-sm" id="newSection"><option value="">-- Select Grade First --</option></select></div>
                 </div>
@@ -2975,6 +3048,8 @@
             const grade = document.getElementById('newGrade').value;
             const section = document.getElementById('newSection').value;
             if (!fn || !mn || !ln || !dob || !gender || !address || !phone || !guardian || !guardianContact || !grade) { alert('Please fill in all required fields.'); return; }
+            if (!isValidPhone(phone)) { alert('Phone number must be 11–12 digits only.'); return; }
+            if (!isValidPhone(guardianContact)) { alert('Guardian contact must be 11–12 digits only.'); return; }
             const newId = Math.max(...mockStudents.map(s => s.id), 0) + 1;
             const newLrn = lrn || '—';
             mockStudents.push({ id: newId, firstName: fn, middleName: mn, lastName: ln, grade, section, lrn: newLrn, gender, dob, address, phone, email: '-', guardian, guardianContact, status: 'Pending', timeReceived: 'Just now', actionRequired: 'Documents Review', docs: { psa: false, report: false, moral: false }, hasRescheduleRequest: false });
@@ -2995,14 +3070,15 @@
             }
             alert('Student registered successfully!' + (section ? '\nAssigned to ' + section : ''));
             closeAdminModal();
-            renderAdminDashboard();
+            recalcStats();  // Fix: update stats
         }
 
         // ============================================
         // TEACHER ACCOUNT REGISTRATION
         // ============================================
         function openTeacherAccountReg() {
-            document.getElementById('headerDotsBtn').style.display = 'none';
+            const headerRow = document.getElementById('directoryHeaderRow');
+            if (headerRow) headerRow.style.display = 'none';
             const content = `
                 <p class="text-muted small mb-3">Create a new teacher account. The teacher can use their full name and password to log in.</p>
                 <div class="row">
@@ -3303,10 +3379,12 @@
             const guardianContact = document.getElementById('guardianContact');
             if (!address.value.trim()) { return showError('Home Address is required.', address); }
             if (!phone.value.trim()) { return showError('Primary Phone Number is required.', phone); }
+            if (!isValidPhone(phone.value.trim())) { return showError('Phone number must be 11–12 digits only (e.g., 09123456789).', phone); }
             if (!contactEmail.value.trim()) { return showError('Contact Email Address is required.', contactEmail); }
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail.value.trim())) { return showError('Please enter a valid contact email address.', contactEmail); }
             if (!guardianName.value.trim()) { return showError('Parent / Guardian Full Name is required.', guardianName); }
             if (!guardianContact.value.trim()) { return showError('Parent / Guardian Emergency Contact is required.', guardianContact); }
+            if (!isValidPhone(guardianContact.value.trim())) { return showError('Guardian contact must be 11–12 digits only.', guardianContact); }
 
             const gradeLevel = document.getElementById('gradeLevel');
             const prevSchool = document.getElementById('prevSchool');
@@ -3402,6 +3480,10 @@
                 document.getElementById('shsStrand').innerHTML = '<option value="">-- Select Track First --</option>';
                 document.getElementById('generalAverageRow').style.display = 'none';
                 closeAllOverlays();
+                // Update admin stats if admin dashboard is open
+                if (document.getElementById('adminPage').style.display === 'block') {
+                    recalcStats();
+                }
             });
         }
 
