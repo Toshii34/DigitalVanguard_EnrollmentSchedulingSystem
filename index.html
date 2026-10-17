@@ -349,7 +349,6 @@
             cursor: pointer; transition: 0.2s; line-height: 1;
         }
         .btn-dots:hover { background-color: #b02a37; border-color: #b02a37; }
-        /* NEW: action bar aligned with table header */
         .directory-action-bar { display: flex; justify-content: flex-end; align-items: center; gap: 8px; padding: 0 0 6px 0; }
         .directory-header-row {
             display: flex;
@@ -1624,7 +1623,6 @@
         let miniCalSelectedDate = null;
         let scheduledDate = null;
         let directorySelectionMode = false;
-        // Real-time refresh interval reference
         let adminRefreshInterval = null;
 
         function normalizeUsername(name) {
@@ -2304,13 +2302,11 @@
                 if (dbEntry) { dbEntry.rescheduleRequest = currentStudentUser.rescheduleRequest; }
                 if (currentStudentUser.appointment) currentStudentUser.appointment.status = 'pending';
                 if (dbEntry && dbEntry.appointment) dbEntry.appointment.status = 'pending';
-                // Also sync to mockStudents so admin sees the pending reschedule
                 const mock = mockStudents.find(s => s.lrn === currentStudentUser.studentData.lrn);
                 if (mock) {
                     mock.hasRescheduleRequest = true;
                     mock.rescheduleRequest = currentStudentUser.rescheduleRequest;
                 }
-                // Refresh admin dashboard if it's open
                 if (document.getElementById('adminPage').style.display === 'block') {
                     renderAdminDashboard();
                 }
@@ -2473,12 +2469,10 @@
                 document.getElementById('adminAvatarInitial').textContent = (user.fullName || 'A').charAt(0).toUpperCase();
             }
             renderAdminDashboard();
-            // Real-time refresh: update dashboard + directory every 4 seconds
             if (adminRefreshInterval) clearInterval(adminRefreshInterval);
             adminRefreshInterval = setInterval(function() {
                 if (document.getElementById('adminPage').style.display === 'block') {
                     renderAdminDashboard();
-                    // If directory modal is open, refresh the directory rows too
                     if (document.getElementById('adminModal').classList.contains('active') &&
                         document.getElementById('directoryBody')) {
                         renderDirectoryRows();
@@ -2505,9 +2499,6 @@
             });
         }
 
-        // ============================================
-        // STATS RECALCULATION (fix: total enrolled & pending now update)
-        // ============================================
         function recalcStats() {
             const totalEnrolled = mockStudents.filter(s => s.status === 'Enrolled').length;
             const pendingCount = mockStudents.filter(s => s.status === 'Pending').length;
@@ -2621,7 +2612,6 @@
                         <option value="lrn">LRN</option>
                     </select>
                 </div>
-                <!-- 3-dots button placed BELOW the filters, ABOVE the table header, right-aligned -->
                 <div class="directory-header-row" id="directoryHeaderRow">
                     <button class="btn-dots" id="headerDotsBtn" onclick="toggleDirectorySelectionMode(true)" title="Select students to delete">⋮</button>
                 </div>
@@ -2780,7 +2770,7 @@
             if (headerRow) headerRow.style.display = 'flex';
             alert('Selected student(s) deleted successfully.');
             renderDirectoryRows();
-            recalcStats();  // Fix: update stats after delete
+            recalcStats();
         }
 
         function filterDirectory() { renderDirectoryRows(); }
@@ -2898,31 +2888,77 @@
 
         // ============================================
         // APPROVE / REJECT RESCHEDULE — reflects to student account
+        // FIX: capture the requested date BEFORE nulling the reschedule request
         // ============================================
         function approveReschedule(id) {
             const s = mockStudents.find(x => x.id === id);
             if (!s) return;
+
+            // ⚠️ CRITICAL: Capture the requested date BEFORE we null out the request
+            let approvedDateLong = null;
+            let approvedDateRaw = null;
+            if (s.rescheduleRequest) {
+                approvedDateLong = s.rescheduleRequest.preferredDate || null;
+                approvedDateRaw = s.rescheduleRequest.preferredDateRaw || null;
+            }
+            // Fallback: check the live student account if mock had no data
+            if (!approvedDateLong) {
+                userDatabase.forEach(u => {
+                    if (u.role === 'student' && u.studentData && u.studentData.lrn === s.lrn) {
+                        if (u.rescheduleRequest && u.rescheduleRequest.preferredDate) {
+                            approvedDateLong = u.rescheduleRequest.preferredDate;
+                            approvedDateRaw = u.rescheduleRequest.preferredDateRaw;
+                        }
+                    }
+                });
+            }
+
+            // Now clear the mock's reschedule flag
             s.hasRescheduleRequest = false;
             s.rescheduleRequest = null;
             s.actionRequired = 'Schedule Interview';
+
             // Reflect on student account
             userDatabase.forEach(u => {
                 if (u.role === 'student' && u.studentData && u.studentData.lrn === s.lrn) {
                     u.rescheduleRequest = null;
                     if (u.appointment) {
                         u.appointment.status = 'approved';
-                        // Update the appointment date to the requested date
-                        if (s.rescheduleRequest && s.rescheduleRequest.preferredDate) {
-                            u.appointment.date = s.rescheduleRequest.preferredDate;
+                        // ✅ Update the appointment date to the approved reschedule date
+                        if (approvedDateLong) {
+                            u.appointment.date = approvedDateLong;
                         }
+                        if (!u.appointment.time) u.appointment.time = '8:00 AM - 3:00 PM';
+                        if (!u.appointment.location) u.appointment.location = 'Admission Office, Main Building.';
+                    } else if (approvedDateLong) {
+                        // If the student had no appointment, create one with the new date
+                        u.appointment = {
+                            type: 'Passing of Enrollment Form',
+                            date: approvedDateLong,
+                            time: '8:00 AM - 3:00 PM',
+                            location: 'Admission Office, Main Building.',
+                            status: 'approved'
+                        };
                     }
                 }
             });
-            alert('Reschedule request approved! The student account has been updated.');
+
+            // Defensive: also clear any duplicate mock entries with same LRN
+            mockStudents.forEach(m => {
+                if (m.lrn === s.lrn && m !== s) {
+                    m.hasRescheduleRequest = false;
+                    m.rescheduleRequest = null;
+                }
+            });
+
+            alert('Reschedule request approved!\n\nThe appointment has been moved to: ' + (approvedDateLong || '(no date specified)') + '\n\nThe student account has been updated.');
             closeAdminModal();
             renderAdminDashboard();
-            // If the current logged-in student IS this student, refresh their dashboard
+
+            // If the currently logged-in student IS this student, refresh their dashboard
             if (currentStudentUser && currentStudentUser.studentData && currentStudentUser.studentData.lrn === s.lrn) {
+                const fresh = userDatabase.find(u => u.username === currentStudentUser.username);
+                if (fresh) currentStudentUser = fresh;
                 renderStudentDashboard(currentStudentUser);
             }
         }
@@ -2932,7 +2968,6 @@
             if (!confirm('Are you sure you want to reject this reschedule request?')) return;
             s.hasRescheduleRequest = false;
             s.rescheduleRequest = null;
-            // Reflect on student account
             userDatabase.forEach(u => {
                 if (u.role === 'student' && u.studentData && u.studentData.lrn === s.lrn) {
                     u.rescheduleRequest = null;
@@ -3070,7 +3105,7 @@
             }
             alert('Student registered successfully!' + (section ? '\nAssigned to ' + section : ''));
             closeAdminModal();
-            recalcStats();  // Fix: update stats
+            recalcStats();
         }
 
         // ============================================
@@ -3480,7 +3515,6 @@
                 document.getElementById('shsStrand').innerHTML = '<option value="">-- Select Track First --</option>';
                 document.getElementById('generalAverageRow').style.display = 'none';
                 closeAllOverlays();
-                // Update admin stats if admin dashboard is open
                 if (document.getElementById('adminPage').style.display === 'block') {
                     recalcStats();
                 }
