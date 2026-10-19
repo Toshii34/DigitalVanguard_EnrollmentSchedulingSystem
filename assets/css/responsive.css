@@ -1,0 +1,25 @@
+/* Responsive overrides */
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .hero-content h1 { font-size: 2.5rem; }
+    .about-section p { padding: 0 20px; }
+    .enrollment-footer { flex-direction: column; }
+    .enrollment-footer .btn { width: 100%; }
+    .calendar-grid { gap: 4px; }
+    .month-picker { width: 260px; }
+    .preview-box { width: 95%; }
+    .stats-row { grid-template-columns: 1fr; }
+    .admin-middle { grid-template-columns: 1fr; }
+    .info-grid { grid-template-columns: 1fr; }
+    .admin-content { padding: 15px; }
+    .student-info-row { grid-template-columns: 1fr; }
+    .student-content { padding: 15px; }
+    .progress-tracker { flex-wrap: wrap; gap: 15px; }
+    .progress-tracker::before { display: none; }
+    .teacher-body { grid-template-columns: 1fr; }
+    .teacher-sidebar { border-right: none; border-bottom: 1px solid #e9ecef; }
+    .section-back-btn, .login-back-btn { font-size: 0.75rem; padding: 6px 12px; top: 12px; left: 12px; }
+    .events-carousel-wrap { padding: 0 50px; }
+    .event-nav-btn { width: 40px; height: 40px; font-size: 1.1rem; }
+}

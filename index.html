@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGSNHS Enrollment System</title>
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+    <!-- Third-party styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- App styles (order matters) -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/enrollment.css">
+    <link rel="stylesheet" href="css/schedule.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/dashboards.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+    <div class="container">
+        <a class="navbar-brand" href="#" onclick="closeAllOverlays()">
+            <img src="assets/images/logo.png" alt="Logo">
+            <span>
+                Alexis G. Santos National High School
+                <small>Liciada, Bustos, Bulacan</small>
+            </span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <div class="btn-nav-group mt-3 mt-lg-0" id="navButtons">
+                <button class="btn btn-login-nav" id="btnLoginNav" onclick="showLogin()">Log In</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero-section">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+        <h1>Your Journey to Excellence<br>Continues Here</h1>
+        <button class="btn btn-enroll-hero" onclick="showEnrollment()">Enroll Now</button>
+    </div>
+</div>
+
+<!-- About -->
+<div class="about-section">
+    <div class="about-bg"></div>
+    <div class="container">
+        <h2>ABOUT US</h2>
+        <p>Alexis G. Santos National High School is a premier public educational institution in Bustos, Bulacan, committed to fostering academic excellence, moral integrity, and holistic student development. Guided by the standards of the Department of Education, our school provides a dynamic and inclusive learning environment that empowers young learners to maximize their potential. Through the collaborative efforts of our dedicated faculty and supportive community, we cultivate future-ready citizens equipped to lead and contribute meaningfully to society.</p>
+        <div class="info-cards">
+            <div class="info-card"><h3>VISION</h3><p>To dream of Filipinos who passionately love their country and whose values and competencies enable them to realize their full potential and contribute meaningfully to building the nation.</p></div>
+            <div class="info-card"><h3>MISSION</h3><p>To protect and promote the right of every Filipino to quality, equitable, culture-based, and complete basic education where students learn in a child-friendly, gender-sensitive, safe, and motivating environment.</p></div>
+            <div class="info-card"><h3>CORE VALUES</h3><ul><li>Maka-Diyos</li><li>Maka-tao</li><li>Makakalikasan</li><li>Makabansa</li></ul></div>
+        </div>
+    </div>
+</div>
+
+<!-- Junior High School STE Section -->
+<div class="jhs-section">
+    <div class="container">
+        <h2>JUNIOR HIGH SCHOOL OFFERINGS</h2>
+        <p class="jhs-subtitle">Alexis G. Santos National High School proudly offers the Special Program in Science, Technology, and Engineering (STE) for academically gifted Junior High School students.</p>
+        <div class="jhs-card">
+            <h3>🔬 Special Program in Science, Technology, and Engineering (STE)</h3>
+            <p>The STE Program is a DepEd-initiated curriculum designed for students with high aptitude and interest in science, mathematics, and technology. It provides advanced learning experiences to prepare students for higher education and careers in the fields of science and engineering.</p>
+            <p style="margin-top: 15px;"><strong>Program Highlights:</strong></p>
+            <ul>
+                <li>Advanced and enriched science and mathematics curriculum</li>
+                <li>Research-based learning and investigatory projects</li>
+                <li>Exposure to robotics, ICT, and laboratory experiments</li>
+                <li>Competitions, science fairs, and academic olympiads</li>
+                <li>Preparation for Senior High School STEM strand and college science courses</li>
+            </ul>
+            <p style="margin-top: 15px; font-size: 0.85rem; color: #f0ad4e;"><strong>Note:</strong> Admission to the STE Program is based on academic performance, an entrance examination, and interview. Inquire at the school's registrar for details.</p>
+        </div>
+    </div>
+</div>
+
+<!-- School Events Carousel Section -->
+<div class="events-section">
+    <div class="container">
+        <h2>School Events</h2>
+        <div class="events-carousel-wrap">
+            <div class="events-carousel-bg"></div>
+            <button class="event-nav-btn prev" onclick="changeEventSlide(-1)" aria-label="Previous">&lsaquo;</button>
+            <div class="events-carousel-inner">
+                <div class="event-slide active" data-slide="0">
+                    <img src="assets/images/event-teachers-month.png" alt="National Teachers' Month 2026"
+                         onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('afterbegin', '<div class=\'event-placeholder\'>National Teachers\' Month 2026<br><br>Add file: event-teachers-month.png</div>');">
+                    <div class="event-caption">
+                        <h4>National Teachers' Month 2026</h4>
+                        <p>September 5 – October 5, 2026</p>
+                    </div>
+                </div>
+                <div class="event-slide" data-slide="1">
+                    <img src="assets/images/event-welcome-term2.png" alt="Welcome Alexians to Term 2"
+                         onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('afterbegin', '<div class=\'event-placeholder\'>Welcome Alexians to Term 2<br><br>Add file: event-welcome-term2.png</div>');">
+                    <div class="event-caption">
+                        <h4>Welcome Alexians to Term 2</h4>
+                        <p>September 16, 2026</p>
+                    </div>
+                </div>
+                <div class="event-slide" data-slide="2">
+                    <img src="assets/images/event-value-month.png" alt="A Value A Month - August 2026"
+                         onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('afterbegin', '<div class=\'event-placeholder\'>A Value A Month — August 2026<br><br>Add file: event-value-month.png</div>');">
+                    <div class="event-caption">
+                        <h4>A Value A Month — August 2026</h4>
+                        <p>Nationalism · Patriotism · Global Citizenship</p>
+                    </div>
+                </div>
+            </div>
+            <button class="event-nav-btn next" onclick="changeEventSlide(1)" aria-label="Next">&rsaquo;</button>
+        </div>
+        <div class="event-dots" id="eventDots">
+            <button class="event-dot active" onclick="goToEventSlide(0)" aria-label="Slide 1"></button>
+            <button class="event-dot" onclick="goToEventSlide(1)" aria-label="Slide 2"></button>
+            <button class="event-dot" onclick="goToEventSlide(2)" aria-label="Slide 3"></button>
+        </div>
+    </div>
+</div>
+
+<!-- Senior High School Strands -->
+<div class="strands-section">
+    <div class="strands-bg"></div>
+    <div class="container">
+        <h2>SENIOR HIGH SCHOOL OFFERINGS</h2>
+        <p class="strand-subtitle">Alexis G. Santos National High School offers a variety of academic and technical-vocational tracks designed to prepare students for college, career, and life.</p>
+
+        <div class="strand-group">
+            <h3>Academic Track</h3>
+            <div class="strand-grid">
+                <div class="strand-card"><span class="strand-tag">Academic</span><h4>STEM</h4><p>Science, Technology, Engineering, and Mathematics — for students pursuing careers in science, engineering, health, and technology.</p></div>
+                <div class="strand-card"><span class="strand-tag">Academic</span><h4>ABM</h4><p>Accountancy, Business, and Management — for future entrepreneurs, accountants, and business leaders.</p></div>
+                <div class="strand-card"><span class="strand-tag">Academic</span><h4>HUMSS</h4><p>Humanities and Social Sciences — for students interested in law, education, journalism, and public service.</p></div>
+                <div class="strand-card"><span class="strand-tag">Academic</span><h4>GAS</h4><p>General Academic Strand — a flexible option for students who are still exploring their career path.</p></div>
+            </div>
+        </div>
+
+        <div class="strand-group">
+            <h3>Technical-Professional Track (TechPro)</h3>
+            <div class="strand-grid">
+                <div class="strand-card"><span class="strand-tag">TechPro</span><h4>BPP</h4><p>Bread and Pastry Production — hands-on training in baking, pastry making, and food service.</p></div>
+                <div class="strand-card"><span class="strand-tag">TechPro</span><h4>FBS</h4><p>Food and Beverage Services — for students aiming for careers in hospitality and restaurant service.</p></div>
+                <div class="strand-card"><span class="strand-tag">TechPro</span><h4>ICT</h4><p>Information and Communications Technology — training in computer systems, programming, and digital tools.</p></div>
+            </div>
+        </div>
+
+        <div class="strand-note">
+            <strong>Note for STEM Applicants:</strong> Students enrolling in the STEM strand must have a <strong>General Average of 85 or higher</strong>. This ensures readiness for the advanced science and mathematics curriculum.
+        </div>
+    </div>
+</div>
+
+<!-- Login -->
+<div class="login-section" id="loginPage">
+    <button class="login-back-btn" onclick="closeLogin()">&larr; Back to Home</button>
+    <div class="login-card">
+        <img src="assets/images/logo.png" alt="AGSNHS Logo" class="login-logo">
+        <h2 class="login-title">AGSNHS Enrollment System</h2>
+        <p class="login-subtitle">Alexis G. Santos National High School</p>
+
+        <div class="mb-1">
+            <label for="loginUsername" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="loginUsername" placeholder="Enter your full name" autocomplete="off">
+        </div>
+        <div class="mb-3">
+            <label for="loginPassword" class="form-label">Password</label>
+            <div class="password-wrapper">
+                <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" onkeydown="if(event.key==='Enter'){handleLogin();}">
+                <button type="button" class="password-toggle" onclick="togglePassword('loginPassword', this)" title="Show Password" aria-label="Toggle password visibility">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <button type="button" class="btn btn-login-main" onclick="handleLogin()">Login</button>
+        <button type="button" class="btn btn-enroll-main" onclick="showEnrollment()">Enroll</button>
+        <a href="#" class="forgot-password" onclick="event.preventDefault(); showForgotPassword();">Forgot password?</a>
+    </div>
+</div>
+
+<!-- Forgot Password Modal -->
+<div class="admin-modal-overlay" id="forgotModal">
+    <div class="admin-modal" style="max-width: 500px;">
+        <div class="admin-modal-header">
+            <h3>Reset Password</h3>
+            <button class="admin-modal-close" onclick="closeForgotModal()">&times;</button>
+        </div>
+        <div class="admin-modal-body">
+            <p class="text-muted small mb-3">Enter your Gmail address to recover your password. Your password will be shown to you.</p>
+            <label class="form-label-sm">Gmail Address <span class="req">*</span></label>
+            <input type="email" class="form-control form-control-sm" id="forgotEmail" placeholder="Enter your Gmail address">
+            <div class="d-flex justify-content-end gap-2 mt-3">
+                <button class="btn btn-outline-secondary btn-sm" onclick="closeForgotModal()">Cancel</button>
+                <button class="btn-assign-confirm" onclick="recoverPassword()">Recover Password</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Enrollment Form -->
+<div class="enrollment-section" id="enrollmentPage">
+    <button class="section-back-btn" onclick="closeEnrollment()">&larr; Back to Home</button>
+    <div class="container">
+        <div class="enrollment-container">
+            <div class="enrollment-header">
+                <h2>AGSNHS Student Enrollment Form</h2>
+            </div>
+            <p class="text-muted small mb-4">Please fill-in all fields with precise and accurate information. All fields marked <span class="text-danger">*</span> are required.</p>
+
+            <div class="error-msg" id="errorMsg"></div>
+
+            <form id="enrollmentForm" novalidate oninput="clearFieldError(event)">
+                <div class="account-section">
+                    <div class="section-title">Create Your Account</div>
+                    <p class="text-muted small mb-3" style="font-size: 0.8rem;">Set up your full name and password to access your enrollment status later.</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label-sm">Full Name <span class="req">*</span></label>
+                            <input type="text" class="form-control form-control-sm" id="accountUsername" placeholder="Enter your full name" autocomplete="off">
+                            <span class="field-hint">Enter your full name (letters only, no numbers).</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-sm">Email Address <span class="req">*</span></label>
+                            <input type="email" class="form-control form-control-sm" id="accountEmail" placeholder="Enter your email address">
+                            <span class="field-hint">A valid email address (e.g., name@example.com).</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label-sm">Password <span class="req">*</span></label>
+                            <div class="password-wrapper sm">
+                                <input type="password" class="form-control form-control-sm" id="accountPassword" placeholder="Create a strong password">
+                                <button type="button" class="password-toggle" onclick="togglePassword('accountPassword', this)" title="Show Password" aria-label="Toggle password visibility">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                </button>
+                            </div>
+                            <span class="field-hint">At least 8 characters.</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-sm">Confirm Password <span class="req">*</span></label>
+                            <div class="password-wrapper sm">
+                                <input type="password" class="form-control form-control-sm" id="accountConfirmPassword" placeholder="Re-enter your password">
+                                <button type="button" class="password-toggle" onclick="togglePassword('accountConfirmPassword', this)" title="Show Password" aria-label="Toggle password visibility">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                </button>
+                            </div>
+                            <span class="field-hint">Must match the password above.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title">1. Student Personal Information</div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label-sm">First Name <span class="req">*</span></label>
+                        <input type="text" class="form-control form-control-sm" id="firstName" placeholder="Enter your first name">
+                        <span class="field-hint">Your given name.</span>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label-sm">Middle Name <span class="req">*</span></label>
+                        <input type="text" class="form-control form-control-sm" id="middleName" placeholder="Enter your middle name">
+                        <span class="field-hint">Your mother's maiden surname.</span>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label-sm">Last Name <span class="req">*</span></label>
+                        <input type="text" class="form-control form-control-sm" id="lastName" placeholder="Enter your last name">
+                        <span class="field-hint">Your family surname.</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label-sm">Date of Birth <span class="req">*</span></label>
+                        <input type="date" class="form-control form-control-sm" id="dob">
+                        <span class="field-hint">As shown on your PSA Birth Certificate.</span>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label-sm">Gender <span class="req">*</span></label>
+                        <select class="form-select form-select-sm" id="gender"><option value="">-- Select --</option><option>Male</option><option>Female</option></select>
+                        <span class="field-hint">Select your gender.</span>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label-sm">Learner Reference Number (LRN)</label>
+                        <input type="text" class="form-control form-control-sm" id="lrn" placeholder="Enter your LRN if known" inputmode="numeric" maxlength="14">
+                        <span class="field-hint">10-12 digits only. Leave blank if you don't know it.</span>
+                    </div>
+                </div>
+
+                <div class="section-title mt-4">2. Contact & Family Details</div>
+                <div class="row">
+                    <div class="col-12">
+                        <label class="form-label-sm">Home Address <span class="req">*</span></label>
+                        <input type="text" class="form-control form-control-sm" id="address" placeholder="Enter your complete address">
+                        <span class="field-hint">Complete address.</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="form-label-sm">Primary Phone Number <span class="req">*</span></label>
+                        <input type="text" class="form-control form-control-sm" id="phone" placeholder="09123456789" inputmode="numeric" maxlength="13">
+                        <span class="field-hint">11–12 digits only (e.g., 09123456789).</span>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label-sm">Email Address <span class="req">*</span></label>
+                        <input type="email" class="form-control form-control-sm" id="contactEmail" placeholder="Enter your email address">
+                        <span class="field-hint">Where we'll send enrollment updates.</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="form-label-sm">Parent / Guardian Full Name <span class="req">*</span></label>
+                        <input type="text" class="form-control form-control-sm" id="guardianName" placeholder="Enter parent/guardian full name">
+                        <span class="field-hint">Full name of your parent or guardian.</span>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label-sm">Parent / Guardian Emergency Contact <span class="req">*</span></label>
+                        <input type="text" class="form-control form-control-sm" id="guardianContact" placeholder="09123456789" inputmode="numeric" maxlength="13">
+                        <span class="field-hint">11–12 digits only.</span>
+                    </div>
+                </div>
+
+                <div class="section-title mt-4">3. Academic Profile</div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label-sm">Target Grade Level <span class="req">*</span></label>
+                        <select class="form-select form-select-sm" id="gradeLevel" onchange="toggleShsFields()">
+                            <option value="">-- Select --</option>
+                            <option>Grade 7</option>
+                            <option>Grade 8</option>
+                            <option>Grade 9</option>
+                            <option>Grade 10</option>
+                            <option>Grade 11</option>
+                            <option>Grade 12</option>
+                        </select>
+                        <span class="field-hint">Grade you are enrolling for.</span>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label-sm">Previous School Attended <span class="req">*</span></label>
+                        <input type="text" class="form-control form-control-sm" id="prevSchool" placeholder="Enter previous school name">
+                        <span class="field-hint">Name of the school you last attended.</span>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label-sm">School Year <span class="req">*</span></label>
+                        <select class="form-select form-select-sm" id="schoolYear"><option value="">-- Select --</option><option>2024 - 2025</option><option>2025 - 2026</option></select>
+                        <span class="field-hint">Academic year you're enrolling for.</span>
+                    </div>
+                </div>
+
+                <div id="shsFields" style="display:none;">
+                    <div class="section-title mt-4">4. Senior High School Track & Strand</div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label-sm">Track <span class="req">*</span></label>
+                            <select class="form-select form-select-sm" id="shsTrack" onchange="updateStrandOptions()">
+                                <option value="">-- Select Track --</option>
+                                <option value="Academic">Academic Track</option>
+                                <option value="TechPro">Technical-Professional (TechPro)</option>
+                            </select>
+                            <span class="field-hint">Choose Academic or TechPro.</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label-sm">Strand <span class="req">*</span></label>
+                            <select class="form-select form-select-sm" id="shsStrand" onchange="toggleStemAverage()">
+                                <option value="">-- Select Track First --</option>
+                            </select>
+                            <span class="field-hint">Options depend on the chosen track.</span>
+                        </div>
+                    </div>
+
+                    <div class="row" id="generalAverageRow" style="display:none;">
+                        <div class="col-md-6">
+                            <label class="form-label-sm">General Average <span class="req">*</span></label>
+                            <input type="number" class="form-control form-control-sm" id="generalAverage" placeholder="Enter your general average" min="60" max="100" step="0.01">
+                            <span class="field-hint" id="generalAverageHint">Your overall general average from the previous school year.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-title mt-4" id="documentsTitle">4. Document Requirements</div>
+                <p class="text-muted small mb-3">Upload clear photos or scanned copies of the following documents. Accepted formats: JPG, PNG, PDF (Max 5MB each). <strong>All documents are required.</strong></p>
+
+                <div class="upload-item" id="upload-psa">
+                    <label class="upload-label">PSA Birth Certificate <span class="req">*</span></label>
+                    <div class="upload-controls">
+                        <input type="file" id="file-psa" accept=".jpg,.jpeg,.png,.pdf" style="display:none;" onchange="handleFileUpload(this, 'psa')">
+                        <span class="file-status" id="status-psa">No file uploaded</span>
+                        <button type="button" class="btn btn-upload-sm btn-upload" id="uploadBtn-psa" onclick="document.getElementById('file-psa').click()">Upload</button>
+                        <button type="button" class="btn btn-upload-sm btn-view" id="viewBtn-psa" style="display:none;" onclick="openPreview('psa')">View</button>
+                        <button type="button" class="btn btn-upload-sm btn-replace" id="replaceBtn-psa" style="display:none;" onclick="document.getElementById('file-psa').click()">Replace</button>
+                        <button type="button" class="btn btn-upload-sm btn-remove" id="removeBtn-psa" style="display:none;" onclick="removeFile('psa')">Remove</button>
+                    </div>
+                </div>
+
+                <div class="upload-item" id="upload-report">
+                    <label class="upload-label">Your Previous Report Card <span class="req">*</span></label>
+                    <div class="upload-controls">
+                        <input type="file" id="file-report" accept=".jpg,.jpeg,.png,.pdf" style="display:none;" onchange="handleFileUpload(this, 'report')">
+                        <span class="file-status" id="status-report">No file uploaded</span>
+                        <button type="button" class="btn btn-upload-sm btn-upload" id="uploadBtn-report" onclick="document.getElementById('file-report').click()">Upload</button>
+                        <button type="button" class="btn btn-upload-sm btn-view" id="viewBtn-report" style="display:none;" onclick="openPreview('report')">View</button>
+                        <button type="button" class="btn btn-upload-sm btn-replace" id="replaceBtn-report" style="display:none;" onclick="document.getElementById('file-report').click()">Replace</button>
+                        <button type="button" class="btn btn-upload-sm btn-remove" id="removeBtn-report" style="display:none;" onclick="removeFile('report')">Remove</button>
+                    </div>
+                </div>
+
+                <div class="upload-item" id="upload-moral">
+                    <label class="upload-label">Certificate of Good Moral Character <span class="req">*</span></label>
+                    <div class="upload-controls">
+                        <input type="file" id="file-moral" accept=".jpg,.jpeg,.png,.pdf" style="display:none;" onchange="handleFileUpload(this, 'moral')">
+                        <span class="file-status" id="status-moral">No file uploaded</span>
+                        <button type="button" class="btn btn-upload-sm btn-upload" id="uploadBtn-moral" onclick="document.getElementById('file-moral').click()">Upload</button>
+                        <button type="button" class="btn btn-upload-sm btn-view" id="viewBtn-moral" style="display:none;" onclick="openPreview('moral')">View</button>
+                        <button type="button" class="btn btn-upload-sm btn-replace" id="replaceBtn-moral" style="display:none;" onclick="document.getElementById('file-moral').click()">Replace</button>
+                        <button type="button" class="btn btn-upload-sm btn-remove" id="removeBtn-moral" style="display:none;" onclick="removeFile('moral')">Remove</button>
+                    </div>
+                </div>
+
+                <div class="section-title mt-4" id="scheduleTitle">5. Appointment Schedule</div>
+                <div class="schedule-reminder" id="scheduleReminder">
+                    <span id="scheduleReminderText"><strong>Required:</strong> Please book a schedule for passing your documents before submitting.</span>
+                </div>
+
+                <div class="enrollment-footer">
+                    <button type="button" class="btn btn-save-draft" onclick="alert('Draft saved successfully!')">Save Progress Draft</button>
+                    <button type="button" class="btn btn-schedule" onclick="showSchedule()">Schedule</button>
+                    <button type="button" class="btn btn-submit-enrollment" onclick="submitEnrollment()">Submit Enrollment Application</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Schedule Calendar Page -->
+<div class="schedule-section" id="schedulePage">
+    <button class="section-back-btn" onclick="closeSchedule()">&larr; Back to Home</button>
+    <div class="schedule-container">
+        <div class="schedule-header">
+            <h2>Schedule Passing of Documents</h2>
+            <p>Please select a date to schedule your document submission. You may come anytime during the school's available hours.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="calendar-wrapper">
+                    <div class="calendar-header">
+                        <h3 id="calendarMonthYear" onclick="toggleMonthPicker()">October 2026</h3>
+                        <div class="calendar-nav">
+                            <button onclick="changeMonth(-1)">&#8249;</button>
+                            <button onclick="changeMonth(1)">&#8250;</button>
+                        </div>
+                        <div class="month-picker" id="monthPicker">
+                            <div class="month-picker-year">
+                                <button onclick="changePickerYear(-1)">&#8249;</button>
+                                <span id="pickerYear">2026</span>
+                                <button onclick="changePickerYear(1)">&#8250;</button>
+                            </div>
+                            <div class="month-grid" id="monthGrid"></div>
+                        </div>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="slots-panel">
+                    <h4>Appointment Details</h4>
+                    <p class="date-label" id="selectedDateLabel">No date selected</p>
+                    <div class="school-hours-display">
+                        <div class="hours-title">Available School Hours</div>
+                        <div class="hours-value">8:00 AM – 3:00 PM</div>
+                        <div class="hours-note">Monday to Friday only</div>
+                    </div>
+                    <button class="btn btn-book-slot" id="btnBookSlot" disabled onclick="bookSlot()">Book Appointment Slot</button>
+                    <button class="btn btn-back-enrollment" onclick="backToEnrollment()">Back to Enrollment Form</button>
+                    <div class="legend">
+                        <div class="legend-item"><div class="legend-box available"></div><span>Slots Open</span></div>
+                        <div class="legend-item"><div class="legend-box full"></div><span>Slots Full</span></div>
+                        <div class="legend-item"><div class="legend-box closed"></div><span>School Closed / Past Date</span></div>
+                        <div class="legend-item"><div class="legend-box selected"></div><span>Selected Date</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Admin Dashboard -->
+<div class="admin-section" id="adminPage">
+    <div class="admin-navbar">
+        <div class="brand">
+            <img src="assets/images/logo.png" alt="Logo">
+            <div class="brand-text">
+                <strong>Alexis G. Santos National High School</strong>
+                <span>Online Enrollment Management System (AGSNHS)</span>
+            </div>
+        </div>
+        <div class="admin-actions">
+            <div class="profile-dropdown-wrap">
+                <button class="profile-dropdown-btn" onclick="toggleProfileDropdown(event, 'adminDropdown')">
+                    <span class="profile-avatar-circle" id="adminAvatarInitial">A</span>
+                    <span id="adminDropdownName">Admission Staff</span>
+                    <span style="font-size:0.7rem;">▾</span>
+                </button>
+                <div class="profile-dropdown-menu" id="adminDropdown">
+                    <div class="profile-dropdown-header">
+                        <div class="pd-name" id="adminDropdownFullName">Admission Staff</div>
+                        <div class="pd-role">Admin / Admission Staff</div>
+                    </div>
+                    <button class="profile-dropdown-item" onclick="handleDropdownAction(event, openAdminProfile)">👤 View &amp; Edit Profile</button>
+                    <div class="profile-dropdown-divider"></div>
+                    <button class="profile-dropdown-item" onclick="handleDropdownAction(event, signOutAdmin)">↩ Sign Out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="admin-hero">
+        <div class="d-flex justify-content-between align-items-end">
+            <h1>Staff Dashboard Overview</h1>
+            <span class="academic-year">Academic Year: 2024 - 2025</span>
+        </div>
+    </div>
+    <div class="admin-content">
+        <div class="stats-row">
+            <div class="stat-card"><div class="stat-label">Total Enrolled</div><div class="stat-value" id="statTotalEnrolled">0</div><div class="stat-sub"><span class="dot"></span> Across all grade levels</div></div>
+            <div class="stat-card"><div class="stat-label">Pending Applications</div><div class="stat-value" id="statPending">0</div><div class="stat-sub"><span class="dot red"></span> Requires review</div></div>
+        </div>
+        <div class="admin-middle">
+            <div class="quick-actions">
+                <h3>Quick Actions</h3>
+                <button class="qa-primary" onclick="openNewEnrollment()">New Enrollment Registration</button>
+                <button class="qa-outline" onclick="openTeacherAccountReg()">Teacher Account Registration</button>
+                <button class="qa-outline" onclick="openDirectory()">Student Directory</button>
+                <button class="qa-outline" onclick="openMaxLimitSettings()">Daily Slot Limit Settings</button>
+            </div>
+            <div class="recent-activity">
+                <h3>Recent Applications Activity</h3>
+                <table><thead><tr><th>Student Name</th><th>Grade Level</th><th>Time Received</th><th>Action Required</th></tr></thead><tbody id="recentActivityBody"></tbody></table>
+            </div>
+        </div>
+        <div class="teachers-section">
+            <div class="section-header">
+                <h3>Teachers Advisory</h3>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Teacher Name</th>
+                        <th>Section</th>
+                        <th>Students Assigned</th>
+                    </tr>
+                </thead>
+                <tbody id="teachersTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Student Dashboard -->
+<div class="student-section" id="studentPage">
+    <div class="student-navbar">
+        <div class="brand">
+            <img src="assets/images/logo.png" alt="Logo">
+            <div class="brand-text">
+                <strong>Alexis G. Santos National High School</strong>
+                <span>Online Enrollment Management System (AGSNHS)</span>
+            </div>
+        </div>
+        <div class="student-actions">
+            <div class="profile-dropdown-wrap">
+                <button class="profile-dropdown-btn" onclick="toggleProfileDropdown(event, 'studentDropdown')">
+                    <span class="profile-avatar-circle" id="studentAvatarInitial">S</span>
+                    <span id="studentDropdownName">Student</span>
+                    <span style="font-size:0.7rem;">▾</span>
+                </button>
+                <div class="profile-dropdown-menu" id="studentDropdown">
+                    <div class="profile-dropdown-header">
+                        <div class="pd-name" id="studentDropdownFullName">Student</div>
+                        <div class="pd-role">Student</div>
+                    </div>
+                    <button class="profile-dropdown-item" onclick="handleDropdownAction(event, openStudentProfile)">👤 View &amp; Edit Profile</button>
+                    <div class="profile-dropdown-divider"></div>
+                    <button class="profile-dropdown-item" onclick="handleDropdownAction(event, signOutStudent)">↩ Sign Out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="student-hero"><h1>My Enrollment Dashboard</h1></div>
+    <div class="student-content">
+        <div class="progress-card">
+            <h3>Enrollment Progress Tracker</h3>
+            <div class="progress-tracker">
+                <div class="progress-step completed"><div class="progress-circle">1</div><div class="step-label">1. Application Submitted</div></div>
+                <div class="progress-step completed"><div class="progress-circle">2</div><div class="step-label">2. Documents Review</div></div>
+                <div class="progress-step current"><div class="progress-circle">3</div><div class="step-label">3. Schedule Interview</div></div>
+                <div class="progress-step"><div class="progress-circle">4</div><div class="step-label">4. Enrolled</div></div>
+            </div>
+        </div>
+        <div class="student-info-row">
+            <div class="info-summary-card"><h4>Personal Information Summary</h4><div id="studentInfoRows"></div></div>
+            <div class="appointment-card"><h4>Upcoming Appointments</h4><div id="appointmentContent"></div></div>
+        </div>
+    </div>
+</div>
+
+<!-- Teacher Dashboard -->
+<div class="teacher-section" id="teacherPage">
+    <div class="teacher-navbar">
+        <div class="brand">
+            <img src="assets/images/logo.png" alt="Logo">
+            <div class="brand-text">
+                <strong>Alexis G. Santos National High School</strong>
+                <span>Online Enrollment Management System (AGSNHS)</span>
+            </div>
+        </div>
+        <div class="teacher-actions">
+            <div class="profile-dropdown-wrap">
+                <button class="profile-dropdown-btn" onclick="toggleProfileDropdown(event, 'teacherDropdown')">
+                    <span class="profile-avatar-circle" id="teacherAvatarInitial">T</span>
+                    <span id="teacherDropdownName">Teacher</span>
+                    <span style="font-size:0.7rem;">▾</span>
+                </button>
+                <div class="profile-dropdown-menu" id="teacherDropdown">
+                    <div class="profile-dropdown-header">
+                        <div class="pd-name" id="teacherDropdownFullName">Teacher</div>
+                        <div class="pd-role">Teacher</div>
+                    </div>
+                    <button class="profile-dropdown-item" onclick="handleDropdownAction(event, openTeacherProfile)">👤 View &amp; Edit Profile</button>
+                    <button class="profile-dropdown-item" onclick="handleDropdownAction(event, generateStudentListPDF)">📄 Generate Student List (PDF)</button>
+                    <div class="profile-dropdown-divider"></div>
+                    <button class="profile-dropdown-item" onclick="handleDropdownAction(event, signOutTeacher)">↩ Sign Out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="teacher-hero">
+        <h1 id="teacherHeroTitle">Adviser: Clarissa Santos</h1>
+    </div>
+
+    <div class="teacher-body">
+        <div class="teacher-sidebar">
+            <h4>My Assigned Sections</h4>
+            <div class="section-list" id="sectionList"></div>
+        </div>
+        <div class="teacher-main">
+            <div class="teacher-main-header">
+                <div class="advisor-label">Science Teacher</div>
+                <h2 id="teacherSectionTitle">Grade 7 - Section A <span class="subject-badge">Science</span></h2>
+            </div>
+            <div class="class-table-card">
+                <table class="class-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>LRN</th>
+                            <th>Grade</th>
+                            <th>Section</th>
+                            <th>Enrollment Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="classListBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Reschedule Request Popup -->
+<div class="reschedule-modal-overlay" id="rescheduleModal">
+    <div class="reschedule-modal">
+        <div class="reschedule-modal-header">
+            <h3>Request a Reschedule</h3>
+            <button class="reschedule-modal-close" onclick="closeRescheduleModal()">&times;</button>
+        </div>
+        <div class="reschedule-modal-body">
+            <p class="text-muted small mb-3" style="font-size: 0.8rem;">Select a new date for your document submission appointment and provide a reason for the reschedule.</p>
+
+            <label>Preferred New Date</label>
+            <div class="mini-calendar">
+                <div class="mini-cal-header">
+                    <h6 id="miniCalMonthYear">October 2026</h6>
+                    <div class="mini-cal-nav">
+                        <button onclick="miniCalChangeMonth(-1)">&#8249;</button>
+                        <button onclick="miniCalChangeMonth(1)">&#8250;</button>
+                    </div>
+                </div>
+                <div class="mini-cal-grid" id="miniCalGrid"></div>
+            </div>
+
+            <div class="selected-date-display" id="selectedDateDisplay"></div>
+
+            <label>Reason for Reschedule</label>
+            <textarea id="rescheduleReason" placeholder="Enter your reason for reschedule"></textarea>
+        </div>
+        <div class="reschedule-modal-footer">
+            <button class="btn-reschedule-cancel" onclick="closeRescheduleModal()">Cancel</button>
+            <button class="btn-reschedule-submit" onclick="submitReschedule()">Submit Request</button>
+        </div>
+    </div>
+</div>
+
+<!-- Admin Modal -->
+<div class="admin-modal-overlay" id="adminModal">
+    <div class="admin-modal">
+        <div class="admin-modal-header">
+            <h3 id="adminModalTitle">Student Directory</h3>
+            <button class="admin-modal-close" onclick="closeAdminModal()">&times;</button>
+        </div>
+        <div class="admin-modal-body" id="adminModalBody"></div>
+    </div>
+</div>
+
+<!-- Profile Modal -->
+<div class="profile-modal-overlay" id="profileModal">
+    <div class="profile-modal">
+        <div class="profile-modal-header">
+            <h3 id="profileModalTitle">My Profile</h3>
+            <button class="admin-modal-close" onclick="closeProfileModal()">&times;</button>
+        </div>
+        <div class="profile-modal-body" id="profileModalBody"></div>
+    </div>
+</div>
+
+<!-- File Preview Popup -->
+<div class="preview-overlay" id="previewOverlay">
+    <div class="preview-box">
+        <div class="preview-header">
+            <h5 id="previewTitle">Document Preview</h5>
+            <button class="preview-close" onclick="closePreview()" title="Close">&times;</button>
+        </div>
+        <div class="preview-body" id="previewBody"></div>
+    </div>
+</div>
+
+<!-- Popup -->
+<div class="popup-overlay" id="popupOverlay">
+    <div class="popup-box">
+        <div class="popup-icon warning" id="popupIcon">!</div>
+        <h5 id="popupTitle">Notice</h5>
+        <p id="popupMessage">Message here</p>
+        <button class="btn btn-success" onclick="closePopup()">OK</button>
+    </div>
+</div>
+
+    <!-- Third-party scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+
+    <!-- App scripts (order matters: data/state first, main.js last) -->
+    <script src="js/sections-and-roster.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/events-carousel.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/popup.js"></script>
+    <script src="js/file-upload.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/enrollment.js"></script>
+    <script src="js/profiles.js"></script>
+    <script src="js/teacher.js"></script>
+    <script src="js/student.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/directory.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

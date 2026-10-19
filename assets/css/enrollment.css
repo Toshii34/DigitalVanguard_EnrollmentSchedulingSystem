@@ -1,0 +1,49 @@
+/* Enrollment form and document uploads */
+
+/* ---------- Enrollment ---------- */
+.enrollment-section { display: none; position: fixed; top:0; left:0; width: 100%; height: 100vh; background-image: linear-gradient(rgba(13,22,17,0.75), rgba(13,22,17,0.75)), url('../assets/images/background.jpg'); background-size: cover; background-position: center; z-index: 9999; overflow-y: auto; padding: 100px 0 40px 0; }
+.enrollment-container { background-color: white; width: 90%; max-width: 900px; margin: 0 auto; border-radius: 10px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); border-top: 5px solid var(--green); }
+.enrollment-header { border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
+.enrollment-header h2 { font-size: 1.2rem; font-weight: 700; color: var(--green); margin: 0; }
+.section-title { font-size: 1rem; font-weight: 700; color: #333; margin-top: 20px; margin-bottom: 15px; border-bottom: 2px solid var(--green); padding-bottom: 5px; display: inline-block; }
+.form-label-sm { font-size: 0.8rem; font-weight: 600; color: #555; margin-bottom: 3px; }
+.form-label-sm .req { color: var(--danger); }
+.form-control-sm { font-size: 0.85rem; padding: 6px 10px; border-radius: 5px; border: 1px solid #ced4da; margin-bottom: 3px; }
+.form-control-sm.error { border-color: var(--danger); background-color: #fff5f5; }
+.field-hint { font-size: 0.7rem; color: #888; font-style: italic; margin-bottom: 10px; display: block; line-height: 1.3; }
+.account-section { background-color: var(--green-light); border: 1px solid var(--green); border-radius: 10px; padding: 20px; margin-bottom: 20px; }
+.account-section .section-title { margin-top: 0; color: var(--green); border-bottom-color: var(--green); }
+.schedule-reminder { background-color: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 12px 15px; margin-bottom: 15px; font-size: 0.85rem; color: #856404; display: flex; align-items: center; gap: 10px; }
+.schedule-reminder.booked { background-color: #d1e7dd; border-color: var(--green); color: #0f5132; }
+.schedule-reminder.error { background-color: #f8d7da; border-color: var(--danger); color: #842029; }
+.upload-item { background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px; padding: 15px; margin-bottom: 12px; transition: 0.2s; }
+.upload-item:hover { border-color: var(--green); background-color: var(--green-light); }
+.upload-item.error { border-color: var(--danger); background-color: #fff5f5; }
+.upload-label { font-size: 0.85rem; font-weight: 600; color: #333; margin-bottom: 8px; display: block; }
+.upload-label .req { color: var(--danger); }
+.upload-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.file-status { font-size: 0.8rem; color: #666; flex-grow: 1; }
+.file-status.has-file { color: var(--green); font-weight: 600; }
+.btn-upload-sm { font-size: 0.75rem; padding: 4px 12px; border-radius: 4px; font-weight: 600; }
+.btn-upload { background-color: var(--green); color: white; border: none; }
+.btn-upload:hover { background-color: var(--green-deep); color: white; }
+.btn-view { background-color: white; color: var(--green-dark); border: 1px solid var(--green-dark); }
+.btn-view:hover { background-color: var(--green-dark); color: white; }
+.btn-replace { background-color: white; color: var(--green); border: 1px solid var(--green); }
+.btn-replace:hover { background-color: var(--green); color: white; }
+.btn-remove { background-color: white; color: var(--danger); border: 1px solid var(--danger); }
+.btn-remove:hover { background-color: var(--danger); color: white; }
+.enrollment-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
+.enrollment-footer .btn { font-size: 0.9rem; padding: 10px 20px; border-radius: 5px; font-weight: 600; }
+.btn-save-draft { background-color: white; color: #333; border: 1px solid #ccc; }
+.btn-save-draft:hover { background-color: #f8f9fa; }
+.btn-schedule { background-color: white; color: var(--green); border: 1px solid var(--green); }
+.btn-schedule:hover { background-color: var(--green-light); }
+.btn-submit-enrollment { background-color: var(--green); color: white; border: none; }
+.btn-submit-enrollment:hover { background-color: var(--green-deep); }
+.error-msg { display: none; background-color: #f8d7da; border: 1px solid #f5c2c7; color: #842029; padding: 12px 15px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; margin-bottom: 20px; }
+.error-msg.show { display: block; }
+
+.enrollment-section .section-back-btn { position: fixed; top: 20px; left: 20px; }
+.schedule-section .section-back-btn { position: fixed; top: 20px; left: 20px; color: white; background-color: rgba(13,22,17,0.7); border-color: white; }
+.schedule-section .section-back-btn:hover { background-color: white; color: var(--green); border-color: white; }

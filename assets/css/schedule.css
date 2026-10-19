@@ -1,0 +1,61 @@
+/* Schedule / calendar booking page */
+
+/* ---------- Schedule / Calendar Page ---------- */
+.schedule-section { display: none; position: fixed; top:0; left:0; width: 100%; height: 100vh; background-image: linear-gradient(rgba(13,22,17,0.55), rgba(13,22,17,0.55)), url('../assets/images/background.jpg'); background-size: cover; background-position: center; z-index: 9999; overflow-y: auto; padding: 100px 0 40px 0; }
+.schedule-container { width: 90%; max-width: 1100px; margin: 0 auto; }
+.schedule-header { color: white; margin-bottom: 20px; }
+.schedule-header h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 5px; }
+.schedule-header p { font-size: 0.9rem; color: #d8e0da; margin: 0; }
+.calendar-wrapper { background-color: white; border-radius: 12px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-top: 5px solid var(--green); }
+.calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; position: relative; }
+.calendar-header h3 { font-size: 1.2rem; font-weight: 700; color: #222; margin: 0; cursor: pointer; padding: 5px 10px; border-radius: 5px; transition: 0.2s; user-select: none; }
+.calendar-header h3:hover { background-color: var(--green-light); color: var(--green); }
+.calendar-header h3::after { content: " ▾"; font-size: 0.8rem; color: #666; }
+.calendar-nav { display: flex; gap: 5px; }
+.calendar-nav button { background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 5px; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; font-size: 1rem; color: #333; }
+.calendar-nav button:hover { background-color: var(--green); color: white; border-color: var(--green); }
+.month-picker { display: none; position: absolute; top: 45px; left: 0; background-color: white; border: 1px solid #e9ecef; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); padding: 15px; z-index: 100; width: 320px; }
+.month-picker.active { display: block; }
+.month-picker-year { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+.month-picker-year span { font-size: 0.95rem; font-weight: 700; color: #222; }
+.month-picker-year button { background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 5px; width: 28px; height: 28px; cursor: pointer; font-size: 0.9rem; color: #333; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+.month-picker-year button:hover { background-color: var(--green); color: white; border-color: var(--green); }
+.month-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.month-item { padding: 10px 5px; text-align: center; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: 0.2s; border: 1px solid #e9ecef; background-color: white; color: #333; }
+.month-item:hover:not(.disabled):not(.current) { background-color: var(--green-light); border-color: var(--green); color: var(--green); }
+.month-item.current { background-color: var(--green); color: white; border-color: var(--green); }
+.month-item.disabled { background-color: #f8f9fa; color: #adb5bd; cursor: not-allowed; border-color: #e9ecef; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+.calendar-day-header { text-align: center; font-weight: 600; font-size: 0.8rem; color: #666; padding: 10px 0; text-transform: uppercase; }
+.calendar-day { aspect-ratio: 1; border: 1px solid #e9ecef; border-radius: 8px; padding: 8px; display: flex; flex-direction: column; cursor: pointer; transition: 0.2s; font-size: 0.85rem; position: relative; background-color: white; }
+.calendar-day:hover:not(.disabled):not(.empty) { border-color: var(--green); background-color: var(--green-light); }
+.calendar-day.empty { border: none; cursor: default; background-color: transparent; }
+.calendar-day.disabled { background-color: #f8f9fa; color: #adb5bd; cursor: not-allowed; }
+.calendar-day.disabled:hover { background-color: #f8f9fa; border-color: #e9ecef; }
+.calendar-day .day-number { font-weight: 700; color: #333; font-size: 0.9rem; }
+.calendar-day.disabled .day-number { color: #adb5bd; }
+.calendar-day .day-status { font-size: 0.65rem; font-weight: 600; padding: 2px 6px; border-radius: 3px; margin-top: auto; align-self: flex-start; }
+.calendar-day .slots-open { background-color: #d1e7dd; color: #0f5132; }
+.calendar-day .slots-full { background-color: #f8d7da; color: #842029; }
+.calendar-day.selected-day { border: 2px solid var(--green); background-color: var(--green-light); }
+.calendar-day.selected-day .day-status { background-color: var(--green); color: white; }
+.calendar-day.today { border: 2px solid var(--green-dark); }
+.slots-panel { background-color: white; border-radius: 12px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-top: 5px solid var(--green); }
+.slots-panel h4 { font-size: 1rem; font-weight: 700; color: #222; margin-bottom: 5px; }
+.slots-panel .date-label { font-size: 0.9rem; color: var(--green); font-weight: 700; margin-bottom: 15px; }
+.school-hours-display { background-color: var(--green-light); border: 1px dashed var(--green); border-radius: 8px; padding: 20px; margin-bottom: 20px; text-align: center; }
+.school-hours-display .hours-title { font-size: 0.75rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+.school-hours-display .hours-value { font-size: 1.3rem; font-weight: 800; color: var(--green-dark); margin-bottom: 5px; }
+.school-hours-display .hours-note { font-size: 0.75rem; color: #666; }
+.btn-book-slot { background-color: var(--green-dark); color: white; width: 100%; padding: 12px; border-radius: 8px; border: none; font-weight: 700; font-size: 0.95rem; transition: 0.3s; margin-bottom: 10px; }
+.btn-book-slot:hover { background-color: var(--green-deep); }
+.btn-book-slot:disabled { background-color: #adb5bd; cursor: not-allowed; }
+.btn-back-enrollment { background-color: white; color: #666; width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc; font-weight: 600; font-size: 0.85rem; transition: 0.3s; }
+.btn-back-enrollment:hover { background-color: #f8f9fa; color: #333; border-color: #999; }
+.legend { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: #555; }
+.legend-box { width: 16px; height: 16px; border-radius: 4px; }
+.legend-box.available { background-color: #d1e7dd; border: 1px solid #0f5132; }
+.legend-box.full { background-color: #f8d7da; border: 1px solid #842029; }
+.legend-box.closed { background-color: #f8f9fa; border: 1px solid #e9ecef; }
+.legend-box.selected { background-color: var(--green); }

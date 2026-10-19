@@ -1,0 +1,21 @@
+/* Design tokens and global styles */
+
+:root {
+    --green: #198754;
+    --green-dark: #1a4d3e;
+    --green-deep: #0f3027;
+    --green-light: #f0fdf4;
+    --gold: #f0ad4e;
+    --danger: #dc3545;
+    --bg-1: #1a2b24;
+    --bg-2: #0d1611;
+    --surface: #f4f6f9;
+    --text-on-dark: #e8ede9;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+    background-attachment: fixed;
+    color: var(--text-on-dark);
+}
