@@ -62,5 +62,5 @@ Built to deliver a stress-free, organized, and efficient enrollment experience f
 - JavaScript - Interactivity and logic
 - Bootstrap 5 - Responsive UI framework
 
-AGSNHS Enrollment Scheduling System
+AGSNHS Enrollment Scheduling System Alternative Link:
 https://agsnhsenrollmentsystem.netlify.app/
